@@ -64,61 +64,52 @@
 </head>
 
 <body>
-  <table class="mdl-data-table mdl-js-data-table">
-    <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric">Project Backlog</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric" style="height:50px;width:300px">
-          <span class="mdl-chip mdl-chip--deletable">
-            <span class="mdl-chip__text">Task 1</span>
-            <span>
-              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="task1backlogoption">
-                <i class="material-icons">more_vert</i>
-              </button>
-              <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="task1backlogoption">
-                <li class="mdl-menu__item">View Task Details</li>
-                <li class="mdl-menu__item">Add to Kanban Route</li>
-                <li class="mdl-menu__item">Edit</li>
-                <li class="mdl-menu__item">Delete</li>
-              </ul>
-            </span>
-          </span>
-          <span class="mdl-chip mdl-chip--deletable">
-            <span class="mdl-chip__text">Task 2</span>
-            <span>
-              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="task2backlogoption">
-                <i class="material-icons">more_vert</i>
-              </button>
-              <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="task2backlogoption">
-                <li class="mdl-menu__item">View Task Details</li>
-                <li class="mdl-menu__item">Add to Kanban Route</li>
-                <li class="mdl-menu__item">Edit</li>
-                <li class="mdl-menu__item">Delete</li>
-              </ul>
-            </span>
-          </span>
-          <span class="mdl-chip mdl-chip--deletable">
-            <span class="mdl-chip__text">Task 3</span>
-            <span>
-              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="task3backlogoption">
-                <i class="material-icons">more_vert</i>
-              </button>
-              <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="task3backlogoption">
-                <li class="mdl-menu__item">View Task Details</li>
-                <li class="mdl-menu__item">Add to Kanban Route</li>
-                <li class="mdl-menu__item">Edit</li>
-                <li class="mdl-menu__item">Delete</li>
-              </ul>
-            </span>
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <button type="button" class="mdl-button show-modal">Show Modal</button>
+  <dialog class="mdl-dialog">
+    <div>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="sample1">
+          <label class="mdl-textfield__label" for="sample1">Name</label>
+        </div>
+      </form>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="sample1">
+          <label class="mdl-textfield__label" for="sample1">Description</label>
+        </div>
+      </form>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="sample1">
+          <label class="mdl-textfield__label" for="sample1">Tags</label>
+        </div>
+      </form>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="sample1">
+          <label class="mdl-textfield__label" for="sample1">Priority</label>
+        </div>
+      </form>
+      <div class="mdl-dialog__actions" style="margin: ;">
+        <button type="button" class="mdl-button">Agree</button>
+        <button type="button" class="mdl-button close">Disagree</button>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    var dialog = document.querySelector('dialog');
+    var showModalButton = document.querySelector('.show-modal');
+    if (!dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showModalButton.addEventListener('click', function () {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function () {
+      dialog.close();
+    });
+  </script>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250"
     style="position: fixed; left: -1000px; height: -1000px;">
     <defs>

@@ -22,17 +22,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <title>Material Design Lite</title>
-
-  <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-  <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+  <title>Application</title>
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
@@ -50,34 +40,75 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
-  </style>
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
   <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">Home</span>
+      <div class="mdl-layout__header-row" style="padding-right: 5px;">
+        <span class="mdl-layout-title" style="width: auto;">Project Backlog</span>
         <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-          <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="text" id="search">
-            <label class="mdl-textfield__label" for="search">Enter your query...</label>
-          </div>
+        <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
+            style="background-color: white; color: black; max-height: 10; margin-left: 10px;">
+            <option> All task available</option>
+            <option> Some task</option>
+          </select>
         </div>
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-          <i class="material-icons">more_vert</i>
-        </button>
+        <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
+          <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i class="material-icons">add</i></button>
+          <dialog class="mdl-dialog">
+            <div>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="task_name">
+                  <label class="mdl-textfield__label" for="sample1">Name</label>
+                </div>
+              </form>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="task_description">
+                  <label class="mdl-textfield__label" for="sample1">Description</label>
+                </div>
+              </form>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="task_tags">
+                  <label class="mdl-textfield__label" for="sample1">Tags</label>
+                </div>
+              </form>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="task_priority">
+                  <label class="mdl-textfield__label" for="sample1">Priority</label>
+                </div>
+              </form>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="task_story_point">
+                  <label class="mdl-textfield__label" for="sample1">Story Point:</label>
+                </div>
+              </form>
+              <div class="mdl-dialog__actions"> 
+                <button type="button" class="mdl-button close">Cancel</button>
+                <button type="button" class="mdl-button">Add task</button>
+              </div>
+            </div>
+          </dialog>
+          <script>
+            var dialog = document.querySelector('dialog');
+            var showModalButton = document.querySelector('.show-modal');
+            if (!dialog.showModal) {
+              dialogPolyfill.registerDialog(dialog);
+            }
+            showModalButton.addEventListener('click', function () {
+              dialog.showModal();
+            });
+            dialog.querySelector('.close').addEventListener('click', function () {
+              dialog.close();
+            });
+          </script>
+        </div>
       </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -98,119 +129,101 @@
         </div>
       </header>
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-            role="presentation">home</i>Home</a>
-        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-            role="presentation">people</i>Member Management</a>
+        <a class="mdl-navigation__link" href="">Project Backlog</a>
+
+        <a class="mdl-navigation__link" href=""></i>Member Management</a>
+        <a class="mdl-navigation__link" href="">Sprint 1</a>
         <div class="mdl-layout-spacer"></div>
+
         <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
             role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
       <div class="mdl-grid demo-content">
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-          <table class="mdl-data-table mdl-js-data-table">
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
             <thead>
               <tr>
-                <th class="mdl-data-table__cell--non-numeric">Project Backlog</th>
+                <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
+                <th style="text-align:right; padding-right: 0px;"><button id="task1"
+                    class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">
+                    <i class="material-icons">more_vert</i>
+                  </button>
+                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="task1">
+                    <li class="mdl-menu__item">Edit Task</li>
+                    <li class="mdl-menu__item">Delete Task</li>
+                    <li class="mdl-menu__item">Move to Sprint 1</li>
+                    <li disabled class="mdl-menu__item">Disable button</li>
+                  </ul>
+                </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric" style="height:50px;width:300px">
-                  <span class="mdl-chip mdl-chip--deletable">
-                    <span class="mdl-chip__text">Task 1</span>
-                    <span>
-                      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-                        id="task1backlogoption">
-                        <i class="material-icons">more_vert</i>
-                      </button>
-                      <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right"
-                        for="task1backlogoption">
-                        <li class="mdl-menu__item">View Task Details</li>
-                        <li class="mdl-menu__item">Add to Kanban Route</li>
-                        <li class="mdl-menu__item">Edit</li>
-                        <li class="mdl-menu__item">Delete</li>
-                      </ul>
-                    </span>
-                  </span>
-                  <span class="mdl-chip mdl-chip--deletable">
-                    <span class="mdl-chip__text">Task 2</span>
-                    <span>
-                      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-                        id="task2backlogoption">
-                        <i class="material-icons">more_vert</i>
-                      </button>
-                      <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right"
-                        for="task2backlogoption">
-                        <li class="mdl-menu__item">View Task Details</li>
-                        <li class="mdl-menu__item">Add to Kanban Route</li>
-                        <li class="mdl-menu__item">Edit</li>
-                        <li class="mdl-menu__item">Delete</li>
-                      </ul>
-                    </span>
-                  </span>
-                  <span class="mdl-chip mdl-chip--deletable">
-                    <span class="mdl-chip__text">Task 3</span>
-                    <span>
-                      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-                        id="task3backlogoption">
-                        <i class="material-icons">more_vert</i>
-                      </button>
-                      <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right"
-                        for="task3backlogoption">
-                        <li class="mdl-menu__item">View Task Details</li>
-                        <li class="mdl-menu__item">Add to Kanban Route</li>
-                        <li class="mdl-menu__item">Edit</li>
-                        <li class="mdl-menu__item">Delete</li>
-                      </ul>
-                    </span>
-                  </span>
+            <tbody onclick="location.href = 'https:google.com'">
+              <tr style="width: 100%;">
+                <td style="text-align:left">Description:</td>
+                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some
+                  description</td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Tags:</td>
+                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some tag
+                </td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Priority:</td>
+                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">High</td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Story Point:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-          <img src="images/prototype/Kanbanroute.png">
-        </div>
-        <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-          <img src="images/prototype/Projectbacklogrepresentingtasks.png">
-          <div class="demo-separator mdl-cell--1-col"></div>
-          <div
-            class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
-            <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
-              <h3>Note from the Admin</h3>
-              <ul>
-                <li>
-                  <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                    <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
-                    <span class="mdl-checkbox__label">note here</span>
-                  </label>
-                </li>
-                <li>
-                  <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                    <input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
-                    <span class="mdl-checkbox__label">note here 2</span>
-                  </label>
-                </li>
-                <li>
-                  <label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                    <input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
-                    <span class="mdl-checkbox__label">note here 3</span>
-                  </label>
-                </li>
-                <li>
-                  <label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                    <input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
-                    <span class="mdl-checkbox__label">note here 4</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-
-          </div>
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
+                <th style="text-align:right; padding-right: 0px;"><button id="task1"
+                    class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">
+                    <i class="material-icons">more_vert</i>
+                  </button>
+                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="task1">
+                    <li class="mdl-menu__item">Edit Task</li>
+                    <li class="mdl-menu__item">Delete Task</li>
+                    <li class="mdl-menu__item">Move to Sprint 1</li>
+                    <li disabled class="mdl-menu__item">Disable button</li>
+                  </ul>
+                </th>
+              </tr>
+            </thead>
+            <tbody onclick="location.href = 'https:google.com'">
+              <tr style="width: 100%;">
+                <td style="text-align:left">Description:</td>
+                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some
+                  description</td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Tags:</td>
+                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some tag
+                </td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Priority:</td>
+                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">High</td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Story Point:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
     </main>
   </div>

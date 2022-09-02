@@ -1,0 +1,33 @@
+
+.project_backlog{
+    background-color: white;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.expanable_card{
+    background-color: #66d6d6;
+    height: 150px;
+    width: 100%;
+    padding: 25px;
+    border: red solid 3px;
+    flex:1;
+}
+.expanable_card:hover{
+    flex: 3;
+}
+.task_table{
+    width: 20%;
+}
+.task_table_information{
+    text-align: left;
+    width: 400px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
