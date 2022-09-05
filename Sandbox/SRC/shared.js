@@ -182,7 +182,7 @@ function deleteTask(){
 }
 
 
-function filterStickynote(attribute, value){
+/*function filterStickynote(attribute, value){
     if (attribute === "tag")
         for (let i = 0; i < length.stickynoteArray)
         return ;
@@ -204,7 +204,7 @@ Arguments:
 Returns: 
     This function has no returns. */
 
-function deleteStickynote(id){
+/*function deleteStickynote(id){
     var removeStickynote = document.getElementById(id)
     removeStickynote.remove()
-}
+} */
