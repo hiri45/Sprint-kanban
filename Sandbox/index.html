@@ -28,7 +28,7 @@
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
   <meta name="msapplication-TileColor" content="#3372DF">
 
-  <link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="HTML%20prototype/images/favicon.png">
 
   <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
   <!--
@@ -39,8 +39,8 @@
     href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="HTML%20prototype/styles.css">
+  <link rel="stylesheet" href="HTML%20prototype/main.css">
 </head>
 
 <body>
@@ -56,81 +56,75 @@
           </select>
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
-          <button type="button"
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 createtask"
-            onclick="addDialog();"><i class="material-icons">add</i></button>
-          <dialog class="mdl-dialog" style="word-break:break-word; width: 300px;">
+          <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i class="material-icons">add</i></button>
+          <dialog class="mdl-dialog">
             <div>
-              <div style=" margin: 2%; text-align:center; font-size: larger;">Create Task</div>
-              <hr style="width:max-content;">
-              <form action="#" style="text-align:left;">
-                <div class="mdl-textfield mdl-js-textfield"> 
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input" type="text" id="task_name">
-                  <label class="mdl-textfield__label" for="sample1">Name</label>
+                  <label class="mdl-textfield__label">Name</label>
                 </div>
               </form>
-              <form action="#" style="text-align:left;">
+              <form action="#">
                 <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input" type="text" id="task_description">
-                  <label class="mdl-textfield__label" for="sample1">Description</label>
+                  <label class="mdl-textfield__label" >Description</label>
                 </div>
               </form>
-              <form action="#" style="text-align:left;">
-                <div class="mdl-textfield mdl-js-textfield" >
-                  <input class="mdl-textfield__input" type="text" id="task_tags">
-                  <label class="mdl-textfield__label" for="sample1">Tags</label>
-                </div>
-              </form>
-              <div style="text-align:left;width: max-content; height: max-content; font-size: large;">
-                Priority:<select style="background-color: white; color: black;  width:200px; font-size: large; text-align: center;">
-                  <option> Low</option>
-                  <option> Medium</option>
-                  <option> High</option>
-                  <option> Critical</option>
-                </select>
-              </div>
-              <form action="#" style="text-align:left;">
+              <form action="#">
                 <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input" type="text" id="task_story_point">
-                  <label class="mdl-textfield__label" for="sample1">Story Point:</label>
+                  <label class="mdl-textfield__label">Story Point:</label>
                 </div>
               </form>
-              <form action="#" style="text-align:left;">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_assignee">
-                  <label class="mdl-textfield__label" for="sample1">Assignee:</label>
-                </div>
+              <form action="#">
+                <select class="mdl-textfield__input" id="task_tags" name="Tags">
+                  <option><label class="mdl-textfield__label" >Tag</label></option>
+                  <option value="UI CORE">UI CORE</option>
+                  <option value="TESTING">TESTING</option>
+                </select>
               </form>
-              <form action="#" style="text-align:left;">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_status">
-                  <label class="mdl-textfield__label" for="sample1">Status:</label>
-                </div>
+              <form action="#">
+                  <select class="mdl-textfield__input" id="task_priority" name="Priority">
+                    <option><label class="mdl-textfield__label" >Priority</label></option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                    <option value="Critical">Critical</option>
+                  </select>
               </form>
-              <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button close" onclick="closeAddDialog();">Cancel</button>
-                <button type="button" class="mdl-button">Add task</button>
+              <form action="#">
+                <select class="mdl-textfield__input" id="task_type" name="Type">
+                  <option><label class="mdl-textfield__label" >Type</label></option>
+                  <option value="Story">Story</option>
+                  <option value="Bug">Bug</option>
+                </select>
+              </form>
+              <div class="mdl-dialog__actions"> 
+                <button type="button" class="mdl-button close">Cancel</button>
+                <button type="button" class="mdl-button" onclick="addTask()">Add task</button>
               </div>
             </div>
           </dialog>
           <script>
-            function addDialog() {
-              var dialog = document.querySelector('dialog');
-              var showModalButton = document.querySelector('.createtask');
+            var dialog = document.querySelector('dialog');
+            var showModalButton = document.querySelector('.show-modal');
+            if (!dialog.showModal) {
+              dialogPolyfill.registerDialog(dialog);
+            }
+            showModalButton.addEventListener('click', function () {
               dialog.showModal();
-            }
-            function closeAddDialog() {
-              var dialog = document.querySelector('dialog');
-              var showModalButton = document.querySelector('.createtask');
+            });
+            dialog.querySelector('.close').addEventListener('click', function () {
               dialog.close();
-            }
+            });
           </script>
         </div>
       </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
       <header class="demo-drawer-header">
-        <img src="images/user.jpg" class="demo-avatar">
+        <img src="HTML%20prototype/images/user.jpg" class="demo-avatar">
         <div class="demo-avatar-dropdown">
           <span>ADMIN</span>
           <div class="mdl-layout-spacer"></div>
@@ -148,7 +142,7 @@
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
         <a class="mdl-navigation__link" href="">Project Backlog</a>
 
-        <a class="mdl-navigation__link" href="index - Copy.html"></i>Member Management</a>
+        <a class="mdl-navigation__link" href=""></i>Member Management</a>
         <a class="mdl-navigation__link" href="">Sprint 1</a>
         <div class="mdl-layout-spacer"></div>
 
@@ -157,17 +151,18 @@
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-      <div class="mdl-grid demo-content">
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
+      <div class="mdl-grid demo-content" id = "NoteDisplay">
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col" >
+          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
-                <th style="text-align:right; padding-right: 0px;"><button id="task1"
+                <th style="text-align:right; padding-right: 0px;"><button id="task1" onclick=""
                     class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">
                     <i class="material-icons">more_vert</i>
                   </button>
-                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="task1">
+                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="task1">
                     <li class="mdl-menu__item">Edit Task</li>
                     <li class="mdl-menu__item">Delete Task</li>
                     <li class="mdl-menu__item">Move to Sprint 1</li>
@@ -176,7 +171,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody id="tableId" onclick="showDetail();">
+            <tbody onclick="location.href = 'https:google.com'">
               <tr style="width: 100%;">
                 <td style="text-align:left">Description:</td>
                 <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some
@@ -192,67 +187,29 @@
                 <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">High</td>
               </tr>
               <tr style="width: 100%;">
-                <td style="text-align:left">Assignee:</td>
-                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some One
+                <td style="text-align:left">Story Point:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
+                </td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Type:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some type
                 </td>
               </tr>
             </tbody>
-            <dialog id="tableDetailID" style="width:70%; height:fit-content;">
-              <div>
-                <div style=" margin: 1%; text-align:center; font-size: large;"><b>Task name</b></div>
-                <div style="display:block;font-size: larger; margin-top: 5px;"><b>Description:</b></div>
-                <p style="word-break: break-word; margin: 0px;">some decription go here some decription go here some
-                  decription go here some decription go here some decription go here some decription go here end</p>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Tags:</b></div>
-                <div style="word-break: break-word;">some tagsgo here</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Priority:</b></div>
-                <div style="word-break: break-word; ">High-low</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Point:</b></div>
-                <div style="word-break: break-word; ">Some story</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Assignee:</b></div>
-                <div style="word-break: break-word; ">Some one</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Status:</b></div>
-                <div style="word-break: break-word; ">On going</div>
-              </div>
-              <div class="mdl-dialog__actions">
-                <button type="button" class="closedialog" onclick="closeDialog();">Close</button>
-              </div>
-            </dialog>
-            <script>
-              var dialog = document.getElementById('tableDetailID');
-              var showModalButton = document.getElementById('tableId');
-              function showDetail() {
-                if (!dialog.showModal) {
-                  dialogPolyfill.registerDialog(dialog);
-                }
-                dialog.showModal();
-              }
-              function closeDialog() {
-                dialog.close();
-              }
-            </script>
           </table>
         </div>
         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
+          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
-                <th style="text-align:right; padding-right: 0px;"><button id="task1"
+                <th style="text-align:right; padding-right: 0px;"><button id="tahsk1"
                     class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">
                     <i class="material-icons">more_vert</i>
                   </button>
-                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="task1">
+                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="task1">
                     <li class="mdl-menu__item">Edit Task</li>
                     <li class="mdl-menu__item">Delete Task</li>
                     <li class="mdl-menu__item">Move to Sprint 1</li>
@@ -261,7 +218,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody id="tableId" onclick="showDetail();">
+            <tbody onclick="location.href = 'https:google.com'">
               <tr style="width: 100%;">
                 <td style="text-align:left">Description:</td>
                 <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some
@@ -277,55 +234,16 @@
                 <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">High</td>
               </tr>
               <tr style="width: 100%;">
-                <td style="text-align:left">Assignee:</td>
-                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some One
+                <td style="text-align:left">Story Point:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
+                </td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Type:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some type
                 </td>
               </tr>
             </tbody>
-            <dialog id="tableDetailID" style="width:70%; height:fit-content;">
-              <div>
-                <div style=" margin: 1%; text-align:center; font-size: large;"><b>Task name</b></div>
-                <div style="display:block;font-size: larger; margin-top: 5px;"><b>Description:</b></div>
-                <p style="word-break: break-word; margin: 0px;">some decription go here some decription go here some
-                  decription go here some decription go here some decription go here some decription go here end</p>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Tags:</b></div>
-                <div style="word-break: break-word;">some tagsgo here</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Priority:</b></div>
-                <div style="word-break: break-word; ">High-low</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Point:</b></div>
-                <div style="word-break: break-word; ">Some story</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Assignee:</b></div>
-                <div style="word-break: break-word; ">Some one</div>
-              </div>
-              <div>
-                <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Status:</b></div>
-                <div style="word-break: break-word; ">On going</div>
-              </div>
-              <div class="mdl-dialog__actions">
-                <button type="button" class="closedialog" onclick="closeDialog();">Close</button>
-              </div>
-            </dialog>
-            <script>
-              var dialog = document.getElementById('tableDetailID');
-              var showModalButton = document.getElementById('tableId');
-              function showDetail() {
-                if (!dialog.showModal) {
-                  dialogPolyfill.registerDialog(dialog);
-                }
-                dialog.showModal();
-              }
-              function closeDialog() {
-                dialog.close();
-              }
-            </script>
           </table>
         </div>
     </main>
@@ -383,8 +301,12 @@
       </g>
     </defs>
   </svg>
-
+  <script src="SRC/shared.js"></script>
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  
+
+
+  
 </body>
 
 </html>
