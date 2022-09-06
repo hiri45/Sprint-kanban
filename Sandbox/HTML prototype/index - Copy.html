@@ -22,17 +22,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <title>Material Design Lite</title>
-
-  <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-  <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+  <title>Application</title>
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
@@ -50,66 +40,83 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
-  </style>
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-  <button type="button" class="mdl-button show-modal">Show Modal</button>
-  <dialog class="mdl-dialog">
-    <div>
-      <form action="#">
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="sample1">
-          <label class="mdl-textfield__label" for="sample1">Name</label>
-        </div>
-      </form>
-      <form action="#">
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="sample1">
-          <label class="mdl-textfield__label" for="sample1">Description</label>
-        </div>
-      </form>
-      <form action="#">
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="sample1">
-          <label class="mdl-textfield__label" for="sample1">Tags</label>
-        </div>
-      </form>
-      <form action="#">
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="sample1">
-          <label class="mdl-textfield__label" for="sample1">Priority</label>
-        </div>
-      </form>
-      <div class="mdl-dialog__actions" style="margin: ;">
-        <button type="button" class="mdl-button">Agree</button>
-        <button type="button" class="mdl-button close">Disagree</button>
+  <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+      <div class="mdl-layout__header-row" style="padding-right: 5px;">
+        <span class="mdl-layout-title" style="width: auto;">Project Backlog</span>
+        <div class="mdl-layout-spacer"></div>
       </div>
+    </header>
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+      <header class="demo-drawer-header">
+        <img src="images/user.jpg" class="demo-avatar">
+        <div class="demo-avatar-dropdown">
+          <span>ADMIN</span>
+          <div class="mdl-layout-spacer"></div>
+          <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">arrow_drop_down</i>
+            <span class="visuallyhidden">Accounts</span>
+          </button>
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+            <li class="mdl-menu__item">Admin</li>
+            <li class="mdl-menu__item">User 1</li>
+            <li class="mdl-menu__item"><i class="material-icons">add</i>Add another Member...</li>
+          </ul>
+        </div>
+      </header>
+      <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+        <a class="mdl-navigation__link" href="index.html">Project Backlog</a>
+
+        <a class="mdl-navigation__link" href=""></i>Member Management</a>
+        <a class="mdl-navigation__link" href="">Sprint 1</a>
+        <div class="mdl-layout-spacer"></div>
+
+        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
+            role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+      </nav>
     </div>
-  </dialog>
-  <script>
-    var dialog = document.querySelector('dialog');
-    var showModalButton = document.querySelector('.show-modal');
-    if (!dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    showModalButton.addEventListener('click', function () {
-      dialog.showModal();
-    });
-    dialog.querySelector('.close').addEventListener('click', function () {
-      dialog.close();
-    });
-  </script>
+    <main class="mdl-layout__content mdl-color--grey-100">
+      <div class="mdl-grid demo-content">
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cellmargin: auto;" style="width:auto; margin: auto;">
+          <table class="mdl-data-table mdl-js-data-table " style="width:80%">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Name</th>
+                <th style="text-align:left;">Role</th>
+                <th>Email</th>
+                <th>Phone number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">Huynh Phuc Nguyen Nguyen</td>
+                <td>Front-end Developer</td>
+                <td>hngu0112@student.monash.edu</td>
+                <td>0479114999</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    style="position: fixed; left: -1000px; height: -1000px;">
+    <defs>
+      <mask id="piemask" maskContentUnits="objectBoundingBox">
+        <circle cx=0.5 cy=0.5 r=0.49 fill="white" />
+        <circle cx=0.5 cy=0.5 r=0.40 fill="black" />
+      </mask>
+      <g id="piechart">
+        <circle cx=0.5 cy=0.5 r=0.5 />
+        <path d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 0 1 0.95 0.28 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
+      </g>
+    </defs>
+  </svg>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250"
     style="position: fixed; left: -1000px; height: -1000px;">
     <defs>
@@ -141,15 +148,16 @@
         </g>
         <g id="Layer_5">
           <polygon opacity="0.36" stroke-miterlimit="10" points="0,223.3 48,138.5 154.7,169 211,88.5
-          294.5,80.5 380,165.2 437,75.5 469.5,223.3 	" />
+              294.5,80.5 380,165.2 437,75.5 469.5,223.3 	" />
         </g>
         <g id="Layer_4">
           <polygon stroke-miterlimit="10" points="469.3,222.7 1,222.7 48.7,166.7 155.7,188.3 212,132.7
-          296.7,128 380.7,184.3 436.7,125 	" />
+              296.7,128 380.7,184.3 436.7,125 	" />
         </g>
       </g>
     </defs>
   </svg>
+
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 

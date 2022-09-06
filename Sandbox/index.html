@@ -73,21 +73,25 @@
               </form>
               <form action="#">
                 <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_tags">
-                  <label class="mdl-textfield__label">Tags</label>
-                </div>
-              </form>
-              <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_priority">
-                  <label class="mdl-textfield__label">Priority</label>
-                </div>
-              </form>
-              <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input" type="text" id="task_story_point">
                   <label class="mdl-textfield__label">Story Point:</label>
                 </div>
+              </form>
+              <form action="#">
+                <select class="mdl-textfield__input" id="task_tags" name="Tags">
+                  <option><label class="mdl-textfield__label" >Tag</label></option>
+                  <option value="UI CORE">UI CORE</option>
+                  <option value="TESTING">TESTING</option>
+                </select>
+              </form>
+              <form action="#">
+                  <select class="mdl-textfield__input" id="task_priority" name="Priority">
+                    <option><label class="mdl-textfield__label" >Priority</label></option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                    <option value="Critical">Critical</option>
+                  </select>
               </form>
               <div class="mdl-dialog__actions"> 
                 <button type="button" class="mdl-button close">Cancel</button>
@@ -146,7 +150,7 @@
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
-                <th style="text-align:right; padding-right: 0px;"><button id="task1"
+                <th style="text-align:right; padding-right: 0px;"><button id="task1" onclick=""
                     class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">
                     <i class="material-icons">more_vert</i>
                   </button>
