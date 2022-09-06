@@ -93,6 +93,13 @@
                     <option value="Critical">Critical</option>
                   </select>
               </form>
+              <form action="#">
+                <select class="mdl-textfield__input" id="task_type" name="Type">
+                  <option><label class="mdl-textfield__label" >Type</label></option>
+                  <option value="Story">Story</option>
+                  <option value="Bug">Bug</option>
+                </select>
+              </form>
               <div class="mdl-dialog__actions"> 
                 <button type="button" class="mdl-button close">Cancel</button>
                 <button type="button" class="mdl-button" onclick="addTask()">Add task</button>
@@ -184,6 +191,11 @@
                 <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
                 </td>
               </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Type:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some type
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -224,6 +236,11 @@
               <tr style="width: 100%;">
                 <td style="text-align:left">Story Point:</td>
                 <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
+                </td>
+              </tr>
+              <tr style="width: 100%;">
+                <td style="text-align:left">Type:</td>
+                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some type
                 </td>
               </tr>
             </tbody>
