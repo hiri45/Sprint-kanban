@@ -2,10 +2,12 @@
 
 const NOTE_INDEX_KEY = "selectedStickyNoteIndex"
 const NOTE_DATA_KEY = "stickyNoteData"
+
+// Stores a single Stickynote (task) for use in the product backlog
 class Stickynote{
 
     constructor(id){
-        this._id = id
+        this._id = id                           // Personal ID of task 
         this._name = ""
         this._description = "";
         this._tag = [];
@@ -66,6 +68,7 @@ class Stickynote{
 
 }
 
+// List of all Stickynotes (tasks) created
 class itemList {
 
     constructor() {
@@ -80,11 +83,11 @@ class itemList {
         return this._notes.length;
     }
 
-    addstickynotes(Stickynote) {
+    addStickynotes(Stickynote) {                    // Pushing individual sticky note to itemList class
         this._notes.push(Stickynote);
 
     }
-    deletestickynotes(id){
+    deleteStickynotes(id){                          // Implementation of ability to delete an individual Stickynote if needed
         for(let i = 0;i < this._notes.length;i++){
             if(id==this._notes[i].id){
                 this._notes.splice(i,1);
@@ -92,7 +95,7 @@ class itemList {
         }
 
     }
-    getNote(index){
+    getNote(index){                                 // Return an index for an individual Stickynote
         return this._notes[index];
     }
     fromData(data){
@@ -106,6 +109,15 @@ class itemList {
     }
 }
 
+/*checkIfDataExistsLocalStorage()
+
+Description: Returns a boolean true or false depending on whether data exists in the local storage
+
+Arguments: This function has no arguments
+
+Returns: 
+    boolean value: either true or false depending on whether there is or isn't data in the local storage */
+
 function checkIfDataExistsLocalStorage(){
     if(getDataLocalStorage() == null){
         return false;
@@ -115,9 +127,20 @@ function checkIfDataExistsLocalStorage(){
     }
 
 }
+
+/* updateLocalStorageDate(data)
+
+Description: Function to store Stickynote data (data) at the NOTE_DATA_KEY key.
+
+Arguments:
+    data: the data to be stored at a specified key (NOTE_DATA_KEY)
+
+Returns: This functions has no returns. */
+
 function updateLocalStorage(data){
     localStorage.setItem(NOTE_DATA_KEY, JSON.stringify(data));
 }
+
 function getDataLocalStorage(){
     let retrieve = JSON.parse(localStorage.getItem(NOTE_DATA_KEY));
     return retrieve;
@@ -201,8 +224,7 @@ Decription: Deletes task from product backlog when this function is called by cl
 Arguments: 
     id: The id of the task being deleted.
 
-Returns: 
-    This function has no returns. */
+Returns: This function has no returns. */
 
 /*function deleteStickynote(id){
     var removeStickynote = document.getElementById(id)
