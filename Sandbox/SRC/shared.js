@@ -149,20 +149,25 @@ function displayNotes(data){
 
 displayNotes(itemlist)
 
+// this function is used to add the tasks onto to the product backlog. Using the Stickynote class a the task is created by taking the needed variables
+// after the task is added onto the backlog the item list is updated with the new task as well as the local storage
+
 function addTask(){
+    // get all the elements needed for the task
     let task_name = document.getElementById('task_name');
     let task_description = document.getElementById('task_description');
     let task_tags = document.getElementById('task_tags');
     let task_priority = document.getElementById('task_priority');
     let task_storypoint = document.getElementById('task_story_point');
 
-
+    // create the task using sticknote class
     let task = new Stickynote(gen_ID())
     task.description = task_description.value;
     task.name = task_name.value;
     task.tag =task_tags.value;
     task.priority =task_priority.value;
     task.storypoint = task_storypoint.value;
+    // add task to item list and update local storage
     itemlist.addstickynotes(task)
     updateLocalStorage(itemlist)
     window.location = "index.html"
