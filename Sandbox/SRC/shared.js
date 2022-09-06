@@ -176,11 +176,11 @@ function deleteTask(id){
     let toConfirm = confirm("Press OK to delete this task.") //to confirm if the user want to delete the locker
     if (toConfirm===true){ //if it's true
         console.log(id)
-       itemlist.deletestickynotes(id);
-       updateLocalStorage(itemlist);
-       alert("This task has been deleted.");
-       window.location="index.html";
-    } //if the user do not confirm, do nothing
+        itemlist.deletestickynotes(id);
+        updateLocalStorage(itemlist);
+        alert("This task has been deleted.");
+        window.location="index.html";
+    }   //if the user do not confirm, do nothing
 
 }
 function expand(id){
