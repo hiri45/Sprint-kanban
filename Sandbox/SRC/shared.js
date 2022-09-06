@@ -118,6 +118,7 @@ class itemList {
     }
 }
 
+// this 
 function checkIfDataExistsLocalStorage(){
     if(getDataLocalStorage() == null){
         return false;
@@ -148,6 +149,9 @@ function gen_ID(){
     let gen_id = Math.random() * 1000
     return gen_id
 }
+// the display notes function is what presents the task in the stickynote format on the product backlog when it has been added
+// the items displayed on the note include: the name, tag, type, priority and story point
+// there are buttons on the note which prompts the user to: expand, edit, delete and move to sprint
 function displayNotes(data){
     let listnotes = '';
     for(let i = 0; i < data.count; i++) {
@@ -184,10 +188,11 @@ function addTask(){
 
 
 }
+// this function deletes the task from the product backlog and updates the local storage by deleting the id from the itemlist
 function deleteTask(id){
     let toConfirm = confirm("Press OK to delete this task.") //to confirm if the user want to delete the locker
     if (toConfirm===true){ //if it's true
-        console.log(id)
+        //console.log(id)
        itemlist.deletestickynotes(id);
        updateLocalStorage(itemlist);
        alert("This task has been deleted.");
