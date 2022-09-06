@@ -2,18 +2,16 @@
 
 const NOTE_INDEX_KEY = "selectedStickyNoteIndex"
 const NOTE_DATA_KEY = "stickyNoteData"
-
-// Stores a single Stickynote (task) for use in the product backlog
 class Stickynote{
-
     constructor(id){
-        this._id = id                           // Personal ID of task 
+        this._id = id
         this._name = ""
         this._description = "";
         this._tag = [];
         this._priority = "";
         this._storypoint = "";
     }
+
     get id() {
         return this._id;
     }
@@ -39,7 +37,7 @@ class Stickynote{
     }
 
     set tag(value) {
-        this._tag += value;
+        this._tag = value;
     }
 
     get priority() {
@@ -68,26 +66,22 @@ class Stickynote{
 
 }
 
-// List of all Stickynotes (tasks) created
 class itemList {
 
     constructor() {
         this._notes = []
     }
 
-    get stickynotes() {
-        return this._notes;
-    }
 
     get count() {
         return this._notes.length;
     }
 
-    addStickynotes(Stickynote) {                    // Pushing individual sticky note to itemList class
+    addstickynotes(Stickynote) {
         this._notes.push(Stickynote);
 
     }
-    deleteStickynotes(id){                          // Implementation of ability to delete an individual Stickynote if needed
+    deletestickynotes(id){
         for(let i = 0;i < this._notes.length;i++){
             if(id==this._notes[i].id){
                 this._notes.splice(i,1);
@@ -95,9 +89,14 @@ class itemList {
         }
 
     }
-    getNote(index){                                 // Return an index for an individual Stickynote
-        return this._notes[index];
+    getNote(id){
+        for(let i = 0;i < this._notes.length;i++){
+            if(id==this._notes[i].id){
+                return this._notes[i]
+            }
+        }
     }
+
     fromData(data){
         let theData = data._notes;
         this._notes = [];
@@ -109,15 +108,6 @@ class itemList {
     }
 }
 
-/*checkIfDataExistsLocalStorage()
-
-Description: Returns a boolean true or false depending on whether data exists in the local storage
-
-Arguments: This function has no arguments
-
-Returns: 
-    boolean value: either true or false depending on whether there is or isn't data in the local storage */
-
 function checkIfDataExistsLocalStorage(){
     if(getDataLocalStorage() == null){
         return false;
@@ -127,20 +117,9 @@ function checkIfDataExistsLocalStorage(){
     }
 
 }
-
-/* updateLocalStorageDate(data)
-
-Description: Function to store Stickynote data (data) at the NOTE_DATA_KEY key.
-
-Arguments:
-    data: the data to be stored at a specified key (NOTE_DATA_KEY)
-
-Returns: This functions has no returns. */
-
 function updateLocalStorage(data){
     localStorage.setItem(NOTE_DATA_KEY, JSON.stringify(data));
 }
-
 function getDataLocalStorage(){
     let retrieve = JSON.parse(localStorage.getItem(NOTE_DATA_KEY));
     return retrieve;
@@ -163,7 +142,8 @@ function displayNotes(data){
     let listnotes = '';
     for(let i = 0; i < data.count; i++) {
         let id = data._notes.id
-        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].name+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].name+"><li class='mdl-menu__item'>Edit Task</li><li class='mdl-menu__item' onclick='deleteTask()'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left'>Click Here to Expand</td></tr></tbody></table></div>"
+        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
+
     }
 
     let outputArea = document.getElementById("NoteDisplay");
@@ -192,10 +172,10 @@ function addTask(){
 
 
 }
-function deleteTask(){
+function deleteTask(id){
     let toConfirm = confirm("Press OK to delete this task.") //to confirm if the user want to delete the locker
     if (toConfirm===true){ //if it's true
-        id =
+        console.log(id)
        itemlist.deletestickynotes(id);
        updateLocalStorage(itemlist);
        alert("This task has been deleted.");
@@ -203,30 +183,7 @@ function deleteTask(){
     } //if the user do not confirm, do nothing
 
 }
-
-
-/*function filterStickynote(attribute, value){
-    if (attribute === "tag")
-        for (let i = 0; i < length.stickynoteArray)
-        return ;
-    else if (attribute === "priority")
-
-        return ;
-    else if (attribute === "storypoint")
-
-    return ;
-}       
-
-/* deleteStickynote(id)
-
-Decription: Deletes task from product backlog when this function is called by clicking "Delete" button on task.
-
-Arguments: 
-    id: The id of the task being deleted.
-
-Returns: This function has no returns. */
-
-/*function deleteStickynote(id){
-    var removeStickynote = document.getElementById(id)
-    removeStickynote.remove()
-} */
+function expand(id){
+    let displayoutput = "";
+    let note = itemlist.getNote(id);
+}
