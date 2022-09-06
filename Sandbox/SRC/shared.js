@@ -169,10 +169,12 @@ function addTask(){
 
 
 }
+// function to delete the sticky note from the index html(product backlog) whilst also removing it from the local storage
 function deleteTask(){
-    let toConfirm = confirm("Press OK to delete this task.") //to confirm if the user want to delete the locker
+    let toConfirm = confirm("Press OK to delete this task.") //promps the user to confirm if whether they want to delete the task
     if (toConfirm===true){ //if it's true
-        id = itemlist.deletestickynotes(id);
+        id = 
+        itemlist.deletestickynotes(id);
         updateLocalStorage(itemlist);
         alert("This task has been deleted.");
         window.location="index.html";
