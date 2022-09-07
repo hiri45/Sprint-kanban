@@ -204,16 +204,19 @@ function deleteTask(id){
 }
 
 let detail_dialog=document.getElementById("tableDetailID"); // dialog id used as a global since it used in both expand and closeDialog function
+// the expand function creates a dialog box which is an expanded version of the task
+// the expanded version displays all the information across the screen for that task as well as the description for the task 
 function expand(id){
     let detail_note = itemlist.getNote(id); 
     console.log(detail_note)
     let dsdasdas=document.getElementById("detail_description");
     dsdasdas.innerHTML= "sick"
-    detail_dialog.showModal();
+    detail_dialog.showModal(); // creates the dialog popup
 }
 function editTask() {
     let editing_task = document.getElementById("edit_task")
 }
+// this function closes the dialog when the button is clicked
 function closeDialog() {
     detail_dialog.close();
 }
