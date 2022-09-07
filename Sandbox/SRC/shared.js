@@ -210,22 +210,9 @@ function expand(id){
     let dsdasdas=document.getElementById("detail_description");
     dsdasdas.innerHTML= "sick"
     detail_dialog.showModal();
-/*     let note = itemlist.getNote(id);
-    let displayoutput = "<dialog class='mdl-dialog'><div class='mdl-dialog__content'><p>Allow this experience?</p></div><div class='mdl-dialog__actions mdl-dialog__actions--full-width'><button type='button' class='mdl-button'>Agree</button><button type='button' class='mdl-button close'>Disagree</button></div></dialog>";
-    let dialog = document.querySelector('dialog');
-    let showModalButton = document.querySelector('.show-modal');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    showModalButton.addEventListener('click', function() {
-      dialog.showModal();
-    });
-    dialog.querySelector('.close').addEventListener('click', function() {
-      dialog.close();
-    });
-
-    let outputArea = document.getElementById("NoteDisplay");
-    outputArea.innerHTML = displayoutput; */
+}
+function editTask() {
+    let editing_task = document.getElementById("edit_task")
 }
 function closeDialog() {
     detail_dialog.close();

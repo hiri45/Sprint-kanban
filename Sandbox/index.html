@@ -154,7 +154,7 @@
       <div class="mdl-grid demo-content" id = "NoteDisplay">
         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col" >
           <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
-            <thead>
+<!--             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
                 <th style="text-align:right; padding-right: 0px;"><button id="task1" onclick=""
@@ -170,7 +170,7 @@
                   </ul>
                 </th>
               </tr>
-            </thead>
+            </thead> -->
             <tbody onclick="location.href = 'https:google.com'">
               <tr style="width: 100%;">
                 <td style="text-align:left">Description:</td>
@@ -210,7 +210,7 @@
                   </button>
                   <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                     for="task1">
-                    <li class="mdl-menu__item">Edit Task</li>
+                    <li class="mdl-menu__item" id = "edit_task">Edit Task</li>
                     <li class="mdl-menu__item">Delete Task</li>
                     <li class="mdl-menu__item">Move to Sprint 1</li>
                     <li disabled class="mdl-menu__item">Disable button</li>
@@ -255,41 +255,28 @@
       </div>
       <div>
         <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Tags:</b></div>
-        <div style="word-break: break-word;">some tagsgo here</div>
+        <div style="word-break: break-word;" id = "expand_tag">some tagsgo here</div>
       </div>
       <div>
         <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Priority:</b></div>
-        <div style="word-break: break-word; ">High-low</div>
+        <div style="word-break: break-word; " id = "expand_priority">High-low</div>
       </div>
       <div>
         <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Point:</b></div>
-        <div style="word-break: break-word; ">Some story</div>
+        <div style="word-break: break-word; " id = "expand_story">Some story</div>
       </div>
       <div>
         <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Assignee:</b></div>
-        <div style="word-break: break-word; ">Some one</div>
+        <div style="word-break: break-word; " id = "expand_assignee">Some one</div>
       </div>
       <div>
-        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Status:</b></div>
-        <div style="word-break: break-word; ">On going</div>
+        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Type:</b></div>
+        <div style="word-break: break-word; " id = "expand_tyep">story or bug</div>
       </div>
       <div class="mdl-dialog__actions">
         <button type="button" class="closedialog" onclick="closeDialog();">Close</button>
       </div>
     </dialog>
-    <script>
-      var dialog = document.getElementById('tableDetailID');
-      //var showModalButton = document.getElementById('tableId');
-      function showDetail() {
-        if (!dialog.showModal) {
-          dialogPolyfill.registerDialog(dialog);
-        }
-        dialog.showModal();
-      }
-      function closeDialog() {
-        dialog.close();
-      }
-    </script>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
     style="position: fixed; left: -1000px; height: -1000px;">
