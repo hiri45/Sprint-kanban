@@ -4,8 +4,11 @@ const NOTE_INDEX_KEY = "selectedStickyNoteIndex"
 const NOTE_DATA_KEY = "stickyNoteData"
 class Stickynote{
     constructor(id){
-        this._id = id
-        this._name = ""
+        this._id = id;
+        this._editId = gen_ID();
+        this._deleteId = gen_ID();
+        this._buttonId = gen_ID();
+        this._name = "";
         this._description = "";
         this._tag = [];
         this._priority = "";
@@ -14,6 +17,18 @@ class Stickynote{
 
     get id() {
         return this._id;
+    }
+
+    get editId() {
+        return this._editId;
+    }
+
+    get deleteId() {
+        return this._deleteId;
+    }
+
+    get buttonId() {
+        return this._buttonId;
     }
 
     get name() {
@@ -83,7 +98,7 @@ class itemList {
     }
     deletestickynotes(id){
         for(let i = 0;i < this._notes.length;i++){
-            if(id==this._notes[i].id){
+            if(id==this._notes[i].deleteId){
                 this._notes.splice(i,1);
             }
         }
@@ -142,7 +157,7 @@ function displayNotes(data){
     let listnotes = '';
     for(let i = 0; i < data.count; i++) {
         let id = data._notes.id
-        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
+        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col' draggable='true' ondragstart='drag(event)'id = "+data._notes[i].id+"><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].buttonId+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].buttonId+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].deleteId+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
 
     }
 
@@ -187,3 +202,51 @@ function expand(id){
     let displayoutput = "";
     let note = itemlist.getNote(id);
 }
+
+/*
+function allowDrop(ev) {
+    ev.preventDefault();
+    }
+    function drag(ev) {
+        // Text plain refers to the data type (DOMString) of the object being dragged
+        // ev.target.id is the id of the object being dragged
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+
+    }
+    function drop(ev) {
+        ev.preventDefault();
+        let sourceId = ev.dataTransfer.getData("text/plain");
+        let sourceIdEl = document.getElementById(sourceId);
+        let sourceIdParentEl = sourceIdEl.parentElement;
+        let targetEl = document.getElementById(ev.target.id);
+        let targetParentEl = targetEl.parentElement;
+
+        if (targetParentEl.id !== sourceIdParentEl.id) {
+            if (targetEl.className === sourceIdEl.className) {
+                targetParentEl.appendChild(sourceIdEl);
+
+            } else {
+                targetEl.appendChild(sourceIdEl)
+            }
+        } else {
+            let holder = targetEl;
+            let holderText = holder.textContent;
+            targetEl.textContent = sourceIdEl.textContent;
+            sourceIdEl.textContent = holderText;
+            holderText = ''
+        }
+    }
+ */
+function allowDrop(ev) {
+    ev.preventDefault();
+  }
+  
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+  
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+  } 
