@@ -143,9 +143,9 @@
             role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
       </nav>
     </div>
-    <main class="mdl-layout__content mdl-color--grey-100">
-      <div class="mdl-grid demo-content" id = "NoteDisplay">
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col" >
+    <main class="mdl-layout__content mdl-color--grey-100" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <div class = "mdl-grid demo-content" id = "NoteDisplay">
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
           <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
             <thead>
               <tr>
@@ -187,8 +187,8 @@
             </tbody>
           </table>
         </div>
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col" draggable="true" ondragstart="drag(event)" id = 25>
+          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
@@ -248,13 +248,6 @@
     style="position: fixed; left: -1000px; height: -1000px;">
     <defs>
       <g id="chart">
-        <g id="Gridlines">
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="27.3" x2="468.3" y2="27.3" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="66.7" x2="468.3" y2="66.7" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="105.3" x2="468.3" y2="105.3" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="144.7" x2="468.3" y2="144.7" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="184.3" x2="468.3" y2="184.3" />
-        </g>
         <g id="Numbers">
           <text transform="matrix(1 0 0 1 485 29.3333)" fill="#888888" font-family="'Roboto'" font-size="9">500</text>
           <text transform="matrix(1 0 0 1 485 69)" fill="#888888" font-family="'Roboto'" font-size="9">400</text>
