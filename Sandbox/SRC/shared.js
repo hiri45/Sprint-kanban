@@ -203,7 +203,13 @@ function deleteTask(id){
 
 }
 function expand(id){
-    let note = itemlist.getNote(id);
+    let detail_note = itemlist.getNote(id); 
+    console.log(detail_note)
+    let dsdasdas=document.getElementById("detail_description");
+    dsdasdas.innerHTML= "sick"
+    let detail_dialog=document.getElementById("tableDetailID");
+    detail_dialog.showModal();
+/*     let note = itemlist.getNote(id);
     let displayoutput = "<dialog class='mdl-dialog'><div class='mdl-dialog__content'><p>Allow this experience?</p></div><div class='mdl-dialog__actions mdl-dialog__actions--full-width'><button type='button' class='mdl-button'>Agree</button><button type='button' class='mdl-button close'>Disagree</button></div></dialog>";
     let dialog = document.querySelector('dialog');
     let showModalButton = document.querySelector('.show-modal');
@@ -218,5 +224,8 @@ function expand(id){
     });
 
     let outputArea = document.getElementById("NoteDisplay");
-    outputArea.innerHTML = displayoutput;
+    outputArea.innerHTML = displayoutput; */
+}
+function closeDialog() {
+    itemlist.getNote(id).close();
 }
