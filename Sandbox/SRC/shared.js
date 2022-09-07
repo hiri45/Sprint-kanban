@@ -205,10 +205,8 @@ function deleteTask(id){
 function expand(id){
     let note = itemlist.getNote(id);
     let displayoutput = "<dialog class='mdl-dialog'><div class='mdl-dialog__content'><p>Allow this experience?</p></div><div class='mdl-dialog__actions mdl-dialog__actions--full-width'><button type='button' class='mdl-button'>Agree</button><button type='button' class='mdl-button close'>Disagree</button></div></dialog>";
-    var dialog = document.querySelector('dialog');
-    console.log(dialog)
-    var showModalButton = document.querySelector('.show-modal');
-    console.log(showModalButton)
+    let dialog = document.querySelector('dialog');
+    let showModalButton = document.querySelector('.show-modal');
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
