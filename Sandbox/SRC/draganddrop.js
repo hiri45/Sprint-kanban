@@ -12,7 +12,7 @@ Arguments:
 Returns: This function has no returns */
 
 
-function allowDrop(ev) {
+/* function allowDrop(ev) {
     ev.preventDefault();
     }
     function drag(ev) {
@@ -44,5 +44,5 @@ function allowDrop(ev) {
             holderText = ''
         }
     }
-
+*/
     
