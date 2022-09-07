@@ -277,6 +277,19 @@
         <button type="button" class="closedialog" onclick="closeDialog();">Close</button>
       </div>
     </dialog>
+    <script>
+      var dialog = document.getElementById('tableDetailID');
+      //var showModalButton = document.getElementById('tableId');
+      function showDetail() {
+        if (!dialog.showModal) {
+          dialogPolyfill.registerDialog(dialog);
+        }
+        dialog.showModal();
+      }
+      function closeDialog() {
+        dialog.close();
+      }
+    </script>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
     style="position: fixed; left: -1000px; height: -1000px;">

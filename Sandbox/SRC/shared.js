@@ -202,12 +202,13 @@ function deleteTask(id){
     } //if the user do not confirm, do nothing
 
 }
+
+let detail_dialog=document.getElementById("tableDetailID"); // dialog id used as a global since it used in both expand and closeDialog function
 function expand(id){
     let detail_note = itemlist.getNote(id); 
     console.log(detail_note)
     let dsdasdas=document.getElementById("detail_description");
     dsdasdas.innerHTML= "sick"
-    let detail_dialog=document.getElementById("tableDetailID");
     detail_dialog.showModal();
 /*     let note = itemlist.getNote(id);
     let displayoutput = "<dialog class='mdl-dialog'><div class='mdl-dialog__content'><p>Allow this experience?</p></div><div class='mdl-dialog__actions mdl-dialog__actions--full-width'><button type='button' class='mdl-button'>Agree</button><button type='button' class='mdl-button close'>Disagree</button></div></dialog>";
@@ -227,5 +228,5 @@ function expand(id){
     outputArea.innerHTML = displayoutput; */
 }
 function closeDialog() {
-    itemlist.getNote(id).close();
+    detail_dialog.close();
 }
