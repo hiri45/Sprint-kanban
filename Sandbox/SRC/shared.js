@@ -156,7 +156,7 @@ function gen_ID(){
 function displayNotes(data){
     let listnotes = '';
     for(let i = 0; i < data.count; i++) {
-        let id = data._notes.id
+        //let id = data._notes.id
         listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col' draggable='true' ondragstart='drag(event)'id = "+data._notes[i].id+"><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].buttonId+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].buttonId+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].deleteId+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
 
     }
@@ -203,7 +203,6 @@ function expand(id){
     let note = itemlist.getNote(id);
 }
 
-/*
 function allowDrop(ev) {
     ev.preventDefault();
     }
@@ -236,7 +235,8 @@ function allowDrop(ev) {
             holderText = ''
         }
     }
- */
+ 
+/*
 function allowDrop(ev) {
     ev.preventDefault();
   }
@@ -249,4 +249,29 @@ function allowDrop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
-  } 
+  } */
+
+  function displayUi() {
+    for(let i = 0; i < data.count; i++) {
+        let listUiNotes = '';
+        if(itemList[i].getNote(id)==="UI CORE") {
+            listUiNotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col' draggable='true' ondragstart='drag(event)'id = "+data._notes[i].id+"><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].buttonId+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].buttonId+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].deleteId+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
+        }
+    }
+
+    let outputArea = document.getElementById("NoteDisplay");
+    outputArea.innerHTML = listnotes;
+}
+
+  function displayTesting() {
+    for(let i = 0; i < data.count; i++) {
+        let listTestNotes = '';
+        if(itemList[i].getNote(id)==="TESTING") {
+            listTestNotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col' draggable='true' ondragstart='drag(event)'id = "+data._notes[i].id+"><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].buttonId+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].buttonId+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].deleteId+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
+        }
+    }
+
+    let outputArea = document.getElementById("NoteDisplay");
+    outputArea.innerHTML = listnotes;
+}
+

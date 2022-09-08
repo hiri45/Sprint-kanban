@@ -51,8 +51,9 @@
         <div class="mdl-layout-spacer"></div>
         <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
             style="background-color: white; color: black; max-height: 10; margin-left: 10px;">
-            <option> All task available</option>
-            <option> Some task</option>
+            <option><button onclick = "displayNotes()"> ALL </button></option>
+            <option><button onclick = "displayUi()"> UI CORE </button></option>
+            <option><button onclick = "displayTesting()"> TESTING </button></option>
           </select>
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
@@ -144,7 +145,7 @@
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <div class = "mdl-grid demo-content" id = "NoteDisplay">
+      <div id = "NoteDisplay">
         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
           <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
             <thead>
