@@ -213,16 +213,16 @@ function expand(id){
     let expand_tag = document.getElementById("expand_tag");
     let expand_priority = document.getElementById("expand_priority");
     let expand_sp = document.getElementById("expand_story");
-    let expand_name = document.getElementById("task_name")
+    let expand_name = document.getElementById("expand_name")
     let expand_type = document.getElementById("expand_type");
 
-    expand_name.textContent = "SICK"
+    expand_name.innerHTML = detail_note.name
     detail_desc.innerHTML= detail_note.description
     expand_tag.innerHTML = detail_note.tag
     expand_priority.innerHTML = detail_note.priority
     expand_sp.innerHTML = detail_note.storypoint
     expand_type.innerHTML = detail_note.type
-    
+
     detail_dialog.showModal(); // creates the dialog popup
 }
 function editTask() {
