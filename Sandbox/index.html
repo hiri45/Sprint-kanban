@@ -52,7 +52,8 @@
         <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
             style="background-color: white; color: black; max-height: 10; margin-left: 10px;">
             <option> All task available</option>
-            <option> Tag</option>
+            <option> UI CORE</option>
+            <option> Testing</option>
           </select>
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
@@ -210,7 +211,7 @@
                   </button>
                   <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                     for="task1">
-                    <li class="mdl-menu__item" id = "edit_task">Edit Task</li>
+                    <li class="mdl-menu__item">Edit Task</li>
                     <li class="mdl-menu__item">Delete Task</li>
                     <li class="mdl-menu__item">Move to Sprint 1</li>
                     <li disabled class="mdl-menu__item">Disable button</li>
@@ -247,6 +248,52 @@
           </table>
         </div>
     </main>
+    <dialog id = "edit_task" class="mdl-dialog">
+      <div>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="edit_task_name">
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="edit_task_description">
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="edit_task_storypoint">
+          </div>
+        </form>
+        <form action="#">
+          <select class="mdl-textfield__input" id="edit_task_tags" name="Tags">
+            <option><label class="mdl-textfield__label" >Tag</label></option>
+            <option value="UI CORE">UI CORE</option>
+            <option value="TESTING">TESTING</option>
+          </select>
+        </form>
+        <form action="#">
+            <select class="mdl-textfield__input" id="edit_task_priority" name="Priority">
+              <option><label class="mdl-textfield__label" >Priority</label></option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+              <option value="Critical">Critical</option>
+            </select>
+        </form>
+        <form action="#">
+          <select class="mdl-textfield__input" id="edit_task_type" name="Type">
+            <option><label class="mdl-textfield__label" >Type</label></option>
+            <option value="Story">Story</option>
+            <option value="Bug">Bug</option>
+          </select>
+        </form>
+        <div class="mdl-dialog__actions"> 
+          <button type="button" class="mdl-button close" onclick = "closeEdit()">Cancel</button>
+          <button type="button" class="mdl-button">submit</button>
+        </div>
+      </div>
+    </dialog>
     <dialog id="tableDetailID" style="width:70%; height:fit-content;">
       <div>
         <div style=" margin: 1%; text-align:center; font-size: large;"><b id ="expand_name">Task name</b></div>
