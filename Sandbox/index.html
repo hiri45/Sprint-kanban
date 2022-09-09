@@ -49,12 +49,14 @@
       <div class="mdl-layout__header-row" style="padding-right: 5px;">
         <span class="mdl-layout-title" style="width: auto;">Project Backlog</span>
         <div class="mdl-layout-spacer"></div>
+       
         <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
-            style="background-color: white; color: black; max-height: 10; margin-left: 10px;">
-            <option> All task available</option>
-            <option> UI CORE</option>
-            <option> Testing</option>
+            style="background-color: white; color: black; max-height: 10; margin-left: 10px;" id = "filterId">
+            <option value = "ALL">ALL</option> 
+            <option value = "UI CORE">UI CORE</option>
+            <option value = "TESTING">TESTING</option>
           </select>
+          <button type="button" class="mdl-button" onclick="new_display()">Apply</button>
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
           <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i class="material-icons">add</i></button>
@@ -150,7 +152,7 @@
         <a class="mdl-navigation__link" href="">Project Backlog</a>
 
         <a class="mdl-navigation__link" href=""></i>Member Management</a>
-        <a class="mdl-navigation__link" href="">Sprint 1</a>
+        <a class="mdl-navigation__link" href="">Sprint</a>
         <div class="mdl-layout-spacer"></div>
 
         <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
@@ -158,8 +160,8 @@
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-      <div class="mdl-grid demo-content" id = "NoteDisplay">
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col" >
+      <div class = mdl-grid demo-content  ondrop="drop(event)" ondragover="allowDrop(event)" id = "NoteDisplay">
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
           <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
 <!--             <thead>
               <tr>
@@ -172,7 +174,7 @@
                     for="task1">
                     <li class="mdl-menu__item">Edit Task</li>
                     <li class="mdl-menu__item">Delete Task</li>
-                    <li class="mdl-menu__item">Move to Sprint 1</li>
+                    <li class="mdl-menu__item">Move to Sprint</li>
                     <li disabled class="mdl-menu__item">Disable button</li>
                   </ul>
                 </th>
@@ -206,8 +208,8 @@
             </tbody>
           </table>
         </div>
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
+        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col" draggable="true" ondragstart="drag(event)" id = 25>
+          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
@@ -219,7 +221,7 @@
                     for="task1">
                     <li class="mdl-menu__item">Edit Task</li>
                     <li class="mdl-menu__item">Delete Task</li>
-                    <li class="mdl-menu__item">Move to Sprint 1</li>
+                    <li class="mdl-menu__item">Move to Sprint</li>
                     <li disabled class="mdl-menu__item">Disable button</li>
                   </ul>
                 </th>
@@ -355,13 +357,6 @@
     style="position: fixed; left: -1000px; height: -1000px;">
     <defs>
       <g id="chart">
-        <g id="Gridlines">
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="27.3" x2="468.3" y2="27.3" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="66.7" x2="468.3" y2="66.7" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="105.3" x2="468.3" y2="105.3" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="144.7" x2="468.3" y2="144.7" />
-          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="184.3" x2="468.3" y2="184.3" />
-        </g>
         <g id="Numbers">
           <text transform="matrix(1 0 0 1 485 29.3333)" fill="#888888" font-family="'Roboto'" font-size="9">500</text>
           <text transform="matrix(1 0 0 1 485 69)" fill="#888888" font-family="'Roboto'" font-size="9">400</text>
