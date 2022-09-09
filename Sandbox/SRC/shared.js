@@ -12,6 +12,7 @@ class Stickynote{
         this._tag = [];
         this._priority = "";
         this._storypoint = "";
+        this._assignee = "";
         this.type = [];
     }
 
@@ -75,6 +76,14 @@ class Stickynote{
         return this._storypoint;
     }
 
+    get assignee(){
+        return this._assignee;
+    }
+
+    set assignee(value) {
+        this._assignee = value;
+    }
+
     set storypoint(value) {
         this._storypoint = value;
     }
@@ -86,6 +95,7 @@ class Stickynote{
         this._storypoint = data._storypoint;
         this._id = data._id;
         this._type = data._type;
+        this._assignee = data._assignee;
     }
 
 }
@@ -174,7 +184,7 @@ function displayNotes(data){
     let listnotes = '';
     for(let i = 0; i < data.count; i++) {
         let id = data._notes.id
-        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'onclick = 'editTask("+data._notes[i]._id+")'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Type:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].type+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick='expand("+data._notes[i]._id+")'>Click Here to Expand</td></tr></tbody></table></div>"
+        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'onclick = 'editTask("+data._notes[i]._id+")'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Type:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].type+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Assignee:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].assignee+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick='expand("+data._notes[i]._id+")'>Click Here to Expand</td></tr></tbody></table></div>"
 
     }
 
@@ -197,6 +207,7 @@ function addTask(){
     let task_priority = document.getElementById('task_priority');
     let task_storypoint = document.getElementById('task_story_point');
     let task_type = document.getElementById('task_type');
+    let task_assignee = document.getElementById('task_assignee');
 
 
     let task = new Stickynote(gen_ID())  // creates task using Stickynote class
@@ -206,6 +217,7 @@ function addTask(){
     task.type = task_type.value;
     task.priority =task_priority.value;
     task.storypoint = task_storypoint.value;
+    task.assignee = task_assignee.value;
     // adds the task onto the itemlist which is then used to update local storage
     itemlist.addstickynotes(task)
     updateLocalStorage(itemlist)
@@ -244,6 +256,7 @@ function expand(id){
     let expand_sp = document.getElementById("expand_story");
     let expand_name = document.getElementById("expand_name")
     let expand_type = document.getElementById("expand_type");
+    let expand_assignee = document.getElementById("expand_assignee");
 
     expand_name.innerHTML = detail_note.name
     detail_desc.innerHTML= detail_note.description
@@ -251,6 +264,7 @@ function expand(id){
     expand_priority.innerHTML = detail_note.priority
     expand_sp.innerHTML = detail_note.storypoint
     expand_type.innerHTML = detail_note.type
+    expand_assignee.innerHTML = detail_note.assignee
 
     detail_dialog.showModal(); // creates the dialog popup
 }
@@ -277,13 +291,17 @@ function editTask(id) {
     let tag_edit = document.getElementById("edit_task_tags");
     let edit_priority = document.getElementById("edit_task_priority");
     let edit_type = document.getElementById("edit_task_type");
-    let submit_button = document.getElementById("submit_button"); // id used if user wants to submit an edited note
+    let edit_assignee = document.getElementById("edit_assignee");
+    // id used if user wants to submit an edited note
+    let submit_button = document.getElementById("submit_button"); 
     let form_button="<button id ='submit_button' type='button' class='mdl-button' onclick = 'submitEdit("+id+");'>submit</button>"; // HTML used to pass through submitEdit() function
     
     submit_button.innerHTML = form_button;
+
     desc_edit.value = note_to_edit.description
     name_edit.value = note_to_edit.name
     sp_edit.value = note_to_edit.storypoint
+    edit_assignee.value = note_to_edit.assignee
     tag_edit.value = note_to_edit.tag
     edit_priority.value = note_to_edit.priority
     edit_type.value = note_to_edit.type
@@ -305,6 +323,7 @@ function allowDrop(ev) {
         // ev.target.id is the id of the object being dragged
         ev.dataTransfer.setData("text/plain", ev.target.id);
 
+<<<<<<< Sandbox/SRC/shared.js
     }
     function drop(ev) {
         ev.preventDefault();
@@ -381,3 +400,23 @@ function TESTING(data){
     let outputArea = document.getElementById("NoteDisplay");
     outputArea.innerHTML = filterNotes;
 }
+    let submit_desc=document.getElementById("edit_task_description");
+    let submit_tag = document.getElementById("edit_task_tags");
+    let submit_priority = document.getElementById("edit_task_priority");
+    let submit_sp = document.getElementById("edit_task_storypoint");
+    let submit_name = document.getElementById("edit_task_name");
+    let submit_type = document.getElementById("edit_task_type");
+    let submit_assignee = document.getElementById("edit_assignee");
+    // note to edit is changed with edited values
+    note_to_edit.description = submit_desc.value;
+    note_to_edit.tag = submit_tag.value;
+    note_to_edit.priority = submit_priority.value;
+    note_to_edit.storypoint = submit_sp.value;
+    note_to_edit.name = submit_name.value;
+    note_to_edit.type = submit_type.value;
+    note_to_edit.assignee = submit_assignee.value;
+
+    updateLocalStorage(itemlist); // updates itemlist with edited data
+    window.location = "index.html"  // takes user back to the index page once task has been added
+}
+>>>>>>> Sandbox/SRC/shared.js
