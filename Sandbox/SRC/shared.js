@@ -1,5 +1,3 @@
-
-
 const NOTE_INDEX_KEY = "selectedStickyNoteIndex"
 const NOTE_DATA_KEY = "stickyNoteData"
 class Stickynote{
@@ -148,10 +146,15 @@ function gen_ID(){
     let gen_id = Math.random() * 1000
     return gen_id
 }
-// the display notes function is what presents the task in the stickynote format on the product backlog when it has been added
-// the items displayed on the note include: the name, tag, type, priority and story point
-// there are buttons on the note which prompts the user to: expand, edit, delete and move to sprint
+
 function displayNotes(data){
+    /*
+    the display notes function is what presents the task in the stickynote format on the product backlog when it has been added
+    the items displayed on the note include: the name, tag, type, priority and story point
+    there are buttons on the note which prompts the user to: expand, edit, delete and move to sprint
+    :argument
+        data: data is used as an input to get all the specific information
+    */
     let listnotes = '';
     for(let i = 0; i < data.count; i++) {
         let id = data._notes.id
@@ -165,8 +168,12 @@ function displayNotes(data){
 
 displayNotes(itemlist)
 
-// this function is used to add the task onto the product backlog
+
 function addTask(){
+    /*
+    this function is used to add the task onto the product backlog
+    */
+
     // gets each element needed for the task
     let task_name = document.getElementById('task_name');
     let task_description = document.getElementById('task_description');
@@ -188,13 +195,15 @@ function addTask(){
     updateLocalStorage(itemlist)
     window.location = "index.html"  // takes user back to the index page once task has been added
 
-
 }
-// this function deletes the task from the product backlog and updates the local storage by deleting the id from the itemlist
 function deleteTask(id){
+    /*
+     this function deletes the task from the product backlog and updates the local storage by deleting the id from the itemlist
+     :argument
+        id: id is used to get the specific note in which user wants to delete from page as well as local storage
+    */
     let toConfirm = confirm("Press OK to delete this task.") //to confirm if the user want to delete the locker
     if (toConfirm===true){ //if it's true
-        //console.log(id)
        itemlist.deletestickynotes(id);
        updateLocalStorage(itemlist);
        alert("This task has been deleted.");
@@ -204,9 +213,13 @@ function deleteTask(id){
 }
 
 let detail_dialog=document.getElementById("tableDetailID"); // dialog id used as a global since it used in both expand and closeDialog function
-// the expand function creates a dialog box which is an expanded version of the task
-// the expanded version displays all the information across the screen for that task as well as the description for the task 
 function expand(id){
+    /* 
+    the expand function creates a dialog box which is an expanded version of the task
+    the expanded version displays all the information across the screen for that task as well as the description for the task
+    :argument
+        id: id is used to get specific note in which user wants to expand
+     */
     let detail_note = itemlist.getNote(id); 
 
     let detail_desc=document.getElementById("detail_description");
@@ -225,13 +238,22 @@ function expand(id){
 
     detail_dialog.showModal(); // creates the dialog popup
 }
-// this function closes the dialog when the button is clicked
+
 function closeDialog() {
+    /*
+    this function closes the dialog when the button is clicked
+    */
     detail_dialog.close();
 }
-let editing_task = document.getElementById("edit_task")
+
+let editing_task = document.getElementById("edit_task") // used as a global since used in editTask function and closeEdit function
 function editTask(id) {
-    note_to_edit = itemlist.getNote(id);
+    /*
+    this function is a dialog popup which allows the user to edit the data within a specific note
+    :arguments
+        id: id is used to get the specific note in which the user wants to edit
+    */
+    note_to_edit = itemlist.getNote(id); // get note function used to get specific note with id
 
     let desc_edit = document.getElementById("edit_task_description");
     let name_edit = document.getElementById("edit_task_name");
@@ -239,7 +261,10 @@ function editTask(id) {
     let tag_edit = document.getElementById("edit_task_tags");
     let edit_priority = document.getElementById("edit_task_priority");
     let edit_type = document.getElementById("edit_task_type");
-
+    let submit_button = document.getElementById("submit_button"); // id used if user wants to submit an edited note
+    let form_button="<button id ='submit_button' type='button' class='mdl-button' onclick = 'submitEdit("+id+");'>submit</button>"; // HTML used to pass through submitEdit() function
+    
+    submit_button.innerHTML = form_button;
     desc_edit.value = note_to_edit.description
     name_edit.value = note_to_edit.name
     sp_edit.value = note_to_edit.storypoint
@@ -249,7 +274,36 @@ function editTask(id) {
 
     editing_task.showModal();
 }
-
 function closeEdit() {
+    /*
+    this function is used to close the edit dialog if user does not want to edit note
+    */
     editing_task.close()
+}
+function submitEdit(id) {
+    /*
+    this function submits an edited task to the project backlog as well as updating the local storage with the edited data.
+    :input
+        id: id used to get specific note to edit
+    */
+
+    let note_to_edit = itemlist.getNote(id);
+
+    let submit_desc=document.getElementById("edit_task_description");
+    let submit_tag = document.getElementById("edit_task_tags");
+    let submit_priority = document.getElementById("edit_task_priority");
+    let submit_sp = document.getElementById("edit_task_storypoint");
+    let submit_name = document.getElementById("edit_task_name");
+    let submit_type = document.getElementById("edit_task_type");
+    
+    // note to edit is changed with edited values
+    note_to_edit.description = submit_desc.value;
+    note_to_edit.tag = submit_tag.value;
+    note_to_edit.priority = submit_priority.value;
+    note_to_edit.storypoint = submit_sp.value;
+    note_to_edit.name = submit_name.value;
+    note_to_edit.type = submit_type.value;
+
+    updateLocalStorage(itemlist); // updates itemlist with edited data
+    window.location = "index.html"  // takes user back to the index page once task has been added
 }
