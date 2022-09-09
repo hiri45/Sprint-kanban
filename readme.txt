@@ -10,3 +10,5 @@ Changes made to Project Management Plan:
   smaller subtasks so that there all members are still assigned to their own tasks
 - instead of using google docs to record data all the data will be stored within Jira with google docs only used as a reference to 
   the Project Management Plan and any other information which is stored there
+- A contingency plan was also created within the Project Management which provides an overview of what the team can do if any
+  of the risks within the risk register were to happen. It gives a plan for the team to follow.
