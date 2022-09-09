@@ -117,7 +117,7 @@ class itemList {
     }
     deletestickynotes(id){
         for(let i = 0;i < this._notes.length;i++){
-            if(id==this._notes[i].deleteId){
+            if(id==this._notes[i].id){
                 this._notes.splice(i,1);
             }
         }
@@ -184,7 +184,7 @@ function displayNotes(data){
     let listnotes = '';
     for(let i = 0; i < data.count; i++) {
         let id = data._notes.id
-        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'onclick = 'editTask("+data._notes[i]._id+")'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Type:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].type+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Assignee:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].assignee+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick='expand("+data._notes[i]._id+")'>Click Here to Expand</td></tr></tbody></table></div>"
+        listnotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'onclick = 'editTask("+data._notes[i]._id+")'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask("+data._notes[i].id+")'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Type:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].type+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Assignee:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].assignee+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick='expand("+data._notes[i]._id+")'>Click Here to Expand</td></tr></tbody></table></div>"
 
     }
 
@@ -230,6 +230,7 @@ function deleteTask(id){
      :argument
         id: id is used to get the specific note in which user wants to delete from page as well as local storage
     */
+   console.log(id);
     let toConfirm = confirm("Press OK to delete this task.") //to confirm if the user want to delete the locker
     if (toConfirm===true){ //if it's true
        itemlist.deletestickynotes(id);
@@ -315,6 +316,35 @@ function closeEdit() {
     editing_task.close()
 }
 
+function submitEdit(id) {
+    /*
+    this function submits an edited task to the project backlog as well as updating the local storage with the edited data.
+    :input
+        id: id used to get specific note to edit
+    */
+
+    let note_to_edit = itemlist.getNote(id);
+
+    let submit_desc=document.getElementById("edit_task_description");
+    let submit_tag = document.getElementById("edit_task_tags");
+    let submit_priority = document.getElementById("edit_task_priority");
+    let submit_sp = document.getElementById("edit_task_storypoint");
+    let submit_name = document.getElementById("edit_task_name");
+    let submit_type = document.getElementById("edit_task_type");
+    let submit_assignee = document.getElementById("edit_assignee");
+    // note to edit is changed with edited values
+    note_to_edit.description = submit_desc.value;
+    note_to_edit.tag = submit_tag.value;
+    note_to_edit.priority = submit_priority.value;
+    note_to_edit.storypoint = submit_sp.value;
+    note_to_edit.name = submit_name.value;
+    note_to_edit.type = submit_type.value;
+    note_to_edit.assignee = submit_assignee.value;
+
+    updateLocalStorage(itemlist); // updates itemlist with edited data
+    window.location = "index.html"  // takes user back to the index page once task has been added
+}
+
 function allowDrop(ev) {
     ev.preventDefault();
     }
@@ -322,8 +352,6 @@ function allowDrop(ev) {
         // Text plain refers to the data type (DOMString) of the object being dragged
         // ev.target.id is the id of the object being dragged
         ev.dataTransfer.setData("text/plain", ev.target.id);
-
-<<<<<<< Sandbox/SRC/shared.js
     }
     function drop(ev) {
         ev.preventDefault();
@@ -384,8 +412,8 @@ function UICORE(data){
     let filterNotes = '';
     for(let i = 0; i < data.count; i++) {
         if(data._notes[i].tag=="UI CORE") {
-            filterNotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col' draggable='true' ondragstart='drag(event)'id = "+data._notes[i].id+"><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].buttonId+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].buttonId+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].deleteId+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
-        }
+            filterNotes +=  "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'onclick = 'editTask("+data._notes[i]._id+")'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask("+data._notes[i].id+")'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Type:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].type+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Assignee:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].assignee+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick='expand("+data._notes[i]._id+")'>Click Here to Expand</td></tr></tbody></table></div>"
+       }
     }
     let outputArea = document.getElementById("NoteDisplay");
     outputArea.innerHTML = filterNotes;
@@ -394,29 +422,10 @@ function TESTING(data){
     let filterNotes = '';
     for(let i = 0; i < data.count; i++) {
         if(data._notes[i].tag=="TESTING") {
-            filterNotes += "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col' draggable='true' ondragstart='drag(event)'id = "+data._notes[i].id+"><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].buttonId+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].buttonId+"><li class='mdl-menu__item'>Edit Task</li><li id="+data._notes[i].deleteId+" class='mdl-menu__item' onclick='deleteTask(this.id)'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick=''>Click Here to Expand</td></tr></tbody></table></div>"
+            filterNotes +=  "<div class='demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col'><table class='mdl-data-table mdl-js-data-table' style='width: 100%;'><thead><tr><th class='mdl-data-table__cell--non-numeric mdl-cell--4-col'>"+data._notes[i].name+"</th><th style='text-align:right; padding-right: 0px;'><button id="+data._notes[i].id+" class='mdl-button mdl-js-button mdl-button--icon' style='Scale: 1;\'><i class='material-icons'>more_vert</i></button><ul class='mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect' for="+data._notes[i].id+"><li class='mdl-menu__item'onclick = 'editTask("+data._notes[i]._id+")'>Edit Task</li><li id="+data._notes[i].id+" class='mdl-menu__item' onclick='deleteTask("+data._notes[i].id+")'>Delete Task</li><li class='mdl-menu__item'>Move to Sprint 1</li><li disabled class='mdl-menu__item'>Disable button</li></ul></th></tr></thead><tbody onClick=''><tr style='width: 100%;'><td style='text-align:left'>Tags:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].tag+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Type:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].type+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Priority:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].priority+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Story Point:</td><td class='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].storypoint+"</td></tr><tr style='width: 100%;'><td style='text-align:left'>Assignee:</td><td style='text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'>"+data._notes[i].assignee+"</td></tr><tr style='width: 100%';><td style='text-align:Left' onclick='expand("+data._notes[i]._id+")'>Click Here to Expand</td></tr></tbody></table></div>"
         }
     }
     let outputArea = document.getElementById("NoteDisplay");
     outputArea.innerHTML = filterNotes;
 }
-    let submit_desc=document.getElementById("edit_task_description");
-    let submit_tag = document.getElementById("edit_task_tags");
-    let submit_priority = document.getElementById("edit_task_priority");
-    let submit_sp = document.getElementById("edit_task_storypoint");
-    let submit_name = document.getElementById("edit_task_name");
-    let submit_type = document.getElementById("edit_task_type");
-    let submit_assignee = document.getElementById("edit_assignee");
-    // note to edit is changed with edited values
-    note_to_edit.description = submit_desc.value;
-    note_to_edit.tag = submit_tag.value;
-    note_to_edit.priority = submit_priority.value;
-    note_to_edit.storypoint = submit_sp.value;
-    note_to_edit.name = submit_name.value;
-    note_to_edit.type = submit_type.value;
-    note_to_edit.assignee = submit_assignee.value;
 
-    updateLocalStorage(itemlist); // updates itemlist with edited data
-    window.location = "index.html"  // takes user back to the index page once task has been added
-}
->>>>>>> Sandbox/SRC/shared.js
