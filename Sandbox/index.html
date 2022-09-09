@@ -49,12 +49,14 @@
       <div class="mdl-layout__header-row" style="padding-right: 5px;">
         <span class="mdl-layout-title" style="width: auto;">Project Backlog</span>
         <div class="mdl-layout-spacer"></div>
+       
         <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
-            style="background-color: white; color: black; max-height: 10; margin-left: 10px;">
-            <option><button onclick = "displayNotes()"> ALL </button></option>
-            <option><button onclick = "displayUi()"> UI CORE </button></option>
-            <option><button onclick = "displayTesting()"> TESTING </button></option>
+            style="background-color: white; color: black; max-height: 10; margin-left: 10px;" id = "filterId">
+            <option value = "ALL">ALL</option> 
+            <option value = "UI CORE">UI CORE</option>
+            <option value = "TESTING">TESTING</option>
           </select>
+          <button type="button" class="mdl-button" onclick="new_display()">Apply</button>
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
           <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i class="material-icons">add</i></button>
@@ -144,8 +146,8 @@
             role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
       </nav>
     </div>
-    <main class="mdl-layout__content mdl-color--grey-100" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <div id = "NoteDisplay">
+    <main class="mdl-layout__content mdl-color--grey-100">
+      <div class = mdl-grid demo-content  ondrop="drop(event)" ondragover="allowDrop(event)" id = "NoteDisplay">
         <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
           <table class="mdl-data-table mdl-js-data-table" style="width: 100%;" >
             <thead>
