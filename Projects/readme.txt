@@ -3,6 +3,7 @@ FIT2101 readme file for kluc0006
 Links to Project Management tools:
 Jira: https://fit2101-group15.atlassian.net/jira/software/projects/F2/boards/1 
 Google Drive: https://drive.google.com/drive/folders/1DDDtlbxt-G7IE3_8BRaFzs0OKFCk0Fp5
+Confluence: https://fit2101-group15.atlassian.net/wiki/spaces/F2/pages
 
 Changes made to Project Management Plan:
 - Whilst trello was the main tool used for task tracking and time logging it has been removed and replaced with Jira
