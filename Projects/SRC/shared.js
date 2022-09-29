@@ -3,6 +3,7 @@ sessionStorage.setItem("SelItem", selVal);
 const NOTE_DATA_KEY = "stickyNoteData"
 
 class Stickynote{
+
     constructor(id){
         this._id = id;
         this._editId = gen_ID();
@@ -14,7 +15,9 @@ class Stickynote{
         this._priority = "";
         this._storypoint = "";
         this._assignee = "";
-        this.type = [];
+        this.type = []
+        this._toSprint = false
+
     }
 
     get id() {
@@ -88,6 +91,13 @@ class Stickynote{
     set storypoint(value) {
         this._storypoint = value;
     }
+    get toSprint() {
+        return this._toSprint;
+    }
+
+    set toSprint(value) {
+        this._toSprint = value;
+    }
     fromData(data){
         this._name = data._name;
         this._tag = data._tag;
@@ -98,6 +108,7 @@ class Stickynote{
         this._type = data._type;
         this._assignee = data._assignee;
         this._buttonId = data._buttonId;
+        this._toSprint = data._toSprint;
     }
 
 }
