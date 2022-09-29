@@ -1,0 +1,320 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Application</title>
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+  <meta name="msapplication-TileColor" content="#3372DF">
+
+  <link rel="shortcut icon" href="HTML%20prototype/images/favicon.png">
+
+  <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+  <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
+  <link rel="stylesheet" href="HTML%20prototype/styles.css">
+  <link rel="stylesheet" href="HTML%20prototype/main.css">
+</head>
+
+<body>
+  <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+      <div class="mdl-layout__header-row" style="padding-right: 5px;">
+        <span class="mdl-layout-title" style="width: auto;">Sprint 1 name assign</span>
+        <div class="mdl-layout-spacer"></div>
+        <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
+          <button
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent colored mdl-color--blue-grey-400 show-modal" style="height: 50px;"onclick="javascript:location.href='./SprintAsginActive.html'">
+            Start Sprint
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+      <header class="demo-drawer-header">
+        <img src="HTML%20prototype/images/user.jpg" class="demo-avatar">
+        <div class="demo-avatar-dropdown">
+          <span>ADMIN</span>
+          <div class="mdl-layout-spacer"></div>
+          <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">arrow_drop_down</i>
+            <span class="visuallyhidden">Accounts</span>
+          </button>
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+            <li class="mdl-menu__item">Admin</li>
+            <li class="mdl-menu__item">User 1</li>
+            <li class="mdl-menu__item"><i class="material-icons">add</i>Add another Member...</li>
+          </ul>
+        </div>
+      </header>
+      <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+        <a class="mdl-navigation__link" href="">Project Backlog</a>
+
+        <a class="mdl-navigation__link" href=""></i>Member Management</a>
+        <a class="mdl-navigation__link" href="./SprintManagement.html">Sprint Management</a>
+        <div class="mdl-layout-spacer"></div>
+
+        <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
+            role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content mdl-color--grey-100">
+      <div style="display:flex; margin-top: 2%;">
+        <div
+          style="background-color:beige; border-width: 2px; border-color: black; width: 45%; margin: 2px; height: 700px;border:2px solid; margin-left: 5%;">
+          <h4
+            style="background-color:rgb(64,196,255); height: 50px; text-align:center;  margin-top: 0%; margin-bottom: 0%;">
+            Project Backlog:</h4>
+          <div class="mdl-grid demo-content" id="printbacklogid">
+            <div
+              style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+              <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+              <div style="text-align: left; width:10%; margin:auto">
+                <button id="task1" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu" for="task1">
+                  <li class="mdl-menu__item">Move to Project Backlog</li>
+                  <li class="mdl-menu__item">Edit</li>
+                  <li class="mdl-menu__item">Delete</li>
+                </ul>
+              </div>
+            </div>
+            <div
+              style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+              <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+              <div style="text-align: left; width:10%; margin:auto">
+                <button id="task2" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu" for="task2">
+                  <li class="mdl-menu__item">Move to Project Backlog</li>
+                  <li class="mdl-menu__item">Edit</li>
+                  <li class="mdl-menu__item">Delete</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="background-color:beige; border-width: 2px; border-color: black;width: 45%; margin: 2px;height: 700px; border:2px solid; position: relative;">
+          <h4
+            style="background-color:rgb(64,196,255); height: 50px;text-align:center; margin-top: 0%;margin-bottom: 0%;">
+            Sprint Backlog:</h4>
+          <div class="mdl-grid demo-content" id="printbacklogid">
+            <div
+              style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+              <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+              <div style="text-align: left; width:10%; margin:auto">
+                <button id="task3" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu" for="task3">
+                  <li class="mdl-menu__item">Move to Project Backlog</li>
+                  <li class="mdl-menu__item">Edit</li>
+                  <li class="mdl-menu__item">Delete</li>
+                </ul>
+              </div>
+            </div>
+            <div
+              style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+              <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+              <div style="text-align: left; width:10%; margin:auto">
+                <button id="task4" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu" for="task4">
+                  <li class="mdl-menu__item">Move to Project Backlog</li>
+                  <li class="mdl-menu__item">Edit</li>
+                  <li class="mdl-menu__item">Delete</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <dialog id="edit_task" class="mdl-dialog">
+      <div>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="edit_task_name">
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="edit_task_description">
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="edit_task_storypoint">
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="edit_assignee">
+          </div>
+        </form>
+        <form action="#">
+          <select class="mdl-textfield__input" id="edit_task_tags" name="Tags">
+            <option><label class="mdl-textfield__label">Tag</label></option>
+            <option value="UI CORE">UI CORE</option>
+            <option value="TESTING">TESTING</option>
+          </select>
+        </form>
+        <form action="#">
+          <select class="mdl-textfield__input" id="edit_task_priority" name="Priority">
+            <option><label class="mdl-textfield__label">Priority</label></option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </form>
+        <form action="#">
+          <select class="mdl-textfield__input" id="edit_task_type" name="Type">
+            <option><label class="mdl-textfield__label">Type</label></option>
+            <option value="Story">Story</option>
+            <option value="Bug">Bug</option>
+          </select>
+        </form>
+        <div class="mdl-dialog__actions">
+          <button type="button" class="mdl-button close" onclick="closeEdit()">Cancel</button>
+          <button type="button" class="mdl-button" id="submit_button">submit</button>
+        </div>
+      </div>
+    </dialog>
+    <dialog id="tableDetailID" style="width:70%; height:fit-content;">
+      <div>
+        <div style=" margin: 1%; text-align:center; font-size: large;"><b id="expand_name">Task name</b></div>
+      </div>
+      <div>
+        <div style="display:block;font-size: larger; margin-top: 5px;"><b>Description:</b></div>
+        <p style="word-break: break-word; margin: 0px;" id="detail_description">some decription go here</p>
+      </div>
+      <div>
+        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Tags:</b></div>
+        <div style="word-break: break-word;" id="expand_tag">some tagsgo here</div>
+      </div>
+      <div>
+        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Priority:</b></div>
+        <div style="word-break: break-word; " id="expand_priority">High-low</div>
+      </div>
+      <div>
+        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Point:</b></div>
+        <div style="word-break: break-word; " id="expand_story">Some story</div>
+      </div>
+      <div>
+        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Assignee:</b></div>
+        <div style="word-break: break-word; " id="expand_assignee">Some one</div>
+      </div>
+      <div>
+        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Type:</b></div>
+        <div style="word-break: break-word; " id="expand_type">story or bug</div>
+      </div>
+      <div class="mdl-dialog__actions">
+        <button type="button" class="closedialog" onclick="closeDialog();">Close</button>
+      </div>
+    </dialog>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    style="position: fixed; left: -1000px; height: -1000px;">
+    <defs>
+      <mask id="piemask" maskContentUnits="objectBoundingBox">
+        <circle cx=0.5 cy=0.5 r=0.49 fill="white" />
+        <circle cx=0.5 cy=0.5 r=0.40 fill="black" />
+      </mask>
+      <g id="piechart">
+        <circle cx=0.5 cy=0.5 r=0.5 />
+        <path d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 0 1 0.95 0.28 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
+      </g>
+    </defs>
+  </svg>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250"
+    style="position: fixed; left: -1000px; height: -1000px;">
+    <defs>
+      <g id="chart">
+        <g id="Gridlines">
+          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="27.3" x2="468.3" y2="27.3" />
+          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="66.7" x2="468.3" y2="66.7" />
+          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="105.3" x2="468.3" y2="105.3" />
+          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="144.7" x2="468.3" y2="144.7" />
+          <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="184.3" x2="468.3" y2="184.3" />
+        </g>
+        <g id="Numbers">
+          <text transform="matrix(1 0 0 1 485 29.3333)" fill="#888888" font-family="'Roboto'" font-size="9">500</text>
+          <text transform="matrix(1 0 0 1 485 69)" fill="#888888" font-family="'Roboto'" font-size="9">400</text>
+          <text transform="matrix(1 0 0 1 485 109.3333)" fill="#888888" font-family="'Roboto'" font-size="9">300</text>
+          <text transform="matrix(1 0 0 1 485 149)" fill="#888888" font-family="'Roboto'" font-size="9">200</text>
+          <text transform="matrix(1 0 0 1 485 188.3333)" fill="#888888" font-family="'Roboto'" font-size="9">100</text>
+          <text transform="matrix(1 0 0 1 0 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">1</text>
+          <text transform="matrix(1 0 0 1 78 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">2</text>
+          <text transform="matrix(1 0 0 1 154.6667 249.0003)" fill="#888888" font-family="'Roboto'"
+            font-size="9">3</text>
+          <text transform="matrix(1 0 0 1 232.1667 249.0003)" fill="#888888" font-family="'Roboto'"
+            font-size="9">4</text>
+          <text transform="matrix(1 0 0 1 309 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">5</text>
+          <text transform="matrix(1 0 0 1 386.6667 249.0003)" fill="#888888" font-family="'Roboto'"
+            font-size="9">6</text>
+          <text transform="matrix(1 0 0 1 464.3333 249.0003)" fill="#888888" font-family="'Roboto'"
+            font-size="9">7</text>
+        </g>
+        <g id="Layer_5">
+          <polygon opacity="0.36" stroke-miterlimit="10" points="0,223.3 48,138.5 154.7,169 211,88.5
+              294.5,80.5 380,165.2 437,75.5 469.5,223.3 	" />
+        </g>
+        <g id="Layer_4">
+          <polygon stroke-miterlimit="10" points="469.3,222.7 1,222.7 48.7,166.7 155.7,188.3 212,132.7
+              296.7,128 380.7,184.3 436.7,125 	" />
+        </g>
+      </g>
+    </defs>
+  </svg>
+
+  <script src="SRC/shared.js"></script>
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+
+
+
+</body>
+
+</html>
