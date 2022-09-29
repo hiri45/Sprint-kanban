@@ -52,7 +52,8 @@
         <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
             style="background-color: white; color: black; max-height: 10; margin-left: 10px;" id="filterId">
             <option value="ALL">ALL</option>
-            <option value="UI CORE">UI CORE</option>
+            <option value="UI">UI</option>
+            <option value="CORE">CORE</option>
             <option value="TESTING">TESTING</option>
           </select>
           <button type="button" class="mdl-button" onclick="new_display()">Apply</button>
@@ -90,7 +91,8 @@
               <form action="#">
                 <select class="mdl-textfield__input" id="task_tags" name="Tags">
                   <option><label class="mdl-textfield__label">Tag</label></option>
-                  <option value="UI CORE">UI CORE</option>
+                  <option value="UI">UI</option>
+                  <option value="CORE">CORE</option>
                   <option value="TESTING">TESTING</option>
                 </select>
               </form>
@@ -281,7 +283,8 @@
         <form action="#">
           <select class="mdl-textfield__input" id="edit_task_tags" name="Tags">
             <option><label class="mdl-textfield__label">Tag</label></option>
-            <option value="UI CORE">UI CORE</option>
+            <option value="UI">UI</option>
+            <option value="CORE">CORE</option>
             <option value="TESTING">TESTING</option>
           </select>
         </form>
@@ -332,7 +335,7 @@
         <div style="word-break: break-word; " id="expand_assignee">Some one</div>
       </div>
       <div>
-        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Type:</b></div>
+        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Type:</b></div>
         <div style="word-break: break-word; " id="expand_type">story or bug</div>
       </div>
       <div class="mdl-dialog__actions">
