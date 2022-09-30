@@ -47,72 +47,65 @@
   <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
       <div class="mdl-layout__header-row" style="padding-right: 5px;">
-        <span class="mdl-layout-title" style="width: auto;">Project Backlog</span>
+        <span class="mdl-layout-title" style="width: auto;">Sprint Management</span>
         <div class="mdl-layout-spacer"></div>
-        <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
-            style="background-color: white; color: black; max-height: 10; margin-left: 10px;" id="filterId">
-            <option value="ALL">ALL</option>
-            <option value="UI CORE">UI CORE</option>
-            <option value="TESTING">TESTING</option>
-          </select>
-          <button type="button" class="mdl-button" onclick="new_display()">Apply</button>
+        <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Add Sprint:
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
           <button type="button"
             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i
               class="material-icons">add</i></button>
-          <dialog class="mdl-dialog">
+          <dialog class="mdl-dialog" style="min-width: 30%;">
+            <div style="text-align: center;"><b>Add Sprint</b></div>
             <div>
               <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_name">
-                  <label class="mdl-textfield__label">Name</label>
+                <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
+                  <input class="mdl-textfield__input" type="text" id="sprint_name">
+                  <label class="mdl-textfield__label">Sprint Name: </label>
                 </div>
               </form>
-              <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_description">
-                  <label class="mdl-textfield__label">Description</label>
+              <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
+                <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;">
+                  <b>Start Date: </b>
                 </div>
-              </form>
-              <form action="#">
                 <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_story_point">
-                  <label class="mdl-textfield__label">Story Point:</label>
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_day">
+                  <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
+                  <span class="mdl-textfield__error">Day is not a number!</span>
                 </div>
-              </form>
-              <form action="#">
                 <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_assignee">
-                  <label class="mdl-textfield__label">Assignee:</label>
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_month">
+                  <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
+                  <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
                 </div>
-              </form>
-              <form action="#">
-                <select class="mdl-textfield__input" id="task_tags" name="Tags">
-                  <option><label class="mdl-textfield__label">Tag</label></option>
-                  <option value="UI CORE">UI CORE</option>
-                  <option value="TESTING">TESTING</option>
-                </select>
-              </form>
-              <form action="#">
-                <select class="mdl-textfield__input" id="task_priority" name="Priority">
-                  <option><label class="mdl-textfield__label">Priority</label></option>
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
-                  <option value="Critical">Critical</option>
-                </select>
-              </form>
-              <form action="#">
-                <select class="mdl-textfield__input" id="task_type" name="Type">
-                  <option><label class="mdl-textfield__label">Type</label></option>
-                  <option value="Story">Story</option>
-                  <option value="Bug">Bug</option>
-                </select>
-              </form>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_year">
+                  <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
+                  <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
+                </div>
+              </div>
+              <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
+                <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;"><b>End
+                    Date: </b></div>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_day">
+                  <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
+                  <span class="mdl-textfield__error">Day is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_month">
+                  <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
+                  <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_year">
+                  <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
+                  <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
+                </div>
+              </div>
               <div class="mdl-dialog__actions">
                 <button type="button" class="mdl-button close">Cancel</button>
-                <button type="button" class="mdl-button" onclick="addTask()">Add task</button>
+                <button type="button" class="mdl-button" onclick="create_sprint()">Create Sprint</button>
               </div>
             </div>
           </dialog>
@@ -150,10 +143,10 @@
         </div>
       </header>
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-        <a class="mdl-navigation__link" href="">Project Backlog</a>
+        <a class="mdl-navigation__link" href="./index.html">Project Backlog</a>
 
         <a class="mdl-navigation__link" href=""></i>Member Management</a>
-        <a class="mdl-navigation__link" href="">Sprint 1</a>
+        <a class="mdl-navigation__link" href="./SprintManagement.html">Sprint Management</a>
         <div class="mdl-layout-spacer"></div>
 
         <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
@@ -161,184 +154,28 @@
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-      <div class="mdl-grid demo-content" id="NoteDisplay">
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
-            <!--             <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
-                <th style="text-align:right; padding-right: 0px;"><button id="task1" onclick=""
-                    class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">
-                    <i class="material-icons">more_vert</i>
-                  </button>
-                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                    for="task1">
-                    <li class="mdl-menu__item">Edit Task</li>
-                    <li class="mdl-menu__item">Delete Task</li>
-                    <li class="mdl-menu__item">Move to Sprint 1</li>
-                    <li disabled class="mdl-menu__item">Disable button</li>
-                  </ul>
-                </th>
-              </tr>
-            </thead> -->
-            <tbody onclick="location.href = 'https:google.com'">
-              <tr style="width: 100%;">
-                <td style="text-align:left">Description:</td>
-                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some
-                  description</td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Tags:</td>
-                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some tag
-                </td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Priority:</td>
-                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">High</td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Story Point:</td>
-                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
-                </td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Type:</td>
-                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some type
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
-            <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric mdl-cell--4-col">Task 1</th>
-                <th style="text-align:right; padding-right: 0px;"><button id="tahsk1"
-                    class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">
-                    <i class="material-icons">more_vert</i>
-                  </button>
-                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="task1">
-                    <li class="mdl-menu__item">Edit Task</li>
-                    <li class="mdl-menu__item">Delete Task</li>
-                    <li class="mdl-menu__item">Move to Sprint 1</li>
-                    <li disabled class="mdl-menu__item">Disable button</li>
-                  </ul>
-                </th>
-              </tr>
-            </thead>
-            <tbody onclick="location.href = 'https:google.com'">
-              <tr style="width: 100%;">
-                <td style="text-align:left">Description:</td>
-                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some
-                  description</td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Tags:</td>
-                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some tag
-                </td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Priority:</td>
-                <td style="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">High</td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Story Point:</td>
-                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some here
-                </td>
-              </tr>
-              <tr style="width: 100%;">
-                <td style="text-align:left">Type:</td>
-                <td class="text-align:right; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Some type
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-    </main>
-    <dialog id="edit_task" class="mdl-dialog">
-      <div>
-        <form action="#">
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="edit_task_name">
-          </div>
-        </form>
-        <form action="#">
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="edit_task_description">
-          </div>
-        </form>
-        <form action="#">
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="edit_task_storypoint">
-          </div>
-        </form>
-        <form action="#">
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="edit_assignee">
-          </div>
-        </form>
-        <form action="#">
-          <select class="mdl-textfield__input" id="edit_task_tags" name="Tags">
-            <option><label class="mdl-textfield__label">Tag</label></option>
-            <option value="UI CORE">UI CORE</option>
-            <option value="TESTING">TESTING</option>
-          </select>
-        </form>
-        <form action="#">
-          <select class="mdl-textfield__input" id="edit_task_priority" name="Priority">
-            <option><label class="mdl-textfield__label">Priority</label></option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-            <option value="Critical">Critical</option>
-          </select>
-        </form>
-        <form action="#">
-          <select class="mdl-textfield__input" id="edit_task_type" name="Type">
-            <option><label class="mdl-textfield__label">Type</label></option>
-            <option value="Story">Story</option>
-            <option value="Bug">Bug</option>
-          </select>
-        </form>
-        <div class="mdl-dialog__actions">
-          <button type="button" class="mdl-button close" onclick="closeEdit()">Cancel</button>
-          <button type="button" class="mdl-button" id="submit_button">submit</button>
-        </div>
-      </div>
-    </dialog>
-    <dialog id="tableDetailID" style="width:70%; height:fit-content;">
-      <div>
-        <div style=" margin: 1%; text-align:center; font-size: large;"><b id="expand_name">Task name</b></div>
-      </div>
-      <div>
-        <div style="display:block;font-size: larger; margin-top: 5px;"><b>Description:</b></div>
-        <p style="word-break: break-word; margin: 0px;" id="detail_description">some decription go here</p>
-      </div>
-      <div>
-        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Tags:</b></div>
-        <div style="word-break: break-word;" id="expand_tag">some tagsgo here</div>
-      </div>
-      <div>
-        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Priority:</b></div>
-        <div style="word-break: break-word; " id="expand_priority">High-low</div>
-      </div>
-      <div>
-        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Point:</b></div>
-        <div style="word-break: break-word; " id="expand_story">Some story</div>
-      </div>
-      <div>
-        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Assignee:</b></div>
-        <div style="word-break: break-word; " id="expand_assignee">Some one</div>
-      </div>
-      <div>
-        <div style="text-align: left;font-size: larger; margin-top: 5px;"><b>Story Type:</b></div>
-        <div style="word-break: break-word; " id="expand_type">story or bug</div>
-      </div>
-      <div class="mdl-dialog__actions">
-        <button type="button" class="closedialog" onclick="closeDialog();">Close</button>
-      </div>
-    </dialog>
+      <div id="sprint_display" style="min-width:max-content;">
+        <div-->
+          style="border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px;
+          display: flex; margin-left: 10px;">-->
+          <div style="text-align: left; width:30%; margin:auto; margin-left: 5px;"><b>Sprint 1</b></div>-->
+          <div style="text-align: left; width:20%; margin:auto"><b>Start date: 20/09/2022</b></div>-->
+          <div style="text-align: left; width:20%; margin:auto"><b>End date: 20/09/2022</b></div>-->
+          <div style="text-align: left; width:20%; margin:auto"><b>Status: Active</b></div>-->
+          <div style="text-align: right; width:10%; margin:auto; margin-right: 30px;">-->
+            <button id="sprint1" class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">-->
+              <i class="material-icons">more_vert</i>-->
+            </button>-->
+            <ul class="mdl-menu mdl-js-menu" for="sprint1">-->
+              <li class="mdl-menu__item" onclick="javascript:location.href='./SprintAsgin.html'">Go to task assign</li>
+              -->
+              <li class="mdl-menu__item">Edit</li>-->
+              <li class="mdl-menu__item">Delete</li>-->
+            </ul>-->
+          </div>-->
+      </div> -->
+  </div>
+  </main>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
     style="position: fixed; left: -1000px; height: -1000px;">
@@ -394,10 +231,10 @@
     </defs>
   </svg>
 
-  <script src="SRC/shared.js"></script>
+  <script src="SRC/sprint.js"></script>
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-  
+
 
 
 
