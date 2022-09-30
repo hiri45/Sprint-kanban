@@ -52,7 +52,8 @@
         <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Filter option:<select
             style="background-color: white; color: black; max-height: 10; margin-left: 10px;" id="filterId">
             <option value="ALL">ALL</option>
-            <option value="UI CORE">UI CORE</option>
+            <option value="UI">UI</option>
+            <option value="CORE">CORE</option>
             <option value="TESTING">TESTING</option>
           </select>
           <button type="button" class="mdl-button" onclick="new_display()">Apply</button>
@@ -82,15 +83,16 @@
                 </div>
               </form>
               <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_assignee">
-                  <label class="mdl-textfield__label">Assignee:</label>
-                </div>
+                <select class="mdl-textfield__input" id="task_assignee" name="Assigne">
+                  <option><label class="mdl-textfield__label">Assignee</label></option>
+                  <option value="Assignee">Assignee</option>
+                </select>
               </form>
               <form action="#">
                 <select class="mdl-textfield__input" id="task_tags" name="Tags">
                   <option><label class="mdl-textfield__label">Tag</label></option>
-                  <option value="UI CORE">UI CORE</option>
+                  <option value="UI">UI</option>
+                  <option value="CORE">CORE</option>
                   <option value="TESTING">TESTING</option>
                 </select>
               </form>
