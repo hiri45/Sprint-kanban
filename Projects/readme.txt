@@ -8,8 +8,8 @@ Relevant Links:
   Project Management Tool:
     Jira: https://fit2101-group15.atlassian.net/jira/software/projects/F2/boards/1 
 
-  Shared Google Drive (PMP located here):
-    Google Drive: https://drive.google.com/drive/folders/1DDDtlbxt-G7IE3_8BRaFzs0OKFCk0Fp5
+  PMP in Google Drive:
+    Google Drive: https://docs.google.com/document/d/1XE7SeErAwzRMLyTSekkFH5esbfLw8yejwdWwDOqrMig/edit#
 
   Sprint Documentation Tool:
     Confluence: https://fit2101-group15.atlassian.net/wiki/spaces/F2/pages
