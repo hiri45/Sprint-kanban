@@ -163,23 +163,40 @@ function create_sprint(){
     window.location = "SprintManagement.html"
 
 }
+function display_SBlog(sprintlist2){
+    for(let i = 0; i<sprintlist2.count;i++){
+        let sprint_backlog_item = sprintlist2._sprints[i];
+        let sprint_Blog =  ""
+        for(let i = 0; i<sprint_backlog_item._items.length;i++){
+            sprint_Blog+="<div style=\"border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-right:10%;margin-left:10%;\"><div style=\"text-align: left; width:40%; margin:auto; margin-left: 5px;\"><b>"+sprint_backlog_item._items[i]._name+"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Tags: "+ sprint_backlog_item._items[i]._tag +"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Priority: "+ sprint_backlog_item._items[i]._priority +"</b></div><div style=\"text-align: left; width:10%; margin:auto\"><button id="+sprint_backlog_item._items[i]._id+" class=\"mdl-button mdl-js-button mdl-button--icon\"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+sprint_backlog_item._items[i]._id+"><li class=\"mdl-menu__item\" onclick='movetoPB("+ sprint_backlog_item._items[i]._id +")'>Move to Project Backlog</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"    
+        }
+        let outputArea = document.getElementById("backlog_display"+i);
+        outputArea.innerHTML = sprint_Blog;
+    }
+}
 function display_sprint(data){
     let listsprints = ""
     for(let i = 0; i<data.count;i++){
-        listsprints+=" <div style=\"border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
+        listsprints+=" <div> <div style=\"border: 1px solid; width: 90%; background-color:rgb(64,196,255); height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"+"<div  style='border: 1px solid; width: 90%; background-color:white; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;' id='backlog_display"+i+"'> </div>"+"</div>"
+
     }
     let outputArea = document.getElementById("sprint_display");
     outputArea.innerHTML = listsprints;
 
 
 }
+
 display_sprint(sprintlist);
 sprint_date(sprintlist);
-
+display_SBlog(sprintlist);
 function sprint_date(data){
-    date = new Date()
     for(let i = 0;i<data.count;i++){
-        if(new Date(data._sprints[i].startdate)<= date){
+        date_string=toString(data._sprints[i].startdate).split("/")
+        day=date_string[0]
+        mon=date_string[1]
+        year=date_string[2]
+        date= new Date(toString(year+"-"+mon+"-"+day))
+        if( data<= new Date()){
             data._sprints[i].status = "Active"
             updateLocalStorage(data)
 
