@@ -108,6 +108,13 @@ class SprintList {
         }
 
     }
+    removeitems(id){
+        for(let i = 0; i < this._sprints.length; i++){
+            if(this._sprints[i]._id==id){
+                this._sprints.splice(i,1);
+            }
+        } 
+    }
 }
 function updateLocalStorage(data){
     localStorage.setItem(SPRINT_DATA_KEY, JSON.stringify(data));
@@ -176,17 +183,19 @@ function display_SBlog(sprintlist2){
 function display_sprint(data){
     let listsprints = ""
     for(let i = 0; i<data.count;i++){
-        listsprints+=" <div> <div style=\"border: 1px solid; width: 90%; background-color:rgb(64,196,255); height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active("+data._sprints[i]._id+")'>Set Active</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"+"<div  style='border: 1px solid; width: 90%; background-color:white; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;' id='backlog_display"+i+"'> </div>"+"</div>"
+        listsprints+=" <div> <div style=\"border: 1px solid; width: 90%; background-color:rgb(64,196,255); height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active("+data._sprints[i]._id+")'>Set Active</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\" onclick='detete_sprint("+data._sprints[i]._id+")'>Delete</li></ul></div></div>"+"<div  style='border: 1px solid; width: 90%; background-color:white; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;' id='backlog_display"+i+"'> </div>"+"</div>"
     }
     let outputArea = document.getElementById("sprint_display");
     outputArea.innerHTML = listsprints;
 
 
 }
-
-display_sprint(sprintlist);
+upload_page()
+function upload_page(){
+    display_sprint(sprintlist);
 sprint_date(sprintlist);
 display_SBlog(sprintlist);
+}
 function sprint_date(data){
     for(let i = 0;i<data.count;i++){
         date_string=data._sprints[i].startdate.split("/")
@@ -194,7 +203,6 @@ function sprint_date(data){
         mon=date_string[1]
         year=date_string[2]
         date= new Date(year+"-"+mon+"-"+day).getTime()
-        console.log(date-new Date())
         if( (date- new Date())<=0){
             data._sprints[i].status = "Active"
             updateLocalStorage(data)
@@ -223,7 +231,15 @@ function set_active(id){
     }
 }
 
-
+function detete_sprint(sprint_id){
+    for(let i = 0;i<sprintlist.count;i++){
+        if (sprintlist._sprints[i]._id==sprint_id){
+            sprintlist.removeitems(sprint_id)
+            updateLocalStorage(sprintlist)
+            upload_page()
+        }
+    }
+}
 
 
 
