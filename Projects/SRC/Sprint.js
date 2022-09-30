@@ -227,8 +227,16 @@ function sprint_date(data) {
 }
 
 function assigntask(data) {
-    localStorage.setItem(Sprint_index_key, data);
-    window.location = "SprintAsgin.html";
+    if(sprintlist._sprints[data].status =-"inactive"){
+        localStorage.setItem(Sprint_index_key, data);
+        window.location = "SprintAsgin.html";
+
+
+    }
+    else{
+        localStorage.setItem(Sprint_index_key, data);
+        window.location = "SprintAsginActive.html";
+    }
 
 }
 
