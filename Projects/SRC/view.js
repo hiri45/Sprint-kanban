@@ -3,7 +3,6 @@ let sprintlist = JSON.parse(localStorage.getItem("sprintsDATA"));
 let sprint_index  =localStorage.getItem("sprint_index");
 let sprint_backlog_item = sprintlist._sprints[sprint_index];
 document.getElementById("sprint_title").innerHTML=sprint_backlog_item._name
-
 function display_PBlog(){
     let product_Blog = ""
     for(let i = 0; i<itemlist._notes.length;i++){
@@ -71,8 +70,27 @@ display_PBlog();
 
 function set_active(){
     sprint_backlog_item._status = "Active"
-    window.location = "SprintAsginActive.html"
+    let date = new Date();
+    let day = date.getDate();
+    let mon = date.getMonth()+1;
+    let year = date.getFullYear();
+    let start_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
+    sprint_backlog_item._startdate= start_date;
+    sprint_backlog_item._notstarted = sprint_backlog_item._items
     updateSprintStorage(sprintlist)
+    window.location = "SprintAsginActive.html"
 }
+function go_back_index(){
+    updateSprintStorage(sprintlist)
+    updateNOTEStorage(itemlist)
+    window.location =  "index.html"
+}
+function go_back_mangement() {
+    updateSprintStorage(sprintlist)
+    updateNOTEStorage(itemlist)
+    window.location = "SprintManagement.html"
+}
+
+
 
 

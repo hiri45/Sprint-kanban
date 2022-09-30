@@ -8,6 +8,7 @@ class Sprint {
         this._id = id;
         this._name = "";
         this._items = [];
+        this._notstarted = []
         this._inprogress = [];
         this._done = [];
         this._startdate = "";
@@ -71,6 +72,8 @@ class Sprint {
         this._startdate = data._startdate;
         this._enddate = data._enddate;
         this._items = data._items;
+        this._notstarted = data._notstarted;
+
     }
 
 
@@ -165,10 +168,21 @@ function create_sprint() {
     new_sprint.startdate = sprint_start_date;
     new_sprint.enddate = sprint_end_date;
 
-    sprintlist.addsprint(new_sprint)
-    updateLocalStorage(sprintlist)
-    window.location = "SprintManagement.html"
-    sprint_date(sprintlist)
+    if (sprintlist.count<1){
+        sprintlist.addsprint(new_sprint)
+        updateLocalStorage(sprintlist)
+        window.location = "SprintManagement.html"
+
+    }
+    else{
+        sprintlist = getSprintLocalStorage()
+        sprintlist._sprints.push(new_sprint)
+        updateLocalStorage(sprintlist)
+        window.location = "SprintManagement.html"
+
+
+    }
+
 
 }
 function display_SBlog(sprintlist2) {
@@ -208,31 +222,24 @@ function display_sprint(data) {
 
 
 display_sprint(sprintlist);
-sprint_date(sprintlist);
+// sprint_date(sprintlist);
 display_SBlog(sprintlist);
 
 
-function sprint_date(data) {
-    for (let i = 0; i < data.count; i++) {
-        if (data._sprints[i].status=="Active"){
-            break
-        }
-        else{
-            date_string = data._sprints[i].startdate.split("/")
-            day = date_string[0]
-            mon = date_string[1]
-            year = date_string[2]
-            date = new Date(year + "-" + mon + "-" + day)
-            if (date < new Date())  {
-                data._sprints[i].status = "Active"
-                updateLocalStorage(data)
-            }
-
-        }
-
-    }
-
-}
+// function sprint_date(data) {
+//     for (let i = 0; i < data.count; i++) {
+//         date_string = data._sprints[i].startdate.split("/")
+//         day = date_string[0]
+//         mon = date_string[1]
+//         year = date_string[2]
+//         date = new Date(year + "-" + mon + "-" + day)
+//         if (date < new Date())  {
+//             data._sprints[i].status = "Active"
+//         }
+//
+//     }
+//
+// }
 
 function assigntask(data) {
     if(sprintlist._sprints[data].status =="Inactive"){
@@ -255,9 +262,10 @@ function set_active(id) {
             sprintlist._sprints[i]._status = "Active";
             let date = new Date();
             let day = date.getDate();
-            let mon = date.getMonth();
+            let mon = date.getMonth()+1;
             let year = date.getFullYear();
             let start_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
+            sprintlist._sprints[i]._notstarted = sprintlist._sprints[i]._items
             sprintlist._sprints[i]._startdate= start_date;
             updateLocalStorage(sprintlist);
             window.location = "SprintManagement.html";

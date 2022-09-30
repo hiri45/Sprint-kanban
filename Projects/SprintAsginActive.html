@@ -47,7 +47,7 @@
   <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
       <div class="mdl-layout__header-row" style="padding-right: 5px;">
-        <span class="mdl-layout-title" style="width: auto;" id = "sprint_title">Active Sprint</span>
+        <span class="mdl-layout-title" style="width: auto;" id = "sprint_title">Sprints</span>
         <div class="mdl-layout-spacer"></div>
         <button
         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent colored mdl-color--blue-grey-400 show-modal" style="height: 50px;" onclick="end_sprint()">
@@ -73,10 +73,10 @@
         </div>
       </header>
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-        <a class="mdl-navigation__link" href="index.html">Project Backlog</a>
+        <a class="mdl-navigation__link" onclick="go_back_index()">Project Backlog</a>
 
         <a class="mdl-navigation__link" href=""></i>Member Management</a>
-        <a class="mdl-navigation__link" href="./SprintManagement.html">Sprint Management</a>
+        <a class="mdl-navigation__link" onclick="go_back_mangement()">Sprint Management</a>
         <div class="mdl-layout-spacer"></div>
 
         <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"

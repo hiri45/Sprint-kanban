@@ -8,8 +8,10 @@ function display_start_items(){
     the tasks are presented with their: name,tag and priority
     */
     let start_notes = ""
-    for(let i = 0;i<sprint_backlog_item._items.length;i++){
-        start_notes +="  <div class=\"mdl-grid demo-content\"></div><div style=\"border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;\">\<div style=\"text-align: left; width:40%; margin:auto; margin-left: 5px;\"><b>"+ sprint_backlog_item._items[i]._name+"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Tags:"+sprint_backlog_item._items[i]._tag+"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Priority: "+sprint_backlog_item._items[i]._priority+"</b></div><div style=\"text-align: left; width:10%; margin:auto\"><button class=\"mdl-button mdl-js-button mdl-button--icon\" id="+sprint_backlog_item._items[i]._id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+sprint_backlog_item._items[i]._id+"><li class=\"mdl-menu__item\" onclick='move_inpro("+ sprint_backlog_item._items[i]._id+")'>Move to In Progress</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
+    sprint_backlog_item._notstarted=sprint_backlog_item._items
+    updateSprintStorage(sprintlist)
+    for(let i = 0;i<sprint_backlog_item._notstarted.length;i++){
+        start_notes +="  <div class=\"mdl-grid demo-content\"></div><div style=\"border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;\">\<div style=\"text-align: left; width:40%; margin:auto; margin-left: 5px;\"><b>"+ sprint_backlog_item._notstarted[i]._name+"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Tags:"+sprint_backlog_item._notstarted[i]._tag+"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Priority: "+sprint_backlog_item._notstarted[i]._priority+"</b></div><div style=\"text-align: left; width:10%; margin:auto\"><button class=\"mdl-button mdl-js-button mdl-button--icon\" id="+sprint_backlog_item._notstarted[i]._id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+sprint_backlog_item._notstarted[i]._id+"><li class=\"mdl-menu__item\" onclick='move_inpro("+ sprint_backlog_item._notstarted[i]._id+")'>Move to In Progress</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
 
 
     }
@@ -61,10 +63,10 @@ function move_inpro(id){
     this function is used to move item a task into the "in progess" section within the kanban.
     it takes the id of the task, deletes it from the "start" section and pushes it into the "in progress" section whilst updating the storage
     */
-    for(let i = 0;i<sprint_backlog_item._items.length;i++){
-        if(sprint_backlog_item._items[i]._id==id){
-            sprint_backlog_item._inprogress.push(sprint_backlog_item._items[i])
-            sprint_backlog_item._items.splice(i,1)
+    for(let i = 0;i<sprint_backlog_item._notstarted.length;i++){
+        if(sprint_backlog_item._notstarted[i]._id==id){
+            sprint_backlog_item._inprogress.push(sprint_backlog_item._notstarted[i])
+            sprint_backlog_item._notstarted.splice(i,1)
             updateSprintStorage(sprintlist)
             window.location = "SprintAsginActive.html"
 
@@ -129,8 +131,8 @@ function end_sprint(){
 
 function getStoryPoints(){
     let spTotal = 0
-    for(let i = 0; i < sprint_backlog_item._items.length; i++) {
-        let sp = sprint_backlog_item._items[i]._storypoint;
+    for(let i = 0; i < sprint_backlog_item._notstarted.length; i++) {
+        let sp = sprint_backlog_item._notstarted[i]._storypoint;
         let spInt = parseInt(sp);
         spTotal += spInt;
     }
@@ -187,3 +189,11 @@ new Chart("analyticsChart", {
             }
         }
 })
+function go_back_index(){
+    updateSprintStorage(sprintlist)
+    window.location =  "index.html"
+}
+function go_back_mangement() {
+    updateSprintStorage(sprintlist)
+    window.location = "SprintManagement.html"
+}

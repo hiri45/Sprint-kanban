@@ -248,7 +248,6 @@ function addTask(){
     let task_type = document.getElementById('task_type');
     let task_assignee = document.getElementById('task_assignee');
 
-
     let task = new Stickynote(gen_ID())  // creates task using Stickynote class
     task.description = task_description.value;
     task.name = task_name.value;
