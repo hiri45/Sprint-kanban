@@ -16,7 +16,7 @@
   limitations under the License
 -->
 <html lang="en">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +47,7 @@
   <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
       <div class="mdl-layout__header-row" style="padding-right: 5px;">
-        <span class="mdl-layout-title" style="width: auto;" id = "sprint_title">Sprint 1 name assign</span>
+        <span class="mdl-layout-title" style="width: auto;" id = "sprint_title">Active Sprint</span>
         <div class="mdl-layout-spacer"></div>
         <button
         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent colored mdl-color--blue-grey-400 show-modal" style="height: 50px;" onclick="javascript:location.href='./SprintManagement.html'">
@@ -154,6 +154,9 @@
 <!--        </div>-->
         </div>
       </div>
+        </div>
+        <canvas title="Ideal Velocity" id="analyticsChart" style="width:100%;max-width:800px"></canvas>
+        </div>
     </main>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"

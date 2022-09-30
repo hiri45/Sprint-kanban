@@ -38,6 +38,7 @@ function display_finish_items(){
 display_start_items()
 display_finish_items()
 display_inpro_items()
+
 function move_inpro(id){
     for(let i = 0;i<sprint_backlog_item._items.length;i++){
         if(sprint_backlog_item._items[i]._id==id){
@@ -81,3 +82,65 @@ function move_back(id) {
 function updateSprintStorage(data){
     localStorage.setItem("sprintsDATA", JSON.stringify(data));
 }
+
+
+function getStoryPoints(){
+    let spTotal = 0
+    for(let i = 0; i < sprint_backlog_item._items.length; i++) {
+        let sp = sprint_backlog_item._items[i]._storypoint;
+        let spInt = parseInt(sp);
+        spTotal += spInt;
+    }
+    spTotal = spTotal * 3;
+    return spTotal;
+}
+
+function sprintDays(){
+    let startDate = new Date(sprint_backlog_item._startdate);
+    let endDate = new Date(sprint_backlog_item._enddate);
+    timeDiff = endDate.getTime() - startDate.getTime();
+    days = Math.ceil(timeDiff / (1000*3600*24));
+    return days;
+}
+
+function genXVal(days){
+    let daysArr = [];
+    for (let i = 0; i < days+1; i++) {
+        daysArr.push(i)
+    }
+    return daysArr;
+}
+
+function genYVal(){
+    let increment = getStoryPoints() / sprintDays();
+    let spArr = []
+    for (i=0; i <= sprintDays(); i++) {
+            spArr.push(getStoryPoints() - (i*increment));
+    }
+    return spArr
+}
+
+let xValues = genXVal(sprintDays());
+let yValues = genYVal();
+
+
+
+new Chart("analyticsChart", {
+    type: "line",
+    data: {
+        labels: xValues,
+        datasets:[{
+            fill: true,
+            pointRadius: 1,
+            borderColor:"rgba(255,0,0,0.5)",
+            data: yValues
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: 'Analytics Chart',
+            fontColor: 'rgb(255, 99, 132)'
+            }
+        }
+}) 
