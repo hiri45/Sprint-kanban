@@ -110,7 +110,7 @@
                 </select></div>
               <div class="mdl-dialog__actions">
                 <button type="button" class="mdl-button close">Cancel</button>
-                <button type="button" class="mdl-button" onclick="addSprint()">Add task</button>
+                <button type="button" class="mdl-button" onclick="create_sprint()">Create Sprint</button>
               </div>
             </div>
           </dialog>
@@ -160,23 +160,23 @@
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
       <div id="sprint_display" style="min-width:max-content;">
-        <div
-          style="border: 1px solid; width: 90%; background-color:azure; height: 50px; margin-bottom: 7px; display: flex; margin-left: 10px;">
-          <div style="text-align: left; width:30%; margin:auto; margin-left: 5px;"><b>Sprint 1</b></div>
-          <div style="text-align: left; width:20%; margin:auto"><b>Start date: 20/09/2022</b></div>
-          <div style="text-align: left; width:20%; margin:auto"><b>End date: 20/09/2022</b></div>
-          <div style="text-align: left; width:20%; margin:auto"><b>Status: Active</b></div>
-          <div style="text-align: right; width:10%; margin:auto; margin-right: 30px;">
-            <button id="sprint1" class="mdl-button mdl-js-button mdl-button--icon">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu" for="sprint1">
-              <li class="mdl-menu__item" onclick="javascript:location.href='./SprintAsgin.html'">Go to task assign</li>
-              <li class="mdl-menu__item">Edit</li>
-              <li class="mdl-menu__item">Delete</li>
-            </ul>
-          </div>
-        </div>
+<!--        <div-->
+<!--          style="border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;">-->
+<!--          <div style="text-align: left; width:30%; margin:auto; margin-left: 5px;"><b>Sprint 1</b></div>-->
+<!--          <div style="text-align: left; width:20%; margin:auto"><b>Start date: 20/09/2022</b></div>-->
+<!--          <div style="text-align: left; width:20%; margin:auto"><b>End date: 20/09/2022</b></div>-->
+<!--          <div style="text-align: left; width:20%; margin:auto"><b>Status: Active</b></div>-->
+<!--          <div style="text-align: right; width:10%; margin:auto; margin-right: 30px;">-->
+<!--            <button id="sprint1" class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">-->
+<!--              <i class="material-icons">more_vert</i>-->
+<!--            </button>-->
+<!--            <ul class="mdl-menu mdl-js-menu" for="sprint1">-->
+<!--              <li class="mdl-menu__item" onclick="javascript:location.href='./SprintAsgin.html'">Go to task assign</li>-->
+<!--              <li class="mdl-menu__item">Edit</li>-->
+<!--              <li class="mdl-menu__item">Delete</li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </main>
   </div>
@@ -234,7 +234,7 @@
     </defs>
   </svg>
 
-  <script src="SRC/shared.js"></script>
+  <script src="SRC/sprint.js"></script>
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 
