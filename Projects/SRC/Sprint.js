@@ -1,15 +1,18 @@
 
 const SPRINT_DATA_KEY ="sprintsDATA"
+const Sprint_index_key = "sprint_index"
 class Sprint{
 
 
     constructor(id) {
-        this._id = id
-        this._name = ""
-        this._items = []
-        this._startdate = new Date()
-        this._enddate = new Date()
-        this._status = "Not Started"
+        this._id = id;
+        this._name = "";
+        this._items = [];
+        this._inprogress = [];
+        this._done = [];
+        this._startdate ="";
+        this._enddate = "";
+        this._status = "Not Started";
 
     }
     get id() {
@@ -41,6 +44,13 @@ class Sprint{
 
     setitems(value) {
         this._items.push(value);
+    }
+    removeitems(id){
+        for(let i = 0;i<this.items.length;i++){
+            if (id == this.items[i]._id){
+                this.items.splice(i,1)
+            }
+        }
     }
 
     set startdate(value) {
@@ -102,33 +112,93 @@ class SprintList {
 function updateLocalStorage(data){
     localStorage.setItem(SPRINT_DATA_KEY, JSON.stringify(data));
 }
-function getDataLocalStorage(){
+function getSprintLocalStorage(){
     let retrieve = JSON.parse(localStorage.getItem(SPRINT_DATA_KEY));
     return retrieve;
 }
-let sprintList = new SprintList();
 
 function gen_ID(){
     let gen_id = Math.random() * 1000
     return gen_id
 }
+let sprintlist = new SprintList();
 
-let to_new_check = checkIfDataExistsLocalStorage();
+
+function checkSPRINTLocalStorage(){
+    if(getSprintLocalStorage() == null){
+        return false
+    }
+    else{
+        return true
+    }
+
+}
+let to_new_check = checkSPRINTLocalStorage();
 
 if(to_new_check === true){
-    let theData = getDataLocalStorage();
-    sprintList.fromData(theData);
+    let theData = getSprintLocalStorage();
+    sprintlist.fromData(theData);
 }
 
-let list = new Stickynote(gen_ID());
-list.tag = "UI";
-list.name ="ewdcdca"
-list.storypoint = 9
 
-let new_sprint = new Sprint(gen_ID());
-new_sprint.setitems(list)
-sprintList.addsprint(new_sprint)
-updateLocalStorage(sprintList)
+function create_sprint(){
+    let sprint_name = document.getElementById("sprint_name");
+    let sprint_start_day = document.getElementById("sprint_start_day");
+    let sprint_start_month = document.getElementById("sprint_start_month");
+    let sprint_start_year = document.getElementById("sprint_start_year");
+    let sprint_end_day = document.getElementById("sprint_end_day");
+    let sprint_end_month = document.getElementById("sprint_end_month");
+    let sprint_end_year = document.getElementById("sprint_end_year");
+    let sprint_start_date = sprint_start_day.value.toString() +"/" + sprint_start_month.value.toString() +"/" + sprint_start_year.value.toString()
+    let sprint_end_date  = sprint_end_day.value.toString() +"/" + sprint_end_month.value.toString() +"/" + sprint_end_year.value.toString()
+
+    let new_sprint = new Sprint(gen_ID());
+    new_sprint.name = sprint_name.value;
+    new_sprint.status = "inactive";
+    new_sprint.startdate = sprint_start_date;
+    new_sprint.enddate = sprint_end_date;
+
+    sprintlist.addsprint(new_sprint)
+    updateLocalStorage(sprintlist)
+    window.location = "SprintManagement.html"
+
+}
+function display_sprint(data){
+    let listsprints = ""
+    for(let i = 0; i<data.count;i++){
+        listsprints+=" <div style=\"border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
+    }
+    let outputArea = document.getElementById("sprint_display");
+    outputArea.innerHTML = listsprints;
+
+
+}
+display_sprint(sprintlist);
+sprint_date(sprintlist);
+
+function sprint_date(data){
+    date = new Date()
+    for(let i = 0;i<data.count;i++){
+        if(new Date(data._sprints[i].startdate)<= date){
+            data._sprints[i].status = "Active"
+            updateLocalStorage(data)
+
+        }
+
+    }
+
+
+}
+
+function assigntask(data){
+    localStorage.setItem(Sprint_index_key,data);
+    window.location = "SprintAsgin.html";
+
+}
+
+
+
+
 
 
 

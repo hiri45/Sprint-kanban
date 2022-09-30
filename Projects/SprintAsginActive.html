@@ -47,87 +47,12 @@
   <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
       <div class="mdl-layout__header-row" style="padding-right: 5px;">
-        <span class="mdl-layout-title" style="width: auto;">Sprint Management</span>
+        <span class="mdl-layout-title" style="width: auto;" id = "sprint_title">Sprint 1 name assign</span>
         <div class="mdl-layout-spacer"></div>
-        <div style="text-align:right; margin: 0%; scale:1.2; padding-right: 20px;">Add Sprint:
-        </div>
-        <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
-          <button type="button"
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i
-              class="material-icons">add</i></button>
-          <dialog class="mdl-dialog" style="min-width: 30%;">
-            <div style="text-align: center;"><b>Add Sprint</b></div>
-            <div>
-              <form action="#">
-                <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
-                  <input class="mdl-textfield__input" type="text" id="sprint_name">
-                  <label class="mdl-textfield__label">Sprint Name: </label>
-                </div>
-              </form>
-              <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
-                <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;">
-                  <b>Start Date: </b>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_day">
-                  <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
-                  <span class="mdl-textfield__error">Day is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_month">
-                  <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_year">
-                  <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
-                </div>
-              </div>
-              <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
-                <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;"><b>End
-                    Date: </b></div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_day">
-                  <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
-                  <span class="mdl-textfield__error">Day is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_month">
-                  <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_year">
-                  <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
-                </div>
-              </div>
-              <div> <select class="mdl-textfield__input" id="task_tags" name="Tags">
-                  <option><label class="mdl-textfield__label">Status</label></option>
-                  <option value="ACTIVE">Active</option>
-                  <option value="NOTACTIVE">Not Active</option>
-                </select></div>
-              <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button close">Cancel</button>
-                <button type="button" class="mdl-button" onclick="create_sprint()">Create Sprint</button>
-              </div>
-            </div>
-          </dialog>
-          <script>
-            var dialog = document.querySelector('dialog');
-            var showModalButton = document.querySelector('.show-modal');
-            if (!dialog.showModal) {
-              dialogPolyfill.registerDialog(dialog);
-            }
-            showModalButton.addEventListener('click', function () {
-              dialog.showModal();
-            });
-            dialog.querySelector('.close').addEventListener('click', function () {
-              dialog.close();
-            });
-          </script>
-        </div>
+        <button
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent colored mdl-color--blue-grey-400 show-modal" style="height: 50px;" onclick="javascript:location.href='./SprintAsgin.html'">
+        Inactive Sprint
+      </button>
       </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -148,7 +73,7 @@
         </div>
       </header>
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-        <a class="mdl-navigation__link" href="./index.html">Project Backlog</a>
+        <a class="mdl-navigation__link" href="index.html">Project Backlog</a>
 
         <a class="mdl-navigation__link" href=""></i>Member Management</a>
         <a class="mdl-navigation__link" href="./SprintManagement.html">Sprint Management</a>
@@ -159,24 +84,90 @@
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-      <div id="sprint_display" style="min-width:max-content;">
-<!--        <div-->
-<!--          style="border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;">-->
-<!--          <div style="text-align: left; width:30%; margin:auto; margin-left: 5px;"><b>Sprint 1</b></div>-->
-<!--          <div style="text-align: left; width:20%; margin:auto"><b>Start date: 20/09/2022</b></div>-->
-<!--          <div style="text-align: left; width:20%; margin:auto"><b>End date: 20/09/2022</b></div>-->
-<!--          <div style="text-align: left; width:20%; margin:auto"><b>Status: Active</b></div>-->
-<!--          <div style="text-align: right; width:10%; margin:auto; margin-right: 30px;">-->
-<!--            <button id="sprint1" class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">-->
-<!--              <i class="material-icons">more_vert</i>-->
-<!--            </button>-->
-<!--            <ul class="mdl-menu mdl-js-menu" for="sprint1">-->
-<!--              <li class="mdl-menu__item" onclick="javascript:location.href='./SprintAsgin.html'">Go to task assign</li>-->
-<!--              <li class="mdl-menu__item">Edit</li>-->
-<!--              <li class="mdl-menu__item">Delete</li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
+      <div style="background-color:beige; border-width: 2px; border-color: black;">
+        <h4 style="background-color:rgb(64,196,255); height: 50px;text-align:center;">Sprint Backlog</h4>
+        <div class="mdl-grid demo-content" id="sprint1">
+          <div
+          style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+          <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+          <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+          <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+          <div style="text-align: left; width:10%; margin:auto">
+            <button id="task1" class="mdl-button mdl-js-button mdl-button--icon">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu" for="task1">
+              <li class="mdl-menu__item">Move to Start</li>
+              <li class="mdl-menu__item">Edit</li>
+              <li class="mdl-menu__item">Delete</li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div style="display: flex; width: 100%; text-align: center; margin-top: 20px; min-height: 60%;">
+        <div style="background-color:beige; border-width: 2px; border-color: black; width: 35%; margin-right:10px;">
+          <h4 style="background-color:rgb(64,196,255); height: 50px;text-align:center; margin-top: 0%;">Start</h4>
+          <div class="mdl-grid demo-content" id="Sprint1_start_display">
+            <div
+              style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+              <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+              <div style="text-align: left; width:10%; margin:auto">
+                <button id="task2" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu" for="task2">
+                  <li class="mdl-menu__item">Move to In Progress</li>
+                  <li class="mdl-menu__item">Edit</li>
+                  <li class="mdl-menu__item">Delete</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="background-color:beige; border-width: 2px; border-color: black; width: 35%; margin-right:10px;">
+          <h4 style="background-color:rgb(64,196,255); height: 50px;text-align:center;margin-top: 0%;">In Progress</h4>
+          <div class="mdl-grid demo-content" id="Sprint1_in_progress_display">
+            <div
+              style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+              <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+              <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+              <div style="text-align: left; width:10%; margin:auto">
+                <button id="task3" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu" for="task3">
+                  <li class="mdl-menu__item">Move to Finish</li>
+                  <li class="mdl-menu__item">Move back to Start</li>
+                  <li class="mdl-menu__item">Edit</li>
+                  <li class="mdl-menu__item">Delete</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="background-color:beige; border-width: 2px; border-color: black; width: 35%;">
+          <h4 style="background-color:rgb(64,196,255); height: 50px;text-align:center;margin-top: 0%;">Finished</h4>
+          <div
+          style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">
+          <div style="text-align: left; width:40%; margin:auto; margin-left: 5px;"><b>Name go here</b></div>
+          <div style="text-align: left; width:25%; margin:auto"><b>Tags: UI Core</b></div>
+          <div style="text-align: left; width:25%; margin:auto"><b>Priority: High</b></div>
+          <div style="text-align: left; width:10%; margin:auto">
+            <button id="task4" class="mdl-button mdl-js-button mdl-button--icon">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu" for="task4">
+              <li class="mdl-menu__item">Back to Inprogess</li>
+              <li class="mdl-menu__item">Edit</li>
+              <li class="mdl-menu__item">Delete</li>
+            </ul>
+          </div>
+        </div>
+        </div>
       </div>
     </main>
   </div>
