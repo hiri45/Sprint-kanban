@@ -166,7 +166,7 @@ function create_sprint(){
 function display_sprint(data){
     let listsprints = ""
     for(let i = 0; i<data.count;i++){
-        listsprints+=" <div style=\"border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
+        listsprints+=" <div style=\"border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active("+data._sprints[i]._id+")'>Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
     }
     let outputArea = document.getElementById("sprint_display");
     outputArea.innerHTML = listsprints;
@@ -187,13 +187,27 @@ function sprint_date(data){
 
     }
 
+}
+function set_active(id){
+    for(let i = 0; i<sprintlist.count;i++){
+        if(sprintlist._sprints[i]._id==id){
+            sprintlist._sprints[i]._status = "Active"
+            updateLocalStorage(sprintlist)
 
+        }
+    }
 }
 
-function assigntask(data){
-    localStorage.setItem(Sprint_index_key,data);
-    window.location = "SprintAsgin.html";
 
+function assigntask(data){
+    if(sprintlist._sprints[data].status=="Active") {
+        localStorage.setItem(Sprint_index_key, data);
+        window.location = "SprintAsginActive.html";
+    }
+    else{
+        localStorage.setItem(Sprint_index_key, data);
+        window.location = "SprintAsgin.html";
+    }
 }
 
 
