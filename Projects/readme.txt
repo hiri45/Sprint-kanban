@@ -17,3 +17,7 @@ Relevant Links:
 Changes made to Project Management Plan:
 None - we aimed to follow the same processes as outlined after the completion of Sprint 1
 and will continue to do so. 
+
+Read Sprint 2 Overview at: https://fit2101-group15.atlassian.net/wiki/spaces/F2/pages/7798785/Sprint+2+Overview
+for a more in-depth analysis of how the group followed the PMP and other notable events that occurred 
+in Sprint 2.
