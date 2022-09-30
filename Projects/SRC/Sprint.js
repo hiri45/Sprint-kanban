@@ -161,7 +161,6 @@ function create_sprint(){
     sprintlist.addsprint(new_sprint)
     updateLocalStorage(sprintlist)
     window.location = "SprintManagement.html"
-
 }
 function display_SBlog(sprintlist2){
     for(let i = 0; i<sprintlist2.count;i++){
@@ -177,7 +176,7 @@ function display_SBlog(sprintlist2){
 function display_sprint(data){
     let listsprints = ""
     for(let i = 0; i<data.count;i++){
-        listsprints+=" <div style=\"border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active("+data._sprints[i]._id+")'>Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
+        listsprints+=" <div> <div style=\"border: 1px solid; width: 90%; background-color:rgb(64,196,255); height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>"+data._sprints[i].name+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: "+data._sprints[i].startdate+"</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:"+data._sprints[i].enddate+"</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: "+data._sprints[i].status+"</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id="+data._sprints[i].id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+data._sprints[i].id+" ><li class=\"mdl-menu__item\" onclick='assigntask("+ i +")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active("+data._sprints[i]._id+")'>Set Active</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"+"<div  style='border: 1px solid; width: 90%; background-color:white; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;' id='backlog_display"+i+"'> </div>"+"</div>"
     }
     let outputArea = document.getElementById("sprint_display");
     outputArea.innerHTML = listsprints;
@@ -190,12 +189,13 @@ sprint_date(sprintlist);
 display_SBlog(sprintlist);
 function sprint_date(data){
     for(let i = 0;i<data.count;i++){
-        date_string=toString(data._sprints[i].startdate).split("/")
+        date_string=data._sprints[i].startdate.split("/")
         day=date_string[0]
         mon=date_string[1]
         year=date_string[2]
-        date= new Date(toString(year+"-"+mon+"-"+day))
-        if( data<= new Date()){
+        date= new Date(year+"-"+mon+"-"+day).getTime()
+        console.log(date-new Date())
+        if( (date- new Date())<=0){
             data._sprints[i].status = "Active"
             updateLocalStorage(data)
 
@@ -203,7 +203,16 @@ function sprint_date(data){
 
     }
 
+
 }
+
+function assigntask(data){
+    localStorage.setItem(Sprint_index_key,data);
+    window.location = "SprintAsgin.html";
+
+}
+
+
 function set_active(id){
     for(let i = 0; i<sprintlist.count;i++){
         if(sprintlist._sprints[i]._id==id){
@@ -213,25 +222,6 @@ function set_active(id){
         }
     }
 }
-
-
-function assigntask(data){
-    if(sprintlist._sprints[data].status=="Active") {
-        localStorage.setItem(Sprint_index_key, data);
-        window.location = "SprintAsginActive.html";
-    }
-    else{
-        localStorage.setItem(Sprint_index_key, data);
-        window.location = "SprintAsgin.html";
-    }
-}
-
-
-
-
-
-
-
 
 
 
