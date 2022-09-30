@@ -161,7 +161,7 @@ function create_sprint() {
 
     let new_sprint = new Sprint(gen_ID());
     new_sprint.name = sprint_name.value;
-    new_sprint.status = "inactive";
+    new_sprint.status = "Inactive";
     new_sprint.startdate = sprint_start_date;
     new_sprint.enddate = sprint_end_date;
 
@@ -185,7 +185,7 @@ function display_SBlog(sprintlist2) {
 function display_sprint(data) {
     let listsprints = ""
     for (let i = 0; i < data.count; i++) {
-        listsprints += " <div> <div style=\"border: 1px solid; width: 90%; background-color:rgb(64,196,255); height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active(" + data._sprints[i]._id + ")'>Set Active</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\" onclick='detete_sprint(" + data._sprints[i]._id + ")'>Delete</li></ul></div></div>" + "<div  style='border: 1px solid; width: 90%; background-color:white; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
+        listsprints += " <div> <div style=\"border: 1px solid; width: 98%; background-color:rgb(64,196,255); height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active(" + data._sprints[i]._id + ")'>Set Active</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\" onclick='detete_sprint(" + data._sprints[i]._id + ")'>Delete</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: flex; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
     }
     let outputArea = document.getElementById("sprint_display");
     outputArea.innerHTML = listsprints;
