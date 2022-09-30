@@ -254,7 +254,7 @@ function set_active(id) {
         if (sprintlist._sprints[i]._id == id) {
             sprintlist._sprints[i]._status = "Active";
             let date = new Date();
-            let day = date.getDay();
+            let day = date.getDate();
             let mon = date.getMonth();
             let year = date.getFullYear();
             let start_date = day.toString()+"/"+mon.toString()+"/"+year.toString();

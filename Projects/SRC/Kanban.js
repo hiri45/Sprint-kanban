@@ -114,3 +114,14 @@ function updateSprintStorage(data){
     */
     localStorage.setItem("sprintsDATA", JSON.stringify(data));
 }
+function end_sprint(){
+    sprint_backlog_item._status = "Completed";
+    let date = new Date();
+    let day = date.getDate()
+    let mon = date.getMonth()+1;
+    let year = date.getFullYear();
+    let end_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
+    sprint_backlog_item._enddate= end_date;
+    updateSprintStorage(sprintlist);
+    window.location = "SprintManagement.html";
+}
