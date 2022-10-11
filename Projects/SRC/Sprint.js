@@ -153,14 +153,9 @@ if (to_new_check === true) {
 
 function create_sprint() {
     let sprint_name = document.getElementById("sprint_name");
-    let sprint_start_day = document.getElementById("sprint_start_day");
-    let sprint_start_month = document.getElementById("sprint_start_month");
-    let sprint_start_year = document.getElementById("sprint_start_year");
-    let sprint_end_day = document.getElementById("sprint_end_day");
-    let sprint_end_month = document.getElementById("sprint_end_month");
-    let sprint_end_year = document.getElementById("sprint_end_year");
-    let sprint_start_date = sprint_start_day.value.toString() + "/" + sprint_start_month.value.toString() + "/" + sprint_start_year.value.toString()
-    let sprint_end_date = sprint_end_day.value.toString() + "/" + sprint_end_month.value.toString() + "/" + sprint_end_year.value.toString()
+    let sprint_start_date = document.getElementById("sprint_start_day").value;
+    let sprint_end_date = document.getElementById("sprint_end_day").value;
+
 
     let new_sprint = new Sprint(gen_ID());
     new_sprint.name = sprint_name.value;
