@@ -2,13 +2,16 @@ let sprintlist = JSON.parse(localStorage.getItem("sprintsDATA"));
 let sprint_index  =localStorage.getItem("sprint_index");
 let sprint_backlog_item = sprintlist._sprints[sprint_index];
 
+if(sprint_backlog_item._notstarted===[]){
+    sprint_backlog_item._notstarted=sprint_backlog_item._items
+}
+
 function display_start_items(){
     /*
     this function takes all the tasks within a sprint and displays the tasks in the "start" section within the kanban.
     the tasks are presented with their: name,tag and priority
     */
     let start_notes = ""
-    sprint_backlog_item._notstarted=sprint_backlog_item._items
     updateSprintStorage(sprintlist)
     for(let i = 0;i<sprint_backlog_item._notstarted.length;i++){
         start_notes +="  <div class=\"mdl-grid demo-content\"></div><div style=\"border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;\">\<div style=\"text-align: left; width:40%; margin:auto; margin-left: 5px;\"><b>"+ sprint_backlog_item._notstarted[i]._name+"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Tags:"+sprint_backlog_item._notstarted[i]._tag+"</b></div><div style=\"text-align: left; width:25%; margin:auto\"><b>Priority: "+sprint_backlog_item._notstarted[i]._priority+"</b></div><div style=\"text-align: left; width:10%; margin:auto\"><button class=\"mdl-button mdl-js-button mdl-button--icon\" id="+sprint_backlog_item._notstarted[i]._id+"><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for="+sprint_backlog_item._notstarted[i]._id+"><li class=\"mdl-menu__item\" onclick='move_inpro("+ sprint_backlog_item._notstarted[i]._id+")'>Move to In Progress</li><li class=\"mdl-menu__item\">Edit</li><li class=\"mdl-menu__item\">Delete</li></ul></div></div>"
@@ -131,8 +134,8 @@ function end_sprint(){
 
 function getStoryPoints(){
     let spTotal = 0
-    for(let i = 0; i < sprint_backlog_item._notstarted.length; i++) {
-        let sp = sprint_backlog_item._notstarted[i]._storypoint;
+    for(let i = 0; i < sprint_backlog_item._items.length; i++) {
+        let sp = sprint_backlog_item._items[i]._storypoint;
         let spInt = parseInt(sp);
         spTotal += spInt;
     }
@@ -141,8 +144,17 @@ function getStoryPoints(){
 }
 
 function sprintDays(){
-    let startDate = new Date(sprint_backlog_item._startdate);
-    let endDate = new Date(sprint_backlog_item._enddate);
+    let date_string = sprint_backlog_item._startdate.split("/");
+    let day = date_string[0]
+    let mon = date_string[1]
+    let year = date_string[2]
+    let startDate = new Date(year + "-" + mon + "-" + day)
+    let endDate_string = sprint_backlog_item._enddate.split("/");
+    let end_day = endDate_string[0]
+    let end_mon = endDate_string[1]
+    let end_year = endDate_string[2]
+    let endDate = new Date(end_year + "-" + end_mon + "-" + end_day)
+
     timeDiff = endDate.getTime() - startDate.getTime();
     days = Math.ceil(timeDiff / (1000*3600*24));
     return days;

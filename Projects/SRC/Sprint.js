@@ -207,7 +207,7 @@ function display_sprint(data) {
 
         }
         else{
-            listsprints2 += " <div> <div style=\"border: 1px solid; width: 98%; background-color:aquamarine;; height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='set_active(" + data._sprints[i]._id + ")'>Set Active</li><li class=\"mdl-menu__item\" onclick = edit_sprint("+data._sprints[i]._id+")>Edit</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: block; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
+            listsprints2 += " <div> <div style=\"border: 1px solid; width: 98%; background-color:aquamarine;; height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to sprint board</li><li class=\"mdl-menu__item\" onclick='set_complete(" + data._sprints[i]._id + ")'>End Sprint</li><li class=\"mdl-menu__item\" onclick = edit_sprint("+data._sprints[i]._id+")>Edit</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: block; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
 
         }
 
@@ -265,7 +265,6 @@ function set_active(id) {
             let mon = date.getMonth()+1;
             let year = date.getFullYear();
             let start_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
-            sprintlist._sprints[i]._notstarted = sprintlist._sprints[i]._items
             sprintlist._sprints[i]._startdate= start_date;
             updateLocalStorage(sprintlist);
             window.location = "SprintManagement.html";
@@ -324,7 +323,21 @@ function submit_Sprint_Edit(sprint_id) {
 function close_edit_sprint() {
     editing_sprint.close()
 }
-
+function set_complete(id) {
+    for (let i = 0; i < sprintlist.count; i++) {
+        if (sprintlist._sprints[i]._id == id) {
+            sprintlist._sprints[i]._status = "Completed";
+            let date = new Date();
+            let day = date.getDate();
+            let mon = date.getMonth()+1;
+            let year = date.getFullYear();
+            let end_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
+            sprintlist._sprints[i].enddate= end_date;
+            updateLocalStorage(sprintlist);
+            window.location = "SprintManagement.html";
+        }
+    }
+}
 
 
 
