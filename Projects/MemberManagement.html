@@ -49,63 +49,76 @@
       <div class="mdl-layout__header-row" style="padding-right: 5px;">
         <span class="mdl-layout-title" style="width: auto;">Team Management</span>
         <div class="mdl-layout-spacer"></div>
+        <div style="text-align:right; margin: 0%; scale: 1; color: cornsilk;">
+          <div style="text-align:right; margin: 0%; scale: 1; color: cornsilk;">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect show-modal">
+              Add Member
+            </button>
+            <dialog class="mdl-dialog">
+              <div>
+                <form action="#">
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="create_name">
+                    <label class="mdl-textfield__label">Name</label>
+                  </div>
+                </form>
+                <form action="#">
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="create_email">
+                    <label class="mdl-textfield__label">Email Address</label>
+                  </div>
+                </form>
+                <div class="mdl-dialog__actions">
+                  <button type="button" class="mdl-button close">Cancel</button>
+                  <button type="button" class="mdl-button" onclick="create_member()">Add Member</button>
+                </div>
+              </div>
+            </dialog>
+            <script>
+              var dialog = document.querySelector('dialog');
+              var showModalButton = document.querySelector('.show-modal');
+              if (!dialog.showModal) {
+                dialogPolyfill.registerDialog(dialog);
+              }
+              showModalButton.addEventListener('click', function () {
+                dialog.showModal();
+              });
+              dialog.querySelector('.close').addEventListener('click', function () {
+                dialog.close();
+              });
+            </script>
+          </div>
+        </div>
       </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
       <header class="demo-drawer-header">
-        <img src="HTML%20prototype/images/user.jpg" class="demo-avatar">
-        <div class="demo-avatar-dropdown">
-          <span>ADMIN</span>
-          <div class="mdl-layout-spacer"></div>
-          <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">arrow_drop_down</i>
-            <span class="visuallyhidden">Accounts</span>
-          </button>
-          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-            <li class="mdl-menu__item">Admin</li>
-            <li class="mdl-menu__item">User 1</li>
-            <li class="mdl-menu__item"><i class="material-icons">add</i>Add another  ...</li>
-          </ul>
-        </div>
+
       </header>
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
         <a class="mdl-navigation__link" href="index.html">Project Backlog</a>
 
         <a class="mdl-navigation__link" href=""></i>Member Management</a>
-        <a class="mdl-navigation__link" href="./SprintManagement.html">Sprint Management</a>
+        <a class="mdl-navigation__link" href="SprintManagement.html">Sprint Management</a>
         <div class="mdl-layout-spacer"></div>
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-      <div class="mdl-grid demo-content">
-        <div style=" width:80%; height: 300px; margin-left: 10px;">
-          <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
-            <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric">Name</th>
-                <th>Age</th>
-                <th>ID Number</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric">Don Aubrey</td>
-                <td>25</td>
-                <td>49021</td>
-              </tr>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric">Sophia Carson</td>
-                <td>32</td>
-                <td>10258</td>
-              </tr>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric">Steve Moreno</td>
-                <td>29</td>
-                <td>12359</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div style=" width:80%; height: 300px; margin-left: 10px;">
+        <table class="mdl-data-table mdl-js-data-table" style="width: 100%;">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Member Name</th>
+              <th>Email</th>
+              <th>Total Hours Work</th>
+              <th>Total Days Work</th>
+              <th>Average hours per day</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="member_table">
+          </tbody>
+        </table>
       </div>
     </main>
   </div>
@@ -163,16 +176,11 @@
     </defs>
   </svg>
 
-  <script src="SRC/shared.js"></script>
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
-  
+  <script src="SRC/member.js"></script>
 
 
 
 </body>
 
 </html>
-
-
-
