@@ -53,8 +53,66 @@
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
           <button type="button"
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal" onclick="location.href='addsprint.html'"></button>
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal" onclick="location.href='addsprint.html'">          <i
+              class="material-icons">add</i></button>
         </div>
+        <dialog class="mdl-dialog">
+          <div>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="task_name">
+                <label class="mdl-textfield__label">Name</label>
+              </div>
+            </form>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input"  onfocus="this.value=''" type="text" id="task_description">
+                <label class="mdl-textfield__label">Description</label>
+              </div>
+            </form>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="number" id="task_story_point">
+                <span class="mdl-textfield__error">Storypoint must be a number!</span>
+                <label class="mdl-textfield__label">Story Point:</label>
+              </div>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_assignee" name="Assigne">
+                <option><label class="mdl-textfield__label">Assignee</label></option>
+                <option value="Assignee">Assignee</option>
+              </select>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_tags" name="Tags">
+                <option><label class="mdl-textfield__label">Tag</label></option>
+                <option value="UI">UI</option>
+                <option value="CORE">CORE</option>
+                <option value="TESTING">TESTING</option>
+              </select>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_priority" name="Priority">
+                <option><label class="mdl-textfield__label">Priority</label></option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+                <option value="Critical">Critical</option>
+              </select>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_type" name="Type">
+                <option value="Story"><label class="mdl-textfield__label">Type</label></option>
+                <option value="Story">Story</option>
+                <option value="Bug">Bug</option>
+              </select>
+            </form>
+            <div class="mdl-dialog__actions">
+              <button type="button" class="mdl-button close">Cancel</button>
+              <button type="button" class="mdl-button" onclick="addTask()">Add task</button>
+            </div>
+          </div>
+        </dialog>
       </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -77,7 +135,7 @@
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
         <a class="mdl-navigation__link" href="./index.html">Project Backlog</a>
 
-        <a class="mdl-navigation__link" href=""></i>Member Management</a>
+        <a class="mdl-navigation__link" href="./MemberManagement.html"></i>Member Management</a>
         <a class="mdl-navigation__link" href="./SprintManagement.html">Sprint Management</a>
         <div class="mdl-layout-spacer"></div>
 
