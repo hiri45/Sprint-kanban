@@ -323,7 +323,7 @@ function editTask(id) {
         id: id is used to get the specific note in which the user wants to edit
     */
     note_to_edit = itemlist.getNote(id); // get note function used to get specific note with id
-
+    //gang
     let desc_edit = document.getElementById("edit_task_description");
     let name_edit = document.getElementById("edit_task_name");
     let sp_edit = document.getElementById("edit_task_storypoint");
