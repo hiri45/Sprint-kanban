@@ -8,6 +8,7 @@ class Member {
         this._name = "";
         this._email = "";
         this._loginhrs = [];
+        this._logindays = []
        
     }
     get id() {
@@ -23,16 +24,8 @@ class Member {
     get loginhrs() {
         return this._loginhrs;
     }
-    setitems(value) {
-        this._items.push(value);
-    }
-    removeitems(id) {
-        for (let i = 0; i < this.items.length; i++) {
-            if (id == this.items[i]._id) {
-                this.items.splice(i, 1)
-            }
-        }
-    }
+
+
     fromData(data) {
         this._id = data._id;
         this._name = data._name;
@@ -110,6 +103,7 @@ function create_member() {
     let mem_name = document.getElementById("create_name").value;
     let mem_address = document.getElementById("create_email").value;
 
+    validemail(mem_address)
 
     let new_member = new Member(gen_ID());
     new_member._name = mem_name;
@@ -139,22 +133,35 @@ function detete_meber(member_id) {
     }
 }
 
+function validemail(input){
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(input.match(validRegex)){
+        return true
+    }
+    else{
+        alert("Invalid email address!");
 
+        document.form1.text1.focus();
+
+        return false;
+    }
+
+}
 function display_member(memberList2) {
     listmem="";
     for (let i = 0; i < memberList2.count; i++){
         let member=memberList2._members[i]
         listmem+='<tr>';
         listmem+='<td class="mdl-data-table__cell--non-numeric">'+member._name+'</td>';
-        listmem+='<td>'+member._email+'</td>';
-        listmem+='<td>49021</td>';
-        listmem+='<td>49021</td>';
-        listmem+='<td>49021</td>';
-        listmem+='<td><th style="text-align:right; padding-right: 0px;"><button id="task1" onclick=""';
+        listmem+='<td></td>';
+        listmem+='<td></td>';
+        listmem+='<td></td>';
+        listmem+='<td style="text-align:center ">'+member._email+'</td>';
+        listmem+='<td><th style="text-align:right; padding-right: 0px;"><button id="'+member._id+'" onclick=""';
         listmem+='class="mdl-button mdl-js-button mdl-button--icon" style="Scale: 1;">';
         listmem+='<i class="material-icons">more_vert</i>';
         listmem+='</button>';
-        listmem+='<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="task1">';
+        listmem+='<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for='+member._id+'>';
         listmem+='<li class="mdl-menu__item" onclick="detete_meber('+member._id+')">Delete Member</li>';
         listmem+='</ul>';
         listmem+='</th>';
