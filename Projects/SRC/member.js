@@ -172,3 +172,10 @@ function display_member(memberList2) {
     outputArea.innerHTML = listmem;
 }
 display_member(memberlist);
+function display_team_dashboard() {
+    for(let i = 0;i<memberlist.count;i++){
+
+
+    }
+
+}
