@@ -1,5 +1,6 @@
 selVal = document.getElementById("filterId").value
 sessionStorage.setItem("SelItem", selVal);
+
 const NOTE_DATA_KEY = "stickyNoteData"
 const MEMBER_DATA_KEY = "memberDATA"
 class Stickynote{
