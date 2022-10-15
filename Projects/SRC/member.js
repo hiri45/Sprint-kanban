@@ -239,10 +239,7 @@ function display_member(memberList2) {
         let member = memberList2._members[i];
         listmem += '<tr>';
         listmem += '<td class="mdl-data-table__cell--non-numeric">' + member._name + '</td>';
-        listmem += '<td>' + member._email + '</td>';
-        listmem += '<td>' + total_hour(member) + '</td>';
-        listmem += '<td>' + total_date(member) + '</td>';
-        listmem += '<td>' + total_hour(member) / total_date(member) + '</td>';
+        listmem += '<td class="mdl-data-table__cell--non-numeric">'+ member._email + '</td>';
         listmem += '<td>'
         listmem +='<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="+delete_member('+member._id+')">Delete</button>'
         listmem += '</td>';

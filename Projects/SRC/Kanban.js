@@ -180,7 +180,26 @@ function genYVal(){
 let xValues = genXVal(sprintDays());
 let yValues = genYVal();
 
+class time_log{
+    constructor(date, hour,task_id) {
+        this._date = date;
+        this._hour=hour;
+        this._task_id=task_id;
+    }
 
+}
+function count_time(date,hrs,member_name,task_id){
+    let var_date=new time_log(date,hrs,task_id);
+    local_list= localStorage.getItem("memberDATA");
+    list=JSON.parse(local_list);
+    for (let i = 0; i < list._members.length; i++){
+        if (list._members[i]._name==member_name){
+            list._members[i]._loginhrs.push(var_date);
+        }
+    }
+    localStorage.setItem("memberDATA", JSON.stringify(list));
+    window.location.reload();
+}
 
 new Chart("analyticsChart", {
     type: "line",
@@ -211,7 +230,6 @@ function go_back_mangement() {
 }
 var editing_task = document.getElementById("edittask") // used as a global since used in editTask function and closeEdit function
 function editTask(id) {
-    console.log(id)
     /*
     this function is a dialog popup which allows the user to edit the data within a specific note
     :arguments
@@ -233,8 +251,6 @@ function editTask(id) {
             note_to_edit =sprint_backlog_item._done[i]
         }
     }
-    console.log(id);
-
 
     // get note function used to get specific note with id
 
@@ -246,26 +262,41 @@ function editTask(id) {
     let edit_type = document.getElementById("edit_task_type");
     let edit_assignee = document.getElementById("edit_assignee");
     let edit_hours = document.getElementById("edit_task_hours");
-    let total_hours = document.getElementById("output_tot_hrs")
+    let total_hours = document.getElementById("output_tot_hrs");
+
     // id used if user wants to submit an edited note
     let submit_button = document.getElementById("submit_button");
 
-    console.log(id);
     // HTML used to pass through submitEdit() function
     submit_button.innerHTML = "<button id ='submit_button' type='button' class='mdl-button' onclick = 'submitEdit(" + id + ");'>submit</button>";
 
     desc_edit.value = note_to_edit._description
     name_edit.value = note_to_edit._name
     sp_edit.value = note_to_edit._storypoint
-    edit_assignee.value = note_to_edit._assignee
+    edit_assignee ='<option value="'+note_to_edit._name+'">'+note_to_edit._name+'</option>'
     tag_edit.value = note_to_edit._tag
     edit_priority.value = note_to_edit._priority
     edit_type.value = note_to_edit._type
-    edit_hours.value = note_to_edit._hours
+    edit_hours.value = 0;
     total_hours.value = note_to_edit._totalhours
 
+    
+    // display assignnee
+    let result='';
+    let list= JSON.parse(localStorage.getItem("memberDATA"));
+    result+='<option value="'+note_to_edit._assignee+'">'+note_to_edit._assignee+'</option>';
+    if(list._members.length>0){
+        for (let i = 0; i < list._members.length; i++){
+            let member=list._members[i];
+            result+='<option value="'+member._name+'">'+member._name+'</option>'         
+        }
+    }
+    let outputArea = document.getElementById("edit_assignee");
+    outputArea.innerHTML = result;
+
+
     editing_task.showModal();
-    console.log(id)
+
 
 }
 function closeEdit() {
@@ -276,14 +307,14 @@ function closeEdit() {
 }
 function count_time(date,hrs,member_name,task_id){
     let var_date=new time_log(date,hrs,task_id);
-    local_list= localStorage.getItem(MEMBER_DATA_KEY);
+    local_list= localStorage.getItem("memberDATA");
     list=JSON.parse(local_list);
     for (let i = 0; i < list._members.length; i++){
         if (list._members[i]._name==member_name){
             list._members[i]._loginhrs.push(var_date);
         }
     }
-    localStorage.setItem(MEMBER_DATA_KEY, JSON.stringify(list));
+    localStorage.setItem("memberDATA", JSON.stringify(list));
     window.location.reload();
 }
 
@@ -328,6 +359,11 @@ function submitEdit(id) {
     note_to_edit._type = submit_type.value;
     note_to_edit._assignee = submit_assignee.value;
     note_to_edit._totalhours += Number(submit_hours.value);
+    // update the member to store working hrs
+    let date = document.getElementById("edit_task_date").value;
+    let dates= date.split("-");
+    let new_date=dates[2]+'/'+dates[1]+'/'+dates[0];
+    count_time(new_date,submit_hours.value,submit_assignee.value);
 
     updateSprintStorage(sprintlist); // updates itemlist with edited data
     window.location = "SprintAsginActive.html"  // takes user back to the index page once task has been added

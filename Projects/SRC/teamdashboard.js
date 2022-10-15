@@ -44,11 +44,11 @@ function check_start_date(_date) {
     let start_month1 = start_dates1[1];
     let start_year1 = start_dates1[2];
     if (start_year1 >= start_year) {
-        if (start_year1 == start_year) {
-            if (start_month1 >= start_month) {
-                if (start_month1 == start_month) {
+        if (start_year1 == window.start_year) {
+            if (start_month1 >= window.start_month) {
+                if (start_month1 == window.start_month) {
 
-                    if (start_day1 >= start_day) {
+                    if (start_day1 >= window.start_day) {
                         return true;
                     }
                 } else {
@@ -66,11 +66,11 @@ function check_end_date(_date) {
     let start_day1 = start_dates1[0];
     let start_month1 = start_dates1[1];
     let start_year1 = start_dates1[2];
-    if (start_year1 <= end_year) {
-        if (start_year1 == end_year) {
-            if (start_month1 <= end_month) {
-                if (start_month1 == end_month) {
-                    if (start_day1 <= end_day) {
+    if (start_year1 <= window.end_year) {
+        if (start_year1 == window.end_year) {
+            if (start_month1 <= window.end_month) {
+                if (start_month1 == window.end_month) {
+                    if (start_day1 <= window.end_day) {
                         return true;
                     }
                 } else {
@@ -125,7 +125,7 @@ function total_hour(member) {
     let arra = member._loginhrs;
     for (let i = 0; i < arra.length; i++) {
         if (check_end_date(arra[i]._date) && check_start_date(arra[i]._date)) {
-            total_hour += arra[i]._hour;
+            total_hour += parseInt(arra[i]._hour);
         }
     }
     return total_hour;
@@ -150,14 +150,14 @@ function display_member(memberList2) {
 function apply_filter(){
     let outputArea = document.getElementById("start date").value;
     let start_dates1=outputArea.split('-');
-    start_day=parseInt(start_dates1[2]);
-    start_month=parseInt(start_dates1[1]);
-    start_year=parseInt(start_date1[0]);
+    window.start_day=parseInt(start_dates1[2]);
+    window.start_month=parseInt(start_dates1[1]);
+    window.start_year=parseInt(start_dates1[0]);
     let outputArea2 = document.getElementById("end date").value;
     let end_dates1=outputArea2.split('-');
-    end_day=parseInt(end_dates1[2]);
-    end_month=parseInt(end_dates1[1]);
-    end_year=parseInt(end_dates1[0]);
+    window.end_day=parseInt(end_dates1[2]);
+    window.end_month=parseInt(end_dates1[1]);
+    window.end_year=parseInt(end_dates1[0]);
     display_member(memberlist);
 }
 display_member(memberlist);
