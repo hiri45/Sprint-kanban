@@ -1,76 +1,16 @@
-
 const MEMBER_DATA_KEY = "memberDATA"
 const MEMBER_index_key = "member_index"
-class Member {
+let start_date="20/11/2022";
+let end_date="22/11/2023";
+let start_dates=start_date.split('/');
+let start_day=parseInt(start_dates[0]);
+let start_month=parseInt(start_dates[1]);
+let start_year=parseInt(start_dates[2]);
+let end_dates=end_date.split('/');
+let end_day=parseInt(end_dates[0]);
+let end_month=parseInt(end_dates[1]);
+let end_year=parseInt(end_dates[2]);
 
-    constructor(id) {
-        this._id = id;
-        this._name = "";
-        this._email = "";
-        this._loginhrs = [];
-        this._logindays = []
-
-    }
-    get id() {
-        return this._id;
-    }
-    get name() {
-        return this._name;
-    }
-
-    get email() {
-        return this._email;
-    }
-    get loginhrs() {
-        return this._loginhrs;
-    }
-
-
-    fromData(data) {
-        this._id = data._id;
-        this._name = data._name;
-        this._email = data._email;
-
-    }
-
-}
-class MemberList {
-    constructor() {
-        this._members = []
-    }
-    get count() {
-        return this._members.length
-    }
-
-    addMember(member) {
-        this._members.push(member)
-    }
-    getMember(id) {
-        for (let i = 0; i < this._members.length; i++) {
-            if (id == this._members.id) {
-                return this._members[i]
-            }
-        }
-
-    }
-    fromData(data) {
-        let theData = data._members;
-        this._members = [];
-        for (let i = 0; i < theData.length; i++) {
-            let member = new Member();
-            member.fromData(theData[i]);
-            this._members.push(member);
-        }
-
-    }
-    removeitems(id) {
-        for (let i = 0; i < this._members.length; i++) {
-            if (this._members[i]._id == id) {
-                this._members.splice(i, 1);
-            }
-        }
-    }
-}
 function updateLocalStorage(data) {
     localStorage.setItem(MEMBER_DATA_KEY, JSON.stringify(data));
 }
@@ -78,51 +18,8 @@ function getMemberLocalStorage() {
     let retrieve = JSON.parse(localStorage.getItem(MEMBER_DATA_KEY));
     return retrieve;
 }
-function gen_ID() {
-    let gen_id = Math.random() * 1000
-    return gen_id
-}
-let memberlist = new MemberList();
 
-function checkMEMBERLocalStorage() {
-    if (getMemberLocalStorage() == null) {
-        return false
-    }
-    else {
-        return true
-    }
-
-}
-let to_new_check = checkMEMBERLocalStorage();
-
-if (to_new_check === true) {
-    let theData = getMemberLocalStorage();
-    memberlist.fromData(theData);
-}
-function create_member() {
-    let mem_name = document.getElementById("create_name").value;
-    let mem_address = document.getElementById("create_email").value;
-
-    validemail(mem_address)
-
-    let new_member = new Member(gen_ID());
-    new_member._name = mem_name;
-    new_member._email = mem_address;
-
-    if (memberlist.count < 1) {
-        memberlist.addMember(new_member)
-        updateLocalStorage(memberlist)
-        window.location = "MemberManagement.html"
-
-    }
-    else {
-        memberlist = getMemberLocalStorage()
-        memberlist._members.push(new_member)
-        updateLocalStorage(memberlist)
-        window.location = "MemberManagement.html"
-    }
-}
-
+let memberlist=getMemberLocalStorage();
 
 function delete_member(member_id){
     let toConfirm = confirm("Press OK to delete this member.") //to confirm if the user want to delete the locker
@@ -234,12 +131,11 @@ function total_hour(member) {
     return total_hour;
 }
 function display_member(memberList2) {
-    listmem = "";
-    for (let i = 0; i < memberList2.count; i++) {
+    let listmem = "";
+    for (let i = 0; i < memberList2._members.length; i++) {
         let member = memberList2._members[i];
         listmem += '<tr>';
         listmem += '<td class="mdl-data-table__cell--non-numeric">' + member._name + '</td>';
-        listmem += '<td>' + member._email + '</td>';
         listmem += '<td>' + total_hour(member) + '</td>';
         listmem += '<td>' + total_date(member) + '</td>';
         listmem += '<td>' + total_hour(member) / total_date(member) + '</td>';
@@ -248,7 +144,20 @@ function display_member(memberList2) {
         listmem += '</td>';
         listmem += '</tr>';
     }
-    let outputArea = document.getElementById("member_table");
+    let outputArea = document.getElementById("team_dashboard");
     outputArea.innerHTML = listmem;
+}
+function apply_filter(){
+    let outputArea = document.getElementById("start date").value;
+    let start_dates1=outputArea.split('-');
+    start_day=parseInt(start_dates1[2]);
+    start_month=parseInt(start_dates1[1]);
+    start_year=parseInt(start_date1[0]);
+    let outputArea2 = document.getElementById("end date").value;
+    let end_dates1=outputArea2.split('-');
+    end_day=parseInt(end_dates1[2]);
+    end_month=parseInt(end_dates1[1]);
+    end_year=parseInt(end_dates1[0]);
+    display_member(memberlist);
 }
 display_member(memberlist);

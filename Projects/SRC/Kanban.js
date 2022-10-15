@@ -269,6 +269,18 @@ function closeEdit() {
     */
     editing_task.close()
 }
+function count_time(date,hrs,member_name,task_id){
+    let var_date=new time_log(date,hrs,task_id);
+    local_list= localStorage.getItem(MEMBER_DATA_KEY);
+    list=JSON.parse(local_list);
+    for (let i = 0; i < list._members.length; i++){
+        if (list._members[i]._name==member_name){
+            list._members[i]._loginhrs.push(var_date);
+        }
+    }
+    localStorage.setItem(MEMBER_DATA_KEY, JSON.stringify(list));
+    window.location.reload();
+}
 
 function submitEdit(id) {
     let note_to_edit = 0
