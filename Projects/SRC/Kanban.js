@@ -245,8 +245,11 @@ function editTask(id) {
     let edit_priority = document.getElementById("edit_task_priority");
     let edit_type = document.getElementById("edit_task_type");
     let edit_assignee = document.getElementById("edit_assignee");
+    let edit_hours = document.getElementById("edit_task_hours");
+    let total_hours = document.getElementById("output_tot_hrs")
     // id used if user wants to submit an edited note
     let submit_button = document.getElementById("submit_button");
+
     console.log(id);
     // HTML used to pass through submitEdit() function
     submit_button.innerHTML = "<button id ='submit_button' type='button' class='mdl-button' onclick = 'submitEdit(" + id + ");'>submit</button>";
@@ -258,6 +261,8 @@ function editTask(id) {
     tag_edit.value = note_to_edit._tag
     edit_priority.value = note_to_edit._priority
     edit_type.value = note_to_edit._type
+    edit_hours.value = note_to_edit._hours
+    total_hours.value = note_to_edit._totalhours
 
     editing_task.showModal();
     console.log(id)
@@ -313,6 +318,7 @@ function submitEdit(id) {
     let submit_name = document.getElementById("edit_task_name");
     let submit_type = document.getElementById("edit_task_type");
     let submit_assignee = document.getElementById("edit_assignee");
+    let submit_hours = document.getElementById("edit_task_hours");
     // note to edit is changed with edited values
     note_to_edit._description = submit_desc.value;
     note_to_edit._tag = submit_tag.value;
@@ -321,6 +327,7 @@ function submitEdit(id) {
     note_to_edit._name = submit_name.value;
     note_to_edit._type = submit_type.value;
     note_to_edit._assignee = submit_assignee.value;
+    note_to_edit._totalhours += Number(submit_hours.value);
 
     updateSprintStorage(sprintlist); // updates itemlist with edited data
     window.location = "SprintAsginActive.html"  // takes user back to the index page once task has been added

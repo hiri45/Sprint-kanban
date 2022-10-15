@@ -18,6 +18,9 @@ class Stickynote{
         this._assignee = "";
         this.type = []
         this._toSprint = false
+        this._hours = 0
+        this._totalhours = 0
+
 
     }
 
@@ -110,6 +113,8 @@ class Stickynote{
         this._assignee = data._assignee;
         this._buttonId = data._buttonId;
         this._toSprint = data._toSprint;
+        this._hours = data._hours;
+        this._totalhours = data._totalhours;
     }
 
 }

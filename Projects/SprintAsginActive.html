@@ -160,47 +160,70 @@
   <dialog id="edittask" class="mdl-dialog">
     <div>
       <form action="#">
+        <label for="edit_task_name">Name:</label>
         <div class="mdl-textfield mdl-js-textfield">
           <input class="mdl-textfield__input" type="text" id="edit_task_name">
         </div>
       </form>
       <form action="#">
+        <label for="edit_task_description">Description:</label>
         <div class="mdl-textfield mdl-js-textfield">
           <input class="mdl-textfield__input" type="text" id="edit_task_description">
         </div>
       </form>
+      <div></div>
       <form action="#">
+        <label for="edit_task_storypoint">Story points:</label>
         <div class="mdl-textfield mdl-js-textfield">
           <input class="mdl-textfield__input" type="text" id="edit_task_storypoint">
         </div>
       </form>
       <form action="#">
+        <label for="edit_assignee">assignee:</label>
         <select class="mdl-textfield__input" id="edit_assignee">
         </select>
       </form>
       <form action="#">
+        <label for="edit_task_tags">Tags:</label>
         <select class="mdl-textfield__input" id="edit_task_tags" name="Tags">
-          <option><label class="mdl-textfield__label">Tag</label></option>
           <option value="UI">UI</option>
           <option value="CORE">CORE</option>
           <option value="TESTING">TESTING</option>
         </select>
       </form>
       <form action="#">
+        <label for="edit_task_priority">Priority:</label>
         <select class="mdl-textfield__input" id="edit_task_priority" name="Priority">
-          <option><label class="mdl-textfield__label">Priority</label></option>
           <option value="High">High</option>
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
           <option value="Critical">Critical</option>
         </select>
       </form>
-      <form action="#">
+      <form action="#" id =  "edit_task_type1">
+        <label for="edit_task_type1">Task Type:</label>
         <select class="mdl-textfield__input" id="edit_task_type" name="Type">
-          <option><label class="mdl-textfield__label">Type</label></option>
           <option value="Story">Story</option>
           <option value="Bug">Bug</option>
         </select>
+      </form>
+      <form action="#">
+        <label for="edit_task_priority">Add Date:</label>
+        <div>
+          <input class="mdl-textfield__input" type= "date" id="edit_task_date" name="Priority">
+        </div>
+      </form>
+      <form action="#">
+        <label for="edit_task_description">Add Hours:</label>
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="edit_task_hours">
+        </div>
+      </form>
+      <form action="#">
+        <label for="output_tot_hrs">Total Hours:</label>
+        <div>
+          <output class="mdl-textfield__input" type="text" id="output_tot_hrs">
+        </div>
       </form>
       <div class="mdl-dialog__actions">
         <button type="button" class="mdl-button close" onclick="closeEdit()">Cancel</button>
