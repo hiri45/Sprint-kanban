@@ -156,8 +156,16 @@ function create_sprint() {
     let sprint_start_date = document.getElementById("sprint_start_day").value;
     let sprint_end_date = document.getElementById("sprint_end_day").value;
     let sprintname_err = document.getElementById("sprintname_msg")
-
-
+    let sd_string =sprint_start_date.split("/");
+    let day = sd_string[0]
+    let mon = sd_string[1]
+    let year = sd_string[2]
+    let startDate = new Date(year + "-" + mon + "-" + day)
+    let endDate_string = sprint_end_date.split("/");
+    let end_day = endDate_string[0]
+    let end_mon = endDate_string[1]
+    let end_year = endDate_string[2]
+    let endDate = new Date(end_year + "-" + end_mon + "-" + end_day)
     if (sprint_name.value == "")
     {
         sprintname_err.innerText = "task name needs to be entered";
@@ -166,8 +174,15 @@ function create_sprint() {
     {
         alert('please select a date');
     }
+    else if(startDate<new Date()){
+        alert("Start Date must be after current date")
+    }
+    else if(startDate>=endDate){
+        alert("End Date must be after Start date")
+    }
     else
     {
+        console.log(typeof(sprint_end_date))
         let toConfirm = confirm("Press OK to create sprint.") //to confirm if the user want to create a new sprint
         if (toConfirm===true)
         {
@@ -180,16 +195,17 @@ function create_sprint() {
             if (sprintlist.count<1){
                 sprintlist.addsprint(new_sprint)
                 updateLocalStorage(sprintlist)
-                window.location = "SprintManagement.html"
-        
+                window.location="SprintManagement.html"
+
             }
             else{
                 sprintlist = getSprintLocalStorage()
                 sprintlist._sprints.push(new_sprint)
                 updateLocalStorage(sprintlist)
-                window.location = "SprintManagement.html"
-        
-        
+                window.location="SprintManagement.html"
+
+
+
             }
         } //if it's true   
     }    
