@@ -120,15 +120,18 @@ function updateSprintStorage(data){
     localStorage.setItem("sprintsDATA", JSON.stringify(data));
 }
 function end_sprint(){
-    sprint_backlog_item._status = "Completed";
-    let date = new Date();
-    let day = date.getDate()
-    let mon = date.getMonth()+1;
-    let year = date.getFullYear();
-    let end_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
-    sprint_backlog_item._enddate= end_date;
-    updateSprintStorage(sprintlist);
-    window.location = "SprintManagement.html";
+    let toConfirm = confirm("Press OK to end sprint.") //to confirm if the user want to delete the locker
+    if (toConfirm===true){ //if it's true
+        sprint_backlog_item._status = "Completed";
+        let date = new Date();
+        let day = date.getDate()
+        let mon = date.getMonth()+1;
+        let year = date.getFullYear();
+        let end_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
+        sprint_backlog_item._enddate= end_date;
+        updateSprintStorage(sprintlist);
+        window.location = "SprintManagement.html";
+    } //if the user do not confirm, do nothing
 }
 
 

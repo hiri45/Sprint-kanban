@@ -18,6 +18,7 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="styles.css">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
@@ -60,27 +61,30 @@
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
           <button type="button"
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i
-              class="material-icons">add</i></button>
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal" title = "click to add task"><i
+              class="material-icons" class="addButton" title="click here">add</i></button>
           <dialog class="mdl-dialog">
             <div>
               <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="task_name">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="task_name" required>
                   <label class="mdl-textfield__label">Name</label>
+                  <span id="name_msg" class="mdl-textfield__error"></span>
                 </div>
               </form>
               <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input"  onfocus="this.value=''" type="text" id="task_description">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input"  onfocus="this.value=''" type="text" id="task_description" required>
                   <label class="mdl-textfield__label">Description</label>
+                  <span id="desc_msg" class="mdl-textfield__error"></span>
+
                 </div>
               </form>
               <form action="#">
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="number" id="task_story_point">
-                  <span class="mdl-textfield__error">Storypoint must be a number!</span>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="number" min="0" id="task_story_point" required>
                   <label class="mdl-textfield__label">Story Point:</label>
+                  <span id="sp_msg" class="mdl-textfield__error"></span>
                 </div>
               </form>
               <form action="#">

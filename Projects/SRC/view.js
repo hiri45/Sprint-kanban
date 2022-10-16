@@ -69,16 +69,19 @@ function updateSprintStorage(data){
 display_PBlog();
 
 function set_active(){
-    sprint_backlog_item._status = "Active"
-    let date = new Date();
-    let day = date.getDate();
-    let mon = date.getMonth()+1;
-    let year = date.getFullYear();
-    let start_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
-    sprint_backlog_item._startdate= start_date;
-    sprint_backlog_item._notstarted = sprint_backlog_item._items
-    updateSprintStorage(sprintlist)
-    window.location = "SprintAsginActive.html"
+    let toConfirm = confirm("Press OK to start sprint.") //to confirm if the user want to delete the locker
+    if (toConfirm===true){ //if it's true
+        sprint_backlog_item._status = "Active"
+        let date = new Date();
+        let day = date.getDate();
+        let mon = date.getMonth()+1;
+        let year = date.getFullYear();
+        let start_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
+        sprint_backlog_item._startdate= start_date;
+        sprint_backlog_item._notstarted = sprint_backlog_item._items
+        updateSprintStorage(sprintlist)
+        window.location = "SprintAsginActive.html"
+    } //if the user do not confirm, do nothing
 }
 function go_back_index(){
     updateSprintStorage(sprintlist)
