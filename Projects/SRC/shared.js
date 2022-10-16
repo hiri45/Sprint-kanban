@@ -392,21 +392,36 @@ function submitEdit(id) {
     let submit_name = document.getElementById("edit_task_name");
     let submit_type = document.getElementById("edit_task_type");
     let submit_assignee = document.getElementById("edit_assignee");
-    let toConfirm = confirm("Press OK to submit edit.") //to confirm if the user want to delete the locker
-    if (toConfirm===true){ //if it's true   
-        note_to_edit.description = submit_desc.value;
-        note_to_edit.tag = submit_tag.value;
-        note_to_edit.priority = submit_priority.value;
-        note_to_edit.storypoint = submit_sp.value;
-        note_to_edit.name = submit_name.value;
-        note_to_edit.type = submit_type.value;
-        note_to_edit.assignee = submit_assignee.value;
-    
-        updateLocalStorage(itemlist); // updates itemlist with edited data
-        window.location = "index.html"  // takes user back to the index page once task has been added
-        alert("This task has successfully edited.");
-    } //if the user do not confirm, do nothing
-    // note to edit is changed with edited values
+    let name_err = document.getElementById("name_msg1")
+    let desc_err = document.getElementById("desc_msg1")
+    let sp_err = document.getElementById("sp_msg1")
+    if (submit_name.value == "" || submit_desc.value == "")
+    {
+        alert("Task Name Or Description should not be empty!")
+
+    }
+    else if (submit_sp.value < 0||!Number(submit_sp.value) )
+    {
+        alert("Story Point must be a positive integer")
+    }
+    else{
+        let toConfirm = confirm("Press OK to submit edit.") //to confirm if the user want to delete the locker
+        if (toConfirm===true){ //if it's true
+            note_to_edit.description = submit_desc.value;
+            note_to_edit.tag = submit_tag.value;
+            note_to_edit.priority = submit_priority.value;
+            note_to_edit.storypoint = submit_sp.value;
+            note_to_edit.name = submit_name.value;
+            note_to_edit.type = submit_type.value;
+            note_to_edit.assignee = submit_assignee.value;
+
+            updateLocalStorage(itemlist); // updates itemlist with edited data
+            window.location = "index.html"  // takes user back to the index page once task has been added
+            alert("This task has successfully edited.");
+        } //if the user do not confirm, do nothing
+        // note to edit is changed with edited values
+    }
+
 }
 
 function allowDrop(ev) {

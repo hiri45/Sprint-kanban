@@ -273,10 +273,11 @@ function detete_sprint(sprint_id) {
     if (toConfirm===true){ //if it's true
         for (let i = 0; i < sprintlist.count; i++) {
             if (sprintlist._sprints[i]._id == sprint_id) {
-                sprintlist.removeitems(sprint_id);
+                sprintlist = getSprintLocalStorage()
+                sprintlist._sprints.splice(i,1);
                 updateLocalStorage(sprintlist);
                 alert("sprint has been deleted")
-                window.location.reload();
+                window.location = "SprintManagement.html";
             }
         }
     } //if the user do not confirm, do nothing
