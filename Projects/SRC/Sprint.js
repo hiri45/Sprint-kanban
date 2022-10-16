@@ -155,28 +155,44 @@ function create_sprint() {
     let sprint_name = document.getElementById("sprint_name");
     let sprint_start_date = document.getElementById("sprint_start_day").value;
     let sprint_end_date = document.getElementById("sprint_end_day").value;
+    let sprintname_err = document.getElementById("sprintname_msg")
 
 
-    let new_sprint = new Sprint(gen_ID());
-    new_sprint.name = sprint_name.value;
-    new_sprint.status = "Inactive";
-    new_sprint.startdate = sprint_start_date;
-    new_sprint.enddate = sprint_end_date;
-
-    if (sprintlist.count<1){
-        sprintlist.addsprint(new_sprint)
-        updateLocalStorage(sprintlist)
-        window.location = "SprintManagement.html"
-
+    if (sprint_name.value == "")
+    {
+        sprintname_err.innerText = "task name needs to be entered";
     }
-    else{
-        sprintlist = getSprintLocalStorage()
-        sprintlist._sprints.push(new_sprint)
-        updateLocalStorage(sprintlist)
-        window.location = "SprintManagement.html"
-
-
+    else if (!sprint_start_date || !sprint_end_date)
+    {
+        alert('please select a date');
     }
+    else
+    {
+        let toConfirm = confirm("Press OK to create sprint.") //to confirm if the user want to create a new sprint
+        if (toConfirm===true)
+        {
+            let new_sprint = new Sprint(gen_ID());
+            new_sprint.name = sprint_name.value;
+            new_sprint.status = "Inactive";
+            new_sprint.startdate = sprint_start_date;
+            new_sprint.enddate = sprint_end_date;
+        
+            if (sprintlist.count<1){
+                sprintlist.addsprint(new_sprint)
+                updateLocalStorage(sprintlist)
+                window.location = "SprintManagement.html"
+        
+            }
+            else{
+                sprintlist = getSprintLocalStorage()
+                sprintlist._sprints.push(new_sprint)
+                updateLocalStorage(sprintlist)
+                window.location = "SprintManagement.html"
+        
+        
+            }
+        } //if it's true   
+    }    
 
 
 }
@@ -198,11 +214,11 @@ function display_sprint(data) {
         if (data._sprints[i].status =="Completed"){
             listsprints += " <div> <div style=\"border: 1px solid; width: 98%; background-color:rgb(64,196,255);; height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to sprint board</li><li class=\"mdl-menu__item\" onclick='detete_sprint(" + data._sprints[i]._id + ")'>Delete</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: block; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
         } else if(data._sprints[i].status =="Inactive"){
-            listsprints2 += " <div> <div style=\"border: 1px solid; width: 98%; background-color:rgb(64,196,255);; height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick = edit_sprint("+data._sprints[i]._id+")>Edit</li><li class=\"mdl-menu__item\" onclick='detete_sprint(" + data._sprints[i]._id + ")'>Delete</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: block; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
+            listsprints2 += " <div> <div style=\"border: 1px solid; width: 98%; background-color:rgb(64,196,255);; height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to task assign</li><li class=\"mdl-menu__item\" onclick='detete_sprint(" + data._sprints[i]._id + ")'>Delete</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: block; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
 
         }
         else{
-            listsprints2 += " <div> <div style=\"border: 1px solid; width: 98%; background-color:rgb(64,196,255);; height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to sprint board</li><li class=\"mdl-menu__item\" onclick = edit_sprint("+data._sprints[i]._id+")>Edit</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: block; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
+            listsprints2 += " <div> <div style=\"border: 1px solid; width: 98%; background-color:rgb(64,196,255);; height: max-content; margin-bottom: 0px; display: flex; margin-left: 10px;\"><div style=\"text-align: left; width:30%; margin:auto; margin-left: 5px;\"><b>" + data._sprints[i].name + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Start date: " + data._sprints[i].startdate + "</b></div>\<div style=\"text-align: left; width:20%; margin:auto\"><b>End date:" + data._sprints[i].enddate + "</b></div><div style=\"text-align: left; width:20%; margin:auto\"><b>Status: " + data._sprints[i].status + "</b></div><div style=\"text-align: right; width:10%; margin:auto; margin-right: 30px;\"><button  class=\"mdl-button mdl-js-button mdl-button--icon\" id=" + data._sprints[i].id + "><i class=\"material-icons\">more_vert</i></button><ul class=\"mdl-menu mdl-js-menu\" for=" + data._sprints[i].id + " ><li class=\"mdl-menu__item\" onclick='assigntask(" + i + ")'>Go to sprint board</li></ul></div></div>" + "<div  style='border: 1px solid; width: 98%; background-color:white; height: max-content; margin-bottom: 10px; display: block; margin-left: 10px;' id='backlog_display" + i + "'> </div>" + "</div>"
 
         }
 
@@ -253,56 +269,19 @@ function assigntask(data) {
 
 
 function detete_sprint(sprint_id) {
-    for (let i = 0; i < sprintlist.count; i++) {
-        if (sprintlist._sprints[i]._id == sprint_id) {
-            sprintlist.removeitems(sprint_id);
-            updateLocalStorage(sprintlist);
-            window.location.reload();
+    let toConfirm = confirm("Press OK to delete this sprint.") //to confirm if the user want to delete the sprint
+    if (toConfirm===true){ //if it's true
+        for (let i = 0; i < sprintlist.count; i++) {
+            if (sprintlist._sprints[i]._id == sprint_id) {
+                sprintlist.removeitems(sprint_id);
+                updateLocalStorage(sprintlist);
+                alert("sprint has been deleted")
+                window.location.reload();
+            }
         }
-    }
+    } //if the user do not confirm, do nothing
 }
 
-let editing_sprint = document.getElementById("edit_sprint") // used as a global since used in editTask function and closeEdit function
-function edit_sprint(sprint_id) {
-    let edit_sprint_name = document.getElementById("edit_sprint_name");
-    for (let i = 0; i < sprintlist.count; i++) {
-        if (sprintlist._sprints[i]._id == sprint_id) {
-            edit_sprint_name.value = sprintlist._sprints[i]._name
-        }
-    }
-    let submit_button = document.getElementById("submit_sprint_edit"); 
-    form_button = ""
-    for (let i = 0; i < sprintlist.count; i++) {
-        if (sprintlist._sprints[i]._id == sprint_id) {
-            form_button += "<button id ='submit_sprint_edit' type='button' class='mdl-button' onclick = 'submit_Sprint_Edit("+sprintlist._sprints[i]._id+");'>submit</button>"; // HTML used to pass through submitEdit() function
-        }
-    }  
-    submit_button.innerHTML = form_button;
-    editing_sprint.showModal()
-
-}
-function submit_Sprint_Edit(sprint_id) {
-    let edit_sprint_name = document.getElementById("edit_sprint_name");
-    let edit_sprint_start_day = document.getElementById("edit_sprint_start_day");
-    let edit_sprint_start_month = document.getElementById("edit_sprint_start_month");
-    let edit_sprint_start_year = document.getElementById("edit_sprint_start_year");
-    let edit_sprint_end_day = document.getElementById("edit_sprint_end_day");
-    let edit_sprint_end_month = document.getElementById("edit_sprint_end_month");
-    let edit_sprint_end_year = document.getElementById("edit_sprint_end_year");
-    for (let i = 0; i < sprintlist.count; i++) {
-        if (sprintlist._sprints[i]._id == sprint_id) {
-            sprintlist._sprints[i]._name = edit_sprint_name.value
-            sprintlist._sprints[i]._startdate = edit_sprint_start_day.value.toString() + "/" + edit_sprint_start_month.value.toString() + "/" + edit_sprint_start_year.value.toString()
-            sprintlist._sprints[i]._enddate = edit_sprint_end_day.value.toString() + "/" + edit_sprint_end_month.value.toString() + "/" + edit_sprint_end_year.value.toString()
-        }
-    }
-    updateLocalStorage(sprintlist)
-    window.location = "SprintManagement.html"
-    sprint_date(sprintlist)
-}
-function close_edit_sprint() {
-    editing_sprint.close()
-}
 
 
 
