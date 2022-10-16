@@ -29,7 +29,7 @@
   <meta name="msapplication-TileColor" content="#3372DF">
 
   <link rel="shortcut icon" href="HTML%20prototype/images/favicon.png">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
   <!--
     <link rel="canonical" href="http://www.example.com/">
@@ -53,76 +53,66 @@
         </div>
         <div style="text-align:right; margin: 0%; scale: 0.8; color: cornsilk;">
           <button type="button"
-            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal"><i
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--blue-grey-400 show-modal" onclick="location.href='addsprint.html'">          <i
               class="material-icons">add</i></button>
-          <dialog class="mdl-dialog" style="min-width: 30%;">
-            <div style="text-align: center;"><b>Add Sprint</b></div>
-            <div>
-              <form action="#">
-                <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
-                  <input class="mdl-textfield__input" type="text" id="sprint_name">
-                  <label class="mdl-textfield__label">Sprint Name: </label>
-                </div>
-              </form>
-              <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
-                <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;">
-                  <b>Start Date: </b>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_day">
-                  <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
-                  <span class="mdl-textfield__error">Day is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_month">
-                  <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_start_year">
-                  <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
-                </div>
-              </div>
-              <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
-                <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;"><b>End
-                    Date: </b></div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_day">
-                  <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
-                  <span class="mdl-textfield__error">Day is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_month">
-                  <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sprint_end_year">
-                  <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
-                  <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
-                </div>
-              </div>
-              <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button close">Cancel</button>
-                <button type="button" class="mdl-button" onclick="create_sprint()">Create Sprint</button>
-              </div>
-            </div>
-          </dialog>
-          <script>
-            var dialog = document.querySelector('dialog');
-            var showModalButton = document.querySelector('.show-modal');
-            if (!dialog.showModal) {
-              dialogPolyfill.registerDialog(dialog);
-            }
-            showModalButton.addEventListener('click', function () {
-              dialog.showModal();
-            });
-            dialog.querySelector('.close').addEventListener('click', function () {
-              dialog.close();
-            });
-          </script>
         </div>
+        <dialog class="mdl-dialog">
+          <div>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="task_name">
+                <label class="mdl-textfield__label">Name</label>
+              </div>
+            </form>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input"  onfocus="this.value=''" type="text" id="task_description">
+                <label class="mdl-textfield__label">Description</label>
+              </div>
+            </form>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="number" id="task_story_point">
+                <span class="mdl-textfield__error">Storypoint must be a number!</span>
+                <label class="mdl-textfield__label">Story Point:</label>
+              </div>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_assignee" name="Assigne">
+                <option><label class="mdl-textfield__label">Assignee</label></option>
+                <option value="Assignee">Assignee</option>
+              </select>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_tags" name="Tags">
+                <option><label class="mdl-textfield__label">Tag</label></option>
+                <option value="UI">UI</option>
+                <option value="CORE">CORE</option>
+                <option value="TESTING">TESTING</option>
+              </select>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_priority" name="Priority">
+                <option><label class="mdl-textfield__label">Priority</label></option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+                <option value="Critical">Critical</option>
+              </select>
+            </form>
+            <form action="#">
+              <select class="mdl-textfield__input" id="task_type" name="Type">
+                <option value="Story"><label class="mdl-textfield__label">Type</label></option>
+                <option value="Story">Story</option>
+                <option value="Bug">Bug</option>
+              </select>
+            </form>
+            <div class="mdl-dialog__actions">
+              <button type="button" class="mdl-button close">Cancel</button>
+              <button type="button" class="mdl-button" onclick="addTask()">Add task</button>
+            </div>
+          </div>
+        </dialog>
       </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -145,7 +135,7 @@
       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
         <a class="mdl-navigation__link" href="./index.html">Project Backlog</a>
 
-        <a class="mdl-navigation__link" href=""></i>Member Management</a>
+        <a class="mdl-navigation__link" href="./MemberManagement.html"></i>Member Management</a>
         <a class="mdl-navigation__link" href="./SprintManagement.html">Sprint Management</a>
         <div class="mdl-layout-spacer"></div>
 
@@ -154,11 +144,11 @@
       </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-      <div
+        <div
       style="background-color:beige; border-width: 2px; border-color: black; width: 90%; margin: 2px; height: max-content;border:2px solid; margin-left: 0.5%;">
       <h4
         style="background-color:rgb(64,196,255); height: 50px; text-align:center;  margin-top: 0%; margin-bottom: 10px;">
-         Active</h4>
+         Not Completed</h4>
         <div id="sprint_display" style="min-width:max-content; display: block; height: 700px; overflow: scroll;">
           <!--        <div-->
           <!--          style="border: 1px solid; width: 90%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex; margin-left: 10px;">-->
@@ -203,11 +193,6 @@
         <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
           <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;">
             <b>Start Date: </b>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="edit_sprint_start_day">
-            <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
-            <span class="mdl-textfield__error">Day is not a number!</span>
           </div>
           <div class="mdl-textfield mdl-js-textfield">
             <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="edit_sprint_start_month">
@@ -304,7 +289,10 @@
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 
-
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr("input[type=start-date]", {});
+  </script>
 </body>
 
 </html>
