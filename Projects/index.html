@@ -68,18 +68,22 @@
                 <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input" type="text" id="task_name">
                   <label class="mdl-textfield__label">Name</label>
+                  <span id="name_msg" class="mdl-textfield__error"></span>
+
                 </div>
               </form>
               <form action="#">
                 <div class="mdl-textfield mdl-js-textfield">
                   <input class="mdl-textfield__input"  onfocus="this.value=''" type="text" id="task_description">
                   <label class="mdl-textfield__label">Description</label>
+                  <span id="desc_msg" class="mdl-textfield__error"></span>
+
                 </div>
               </form>
               <form action="#">
                 <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="number" id="task_story_point">
-                  <span class="mdl-textfield__error">Storypoint must be a number!</span>
+                  <input class="mdl-textfield__input" type="number" min="0" id="task_story_point">
+                  <span class="mdl-textfield__error">Storypoint must be a non-negative number!</span>
                   <label class="mdl-textfield__label">Story Point:</label>
                 </div>
               </form>
