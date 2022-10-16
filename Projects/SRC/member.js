@@ -102,25 +102,30 @@ if (to_new_check === true) {
 function create_member() {
     let mem_name = document.getElementById("create_name").value;
     let mem_address = document.getElementById("create_email").value;
-
-    validemail(mem_address)
-
-    let new_member = new Member(gen_ID());
-    new_member._name = mem_name;
-    new_member._email = mem_address;
-
-    if (memberlist.count < 1) {
-        memberlist.addMember(new_member)
-        updateLocalStorage(memberlist)
-        window.location = "MemberManagement.html"
-
+    if(mem_name ==""){
+        alert("Please enter a member name")
     }
-    else {
-        memberlist = getMemberLocalStorage()
-        memberlist._members.push(new_member)
-        updateLocalStorage(memberlist)
-        window.location = "MemberManagement.html"
+    else{
+        validemail(mem_address)
+
+        let new_member = new Member(gen_ID());
+        new_member._name = mem_name;
+        new_member._email = mem_address;
+
+        if (memberlist.count < 1) {
+            memberlist.addMember(new_member)
+            updateLocalStorage(memberlist)
+            window.location = "MemberManagement.html"
+
+        }
+        else {
+            memberlist = getMemberLocalStorage()
+            memberlist._members.push(new_member)
+            updateLocalStorage(memberlist)
+            window.location = "MemberManagement.html"
+        }
     }
+
 }
 
 
