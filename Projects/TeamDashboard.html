@@ -16,7 +16,7 @@
   limitations under the License
 -->
 <html lang="en">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -98,7 +98,14 @@
         </tbody>
       </table>
     </div>
+    <div style="margin-top:200px ">
+      <canvas title="Analytics Graph" id="analyticsChart" style="width:100%;max-width:800px"></canvas>
+      <canvas title="Analytics Graph" id="analyticsChart2" style="width:100%;max-width:800px"></canvas>
+    </div>
+
   </main>
+
+
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
      style="position: fixed; left: -1000px; height: -1000px;">
