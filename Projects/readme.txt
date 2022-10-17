@@ -1,23 +1,26 @@
-FIT2101: Group 15:
-- Jack Burridge
-- Mohamed Asjad
-- Nick Nguyen
-- Hirun Hettigoda
+FIT2101 readme file for kluc0006 
 
-Relevant Links:
-  Project Management Tool:
-    Jira: https://fit2101-group15.atlassian.net/jira/software/projects/F2/boards/1
+Links to Project Management tools:
+Jira: https://fit2101-group15.atlassian.net/jira/software/projects/F2/boards/1 
+Google Drive: https://docs.google.com/document/d/1XE7SeErAwzRMLyTSekkFH5esbfLw8yejwdWwDOqrMig/edit?usp=sharing
+Confluence: https://fit2101-group15.atlassian.net/wiki/spaces/F2/pages
 
-  PMP in Google Drive:
-    Google Drive: https://docs.google.com/document/d/1XE7SeErAwzRMLyTSekkFH5esbfLw8yejwdWwDOqrMig/edit#
+Changes to project governance:
 
-  Sprint Documentation Tool:
-    Confluence: https://fit2101-group15.atlassian.net/wiki/spaces/F2/pages
+- PMP:
+  - Updates to the PMP have been highlighted yellow. 
+  -  Role Changes
+      Jack - Scrum Master
+      Mohammed - Product Owner
+      Hirun - Backend Dev
+      Nick - Frontend Dev
 
-Changes made to Project Management Plan:
- - A requirement of Scrum Master to allocate tasks is no longer included. It is now stated tasks
- are allocated as team.
+- Time Logging:
+  Changes were made to the process of time logging team members hours. It is now focussed on which team members
+  spent an amount of time in individual tasks. The PMP has been updated to reflect this and the new format file
+  is in Confluence, under Sprint 3 Overview -> Sprint 3: Time Log.
 
-Read Sprint 2 Overview at: https://fit2101-group15.atlassian.net/wiki/spaces/F2/pages/7798785/Sprint+2+Overview
-for a more in-depth analysis of how the group followed the PMP and other notable events that occurred
-in Sprint 2.
+- Task Management:
+  - SBI on the Sprint Board (Jira) now feature story points. 
+  - A screenshot of the user stories and their subtasks has been added to the Sprint 3 Overview to better illustrate task mapping
+  - Product Backlog item was updated to only include backlog items which have not yet been completed (Sprint 3: Overview -> Updated Product Backlog)
