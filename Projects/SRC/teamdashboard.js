@@ -257,11 +257,17 @@ function apply_filter(){
     window.start_month=parseInt(start_dates1[1]);
     window.start_year=parseInt(start_dates1[0]);
     let outputArea2 = document.getElementById("end date").value;
-    let end_dates1=outputArea2.split('-');
-    window.end_day=parseInt(end_dates1[2]);
-    window.end_month=parseInt(end_dates1[1]);
-    window.end_year=parseInt(end_dates1[0]);
-    display_member(memberlist);
+    if (new Date(outputArea)>new Date(outputArea2)){
+        alert("End Date must be after start date")
+    }
+    else{
+        let end_dates1=outputArea2.split('-');
+        window.end_day=parseInt(end_dates1[2]);
+        window.end_month=parseInt(end_dates1[1]);
+        window.end_year=parseInt(end_dates1[0]);
+        display_member(memberlist);
+    }
+
 
 
 }
