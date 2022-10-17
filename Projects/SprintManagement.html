@@ -147,7 +147,7 @@
         <div
       style="background-color:beige; border-width: 2px; border-color: black; width: 90%; margin: 2px; height: max-content;border:2px solid; margin-left: 0.5%;">
       <h4
-        style="background-color:rgb(64,196,255); height: 50px; text-align:center;  margin-top: 0%; margin-bottom: 10px;">
+        style="background-color:rgb(250, 102, 102); height: 50px; text-align:center;  margin-top: 0%; margin-bottom: 10px;">
          Not Completed</h4>
         <div id="sprint_display" style="min-width:max-content; display: block; height: 700px; overflow: scroll;">
           <!--        <div-->
@@ -174,62 +174,13 @@
         <div
           style="background-color:beige; border-width: 2px; border-color: black; width: 90%; margin: 2px; height: max-content;border:2px solid; margin-left: 0.5%;">
           <h4
-            style="background-color:rgb(64,196,255); height: 50px; text-align:center;  margin-top: 0%; margin-bottom: 10px;">
+            style="background-color:rgb(136, 245, 136); height: 50px; text-align:center;  margin-top: 0%; margin-bottom: 10px;">
             Completed Sprint</h4>
           <div style="min-width:max-content; display: block; height: 400px; overflow: scroll;" id="sprint_display_not_active">
           </div>
         </div>
       </div>
     </main>
-    <dialog id = "edit_sprint" class="mdl-dialog" style="min-width: 30%;">
-      <div style="text-align: center;"><b>Edit Sprint</b></div>
-      <div>
-        <form action="#">
-          <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
-            <input class="mdl-textfield__input" type="text" id="edit_sprint_name">
-            <label class="mdl-textfield__label"></label>
-          </div>
-        </form>
-        <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
-          <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;">
-            <b>Start Date: </b>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="edit_sprint_start_month">
-            <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
-            <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="edit_sprint_start_year">
-            <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
-            <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
-          </div>
-        </div>
-        <div style=" display: flex; padding-bottom: 15px; max-height: 70px;">
-          <div style="min-width:70px; text-align:center;  display: block; margin:auto; padding-right: 5px;"><b>End
-              Date: </b></div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="edit_sprint_end_day">
-            <label class="mdl-textfield__label" for="sprint_start_day">DAYS</label>
-            <span class="mdl-textfield__error">Day is not a number!</span>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="edit_sprint_end_month">
-            <label class="mdl-textfield__label" for="sprint_start_month">Month</label>
-            <span class="mdl-textfield__error" for="sprint_start_year">Month is not a number!</span>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="edit_sprint_end_year">
-            <label class="mdl-textfield__label" for="sprint_start_year">Year</label>
-            <span class="mdl-textfield__error" for="sprint_start_year">Year is not a number!</span>
-          </div>
-        </div>
-        <div class="mdl-dialog__actions">
-          <button type="button" class="mdl-button close" onclick = close_edit_sprint()>Cancel</button>
-          <button type="button" class="mdl-button" id = "submit_sprint_edit">Submit</button>
-        </div>
-      </div>
-    </dialog>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
     style="position: fixed; left: -1000px; height: -1000px;">

@@ -49,7 +49,7 @@
     <div class="mdl-layout__header-row" style="padding-right: 5px;">
       <span class="mdl-layout-title" style="width: auto;" id = "sprint_title">Sprint Board</span>
       <div class="mdl-layout-spacer"></div>
-      <button
+      <button id = "endbuttonid"
               class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent colored mdl-color--blue-grey-400 show-modal" style="height: 50px;" onclick="end_sprint()">
         End Sprint
       </button>
@@ -75,7 +75,7 @@
     <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
       <a class="mdl-navigation__link" onclick="go_back_index()">Project Backlog</a>
 
-      <a class="mdl-navigation__link" href=""></i>Member Management</a>
+      <a class="mdl-navigation__link" onclick="go_back_member()"></i>Member Management</a>
       <a class="mdl-navigation__link" onclick="go_back_mangement()">Sprint Management</a>
       <div class="mdl-layout-spacer"></div>
 
@@ -88,7 +88,7 @@
     </div>
     <div style="display: flex; width: 100%; text-align: center; margin-top: 20px; min-height: 60%;">
       <div style="background-color:beige; border-width: 2px; border-color: black; width: 35%; margin-right:10px;">
-        <h4 style="background-color:rgb(64,196,255); height: 50px;text-align:center; margin-top: 0%;">Start</h4>
+        <h4 style="background-color:rgb(252, 127, 127); height: 50px;text-align:center; margin-top: 0%;">To Do</h4>
         <div class="mdl-grid demo-content" id="Sprint1_start_display">
 
 
@@ -111,7 +111,7 @@
         </div>
       </div>
       <div style="background-color:beige; border-width: 2px; border-color: black; width: 35%; margin-right:10px;">
-        <h4 style="background-color:rgb(64,196,255); height: 50px;text-align:center;margin-top: 0%;">In Progress</h4>
+        <h4 style="background-color:rgb(239, 239, 112); height: 50px;text-align:center;margin-top: 0%;">In Progress</h4>
         <div class="mdl-grid demo-content" id="Sprint1_in_progress_display">
           <!--            <div-->
           <!--              style="border: 1px solid; width: 100%; background-color:azure; height: max-content; margin-bottom: 7px; display: flex;">-->
@@ -133,7 +133,7 @@
         </div>
       </div>
       <div style="background-color:beige; border-width: 2px; border-color: black; width: 35%; margin-right: 110px;">
-        <h4 style="background-color:rgb(64,196,255); height: 50px;text-align:center;margin-top: 0%;">Finished</h4>
+        <h4 style="background-color: rgb(138, 247, 138); height: 50px;text-align:center;margin-top: 0%;">Finished</h4>
         <div class="mdl-grid demo-content" id="Sprint_finish">
 
           <!--          <div-->
@@ -197,7 +197,6 @@
           <option value="High">High</option>
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
-          <option value="Critical">Critical</option>
         </select>
       </form>
       <form action="#" id =  "edit_task_type1">
@@ -216,7 +215,7 @@
       <form action="#">
         <label for="edit_task_description">Add Hours:</label>
         <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="edit_task_hours">
+          <input class="mdl-textfield__input" type="number" id="edit_task_hours">
         </div>
       </form>
       <form action="#">

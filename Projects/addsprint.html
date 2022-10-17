@@ -48,11 +48,12 @@
 <body>
   <div style="width: 600px; height: 320px; border: solid; margin: auto; margin-top: 10%;">
 
-    <div style="text-align: center; font-size: xx-large; height: 50px; margin-top: 10px; "><b>Add Sprint</b></div>
+    <div style="text-align: center; font-size: xx-large; height: 50px; margin-top: 20px; "><b>Add Sprint</b></div>
     <div>
       <form action="#">
         <div class="mdl-textfield mdl-js-textfield" style="width: 80%; margin-left: 20px;">
-          <input class="mdl-textfield__input" type="text" id="sprint_name">
+          <input class="mdl-textfield__input" type="text" id="sprint_name" required>
+          <span id="sprintname_msg" class="mdl-textfield__error"></span>
           <label class="mdl-textfield__label">Sprint Name: </label>
         </div>
       </form>
@@ -61,7 +62,7 @@
           <b>Start Date: </b>
         </div>
         <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="start-date" id="sprint_start_day">
+          <input class="mdl-textfield__input" type="start-date" id="sprint_start_day" required>
           <label class="mdl-textfield__label" for="start-date">Date</label>
         </div>
       </div>
@@ -70,13 +71,13 @@
           <b>End Date: </b>
         </div>
         <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="end-date" id="sprint_end_day">
+          <input class="mdl-textfield__input" type="end-date" id="sprint_end_day" required>
           <label class="mdl-textfield__label" for="end-date">Date</label>
         </div>
       </div>
       <div class="mdl-dialog__actions" style=" margin-bottom: 5px;">
         <button type="button" class="mdl-button" style="font-size:large; margin-bottom: 5px;"  onclick="location.href='SprintManagement.html'">Cancel</button>
-        <button type="button" class="mdl-button" onclick="create_sprint();location.href='SprintManagement.html'"style="font-size:large;margin-bottom: 5px;">Create Sprint</button>
+        <button type="button" class="mdl-button" onclick="create_sprint()"style="font-size:large;margin-bottom: 5px;">Create Sprint</button>
       </div>
     </div>
 
