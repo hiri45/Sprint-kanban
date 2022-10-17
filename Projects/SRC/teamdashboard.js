@@ -131,9 +131,16 @@ function total_hour(member) {
     return total_hour;
 }
 function display_member(memberList2) {
+    var barColors = ["red", "green","blue","orange","brown"];
     let listmem = "";
+    let mem_name = []
+    let mem_hours=[]
+    let tot_hours = []
     for (let i = 0; i < memberList2._members.length; i++) {
         let member = memberList2._members[i];
+        mem_name.push(member._name)
+        mem_hours.push(total_hour(member) / total_date(member))
+        tot_hours.push(total_hour(member))
         listmem += '<tr>';
         listmem += '<td class="mdl-data-table__cell--non-numeric">' + member._name + '</td>';
         listmem += '<td>' + total_hour(member) + '</td>';
@@ -143,9 +150,105 @@ function display_member(memberList2) {
         listmem +='<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="+delete_member('+member._id+')">Delete</button>'
         listmem += '</td>';
         listmem += '</tr>';
+
     }
     let outputArea = document.getElementById("team_dashboard");
     outputArea.innerHTML = listmem;
+
+    new Chart("analyticsChart", {
+        type: "bar",
+        data: {
+            labels: mem_name,// xValBurn, xValAcc,
+            datasets:[{
+                label: 'Average Hours Per Day Worked',
+                fill: true,
+                pointRadius: 1,
+                backgroundColor:barColors,
+                data: mem_hours
+            },
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        display: true,
+                        labelString: 'Hours'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Memeber"
+                    }
+                }]
+            },
+            legend: {
+                display: true,
+                position: 'right',
+                labels: {
+                    fontColor: "rgba(0, 0, 250, 0.6)",
+                }
+            },
+            title: {
+                display: true,
+                text: 'Average Hours Per Day Worked By Members',
+                position: 'top',
+                align: 'left',
+                fontColor: 'rgb(255, 99, 132)'
+            }
+        }
+    })
+    new Chart("analyticsChart2", {
+        type: "bar",
+        data: {
+            labels: mem_name,// xValBurn, xValAcc,
+            datasets:[{
+                label: 'Total Hours Worked',
+                fill: true,
+                pointRadius: 1,
+                backgroundColor:barColors,
+                data: tot_hours
+            },
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        display: true,
+                        labelString: 'Hours'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Memeber"
+                    }
+                }]
+            },
+            legend: {
+                display: true,
+                position: 'right',
+                labels: {
+                    fontColor: "rgba(0, 0, 250, 0.6)",
+                }
+            },
+            title: {
+                display: true,
+                text: 'Total Hours Worked',
+                position: 'top',
+                align: 'left',
+                fontColor: 'rgb(255, 99, 132)'
+            }
+        }
+    })
 }
 function apply_filter(){
     let outputArea = document.getElementById("start date").value;
@@ -159,5 +262,8 @@ function apply_filter(){
     window.end_month=parseInt(end_dates1[1]);
     window.end_year=parseInt(end_dates1[0]);
     display_member(memberlist);
+
+
 }
 display_member(memberlist);
+
