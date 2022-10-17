@@ -427,3 +427,7 @@ function submitEdit(id) {
     // note to edit is changed with edited values
 
 }
+function go_back_member(){
+    updateSprintStorage(sprintlist)
+    window.location =  "MemberManagement.html"
+}
