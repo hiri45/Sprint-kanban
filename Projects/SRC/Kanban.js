@@ -343,7 +343,11 @@ function submitEdit(id) {
     :input
         id: id used to get specific note to edit
     */
-
+    let endDate_string = sprint_backlog_item._enddate.split("/");
+    let end_day = endDate_string[0]
+    let end_mon = endDate_string[1]
+    let end_year = endDate_string[2]
+    let endDate = new Date(end_year + "-" + end_mon + "-" + end_day)
 
     let submit_desc=document.getElementById("edit_task_description");
     let submit_tag = document.getElementById("edit_task_tags");
@@ -353,21 +357,61 @@ function submitEdit(id) {
     let submit_type = document.getElementById("edit_task_type");
     let submit_assignee = document.getElementById("edit_assignee");
     let submit_hours = document.getElementById("edit_task_hours");
-    // note to edit is changed with edited values
-    note_to_edit._description = submit_desc.value;
-    note_to_edit._tag = submit_tag.value;
-    note_to_edit._priority = submit_priority.value;
-    note_to_edit._storypoint = submit_sp.value;
-    note_to_edit._name = submit_name.value;
-    note_to_edit._type = submit_type.value;
-    note_to_edit._assignee = submit_assignee.value;
-    note_to_edit._totalhours += Number(submit_hours.value);
-    // update the member to store working hrs
     let date = document.getElementById("edit_task_date").value;
-    let dates= date.split("-");
-    let new_date=dates[2]+'/'+dates[1]+'/'+dates[0];
-    count_time(new_date,submit_hours.value,submit_assignee.value);
+    if (submit_name.value == "" || submit_desc.value == "")
+    {
+        alert("Task Name Or Description should not be empty!")
 
-    updateSprintStorage(sprintlist); // updates itemlist with edited data
-    window.location = "SprintAsginActive.html"  // takes user back to the index page once task has been added
+    }
+    else if (submit_sp.value < 0||!Number(submit_sp.value) )
+    {
+        alert("Story Point must be a positive integer")
+    }
+
+    else if (submit_hours.value==0&&date==""){
+        note_to_edit._description = submit_desc.value;
+        note_to_edit._tag = submit_tag.value;
+        note_to_edit._priority = submit_priority.value;
+        note_to_edit._storypoint = submit_sp.value;
+        note_to_edit._name = submit_name.value;
+        note_to_edit._type = submit_type.value;
+        note_to_edit._assignee = submit_assignee.value;
+        note_to_edit._totalhours += Number(submit_hours.value);
+
+        updateSprintStorage(sprintlist); // updates itemlist with edited data
+
+        window.location = "SprintAsginActive.html"  // takes user back to the index page once task has been added
+        // update the member to store working hrs
+    }
+    else if (submit_hours.value<0){
+        alert("Hours must be a number greater than 0")
+    }
+    else if(submit_hours.value!=0&&date==""){
+        alert("Please select a Date to log hours")
+    }
+    else if (new Date(date)<new Date()||new Date(date)>endDate){
+        alert("Date selected must be during current date and sprint end date")
+    }
+    else{
+        note_to_edit._description = submit_desc.value;
+        note_to_edit._tag = submit_tag.value;
+        note_to_edit._priority = submit_priority.value;
+        note_to_edit._storypoint = submit_sp.value;
+        note_to_edit._name = submit_name.value;
+        note_to_edit._type = submit_type.value;
+        note_to_edit._assignee = submit_assignee.value;
+        note_to_edit._totalhours += Number(submit_hours.value);
+        // update the member to store working hrs
+
+
+
+        let dates= date.split("-");
+        let new_date=dates[2]+'/'+dates[1]+'/'+dates[0];
+        count_time(new_date,submit_hours.value,submit_assignee.value);
+        updateSprintStorage(sprintlist); // updates itemlist with edited data
+
+        window.location = "SprintAsginActive.html"  // takes user back to the index page once task has been added
+    }
+    // note to edit is changed with edited values
+
 }
