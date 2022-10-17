@@ -16,10 +16,12 @@ class Stickynote{
         this._priority = "";
         this._storypoint = "";
         this._assignee = "";
-        this.type = []
-        this._toSprint = false
-        this._hours = 0
-        this._totalhours = 0
+        this._type = [];
+        this._toSprint = false;
+        this._hours = 0;
+        this._totalhours = 0;
+        this._hourlog = [];
+        this._datelog = [];
 
 
     }
@@ -102,6 +104,23 @@ class Stickynote{
     set toSprint(value) {
         this._toSprint = value;
     }
+
+    get hourlog() {
+        return this._hourlog;
+    }
+
+    set hourlog(value) {
+        this._hourlog.push(value);
+    }
+
+    get datelog() {
+        return this._datelog
+    }
+
+    set datelog(value) {
+        this._datelog.push(value)
+    }
+
     fromData(data){
         this._name = data._name;
         this._tag = data._tag;
@@ -115,6 +134,8 @@ class Stickynote{
         this._toSprint = data._toSprint;
         this._hours = data._hours;
         this._totalhours = data._totalhours;
+        this._hourlog = data._hourlog;
+        this._datelog = data._datelog;
     }
 
 }

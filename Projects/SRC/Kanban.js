@@ -43,6 +43,7 @@ function display_inpro_items(){
 
 
 }
+
 function display_finish_items(){
     /*
     this function takes selected tasks within a sprint and displays the tasks in the "finished" section within the kanban.
@@ -83,6 +84,7 @@ function move_inpro(id){
 
 
 }
+
 function move_finish(id){
     /*
     this function is used to move item a task into the "finished" section within the kanban.
@@ -99,8 +101,9 @@ function move_finish(id){
     }
 
 
-
+    
 }
+
 function move_back(id) {
     /*
     this function is used to move item a task back into the "in progress" section within the kanban.
@@ -133,12 +136,12 @@ function end_sprint(){
         let toConfirm = confirm("Press OK to end sprint.") //to confirm if the user want to delete the locker
         if (toConfirm===true){ //if it's true
             sprint_backlog_item._status = "Completed";
-            let date = new Date();
+            /*let date = new Date();
             let day = date.getDate()
             let mon = date.getMonth()+1;
             let year = date.getFullYear();
             let end_date = day.toString()+"/"+mon.toString()+"/"+year.toString();
-            sprint_backlog_item._enddate= end_date;
+            sprint_backlog_item._enddate= end_date;*/
             updateSprintStorage(sprintlist);
             window.location = "SprintManagement.html";
         } //if the user do not confirm, do nothing
@@ -146,7 +149,7 @@ function end_sprint(){
 
 }
 
-
+// calculates story points of all tasks in sprint
 function getStoryPoints(){
     let spTotal = 0
     for(let i = 0; i < sprint_backlog_item._items.length; i++) {
@@ -158,6 +161,7 @@ function getStoryPoints(){
     return spTotal;
 }
 
+// calculates the amount of days in a sprint
 function sprintDays(){
     let date_string = sprint_backlog_item._startdate.split("/");
     let day = date_string[0]
@@ -171,10 +175,11 @@ function sprintDays(){
     let endDate = new Date(end_year + "-" + end_mon + "-" + end_day)
 
     timeDiff = endDate.getTime() - startDate.getTime();
-    days = Math.ceil(timeDiff / (1000*3600*24));
+    let days = Math.ceil(timeDiff / (1000*3600*24));
     return days;
 }
 
+// generates x values for ideal burndown chart
 function genXVal(days){
     let daysArr = [];
     for (let i = 0; i < days+1; i++) {
@@ -183,6 +188,7 @@ function genXVal(days){
     return daysArr;
 }
 
+// generates y values for ideal burn down chart
 function genYVal(){
     let increment = getStoryPoints() / sprintDays();
     let spArr = []
@@ -203,6 +209,7 @@ class time_log{
     }
 
 }
+
 function count_time(date,hrs,member_name,task_id){
     let var_date=new time_log(date,hrs,task_id);
     local_list= localStorage.getItem("memberDATA");
@@ -216,21 +223,137 @@ function count_time(date,hrs,member_name,task_id){
     window.location.reload();
 }
 
+// generates y values for the actual burn down line
+function genYValBurn(){
+    let date_string = sprint_backlog_item._startdate.split("/");
+    let day = date_string[0]
+    let mon = date_string[1]
+    let year = date_string[2]
+    let startDate = new Date(year + "-" + mon + "-" + day)
+    let hours = getStoryPoints();
+    let yBurnArr = Array(xValues.length).fill(hours)
+    for (let i = 0; i < sprint_backlog_item._items.length; i++) {
+        for (let j = 0; j < sprint_backlog_item._items[i]._datelog.length; j++) {
+            let date_string = sprint_backlog_item._items[i]._datelog[j].split("/");
+            let date_day = date_string[0]
+            let date_mon = date_string[1]
+            let date_year = date_string[2]
+            let currDate = new Date(date_year + "-" + date_mon + "-" + date_day)
+            let timeDiff = currDate.getTime() - startDate.getTime();
+            let days = Math.ceil(timeDiff / (1000*3600*24));
+            yBurnArr[days] -= Number(sprint_backlog_item._items[i]._hourlog[j])
+            for (let n = days+1; n < yBurnArr.length; n++) {
+                if (n>1) {
+                    yBurnArr[n] = yBurnArr[n-1]
+                }
+            }
+        }
+    }
+    
+    return yBurnArr
+}
+
+// generates x values for the actual burn down line
+/*function genXValBurn(){
+
+}*/
+
+// generates y values for the accumulation line
+function genYValAcc(){
+    let date_string = sprint_backlog_item._startdate.split("/");
+    let day = date_string[0]
+    let mon = date_string[1]
+    let year = date_string[2]
+    let startDate = new Date(year + "-" + mon + "-" + day)
+    let yValAcc = Array(xValues.length).fill(0)
+    for (let i = 0; i < sprint_backlog_item._items.length; i++) {
+        for (let j = 0; j < sprint_backlog_item._items[i]._datelog.length; j++) {
+            let date_string = sprint_backlog_item._items[i]._datelog[j].split("/");
+            let date_day = date_string[0]
+            let date_mon = date_string[1]
+            let date_year = date_string[2]
+            let currDate = new Date(date_year + "-" + date_mon + "-" + date_day)
+            let timeDiff = currDate.getTime() - startDate.getTime();
+            let days = Math.ceil(timeDiff / (1000*3600*24));
+            yValAcc[days] += Number(sprint_backlog_item._items[i]._hourlog[j])
+            for (let n = days+1; n < yValAcc.length; n++) {
+                if (n>1) {
+                    yValAcc[n] = yValAcc[n-1]
+                }
+            }
+        }
+    }
+    
+    return yValAcc
+
+}
+
+// generates x values for the accumulation line
+/*function genXValAcc(){
+
+}*/
+
+//let xValBurn = genXValBurn();
+let yValBurn = genYValBurn();
+
+//let xValAcc = genXValAcc();
+let yValAcc = genYValAcc();
+
+// generates a chart with ideal burn down, burn down and accumulations lines displayed
 new Chart("analyticsChart", {
     type: "line",
     data: {
-        labels: xValues,
+        labels: xValues,// xValBurn, xValAcc,
         datasets:[{
+            label: 'Ideal Burn Down',
             fill: true,
             pointRadius: 1,
             borderColor:"rgba(255,0,0,0.5)",
             data: yValues
-        }]
+            },
+            {
+            label: 'Actual Burn Down',
+            fill: true,
+            pointRadius: 1,
+            borderColor:"rgba(0,0,255,0.5)",
+            data: yValBurn
+            },
+            {
+            label: 'Accumulation',
+            fill: true,
+            pointRadius: 1,
+            borderColor:"rgba(0,255,0,0.5)",
+            data: yValAcc
+            }
+        ]
     },
     options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Hours'
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Days Since Start of Sprint'
+                }
+            }]
+        },
+        legend: {
+            display: true,
+            position: 'right',
+            labels: {
+                fontColor: "rgba(0, 0, 250, 0.6)",
+            }
+        },
         title: {
             display: true,
             text: 'Analytics Chart',
+            position: 'top',
+            align: 'left',
             fontColor: 'rgb(255, 99, 132)'
             }
         }
@@ -314,12 +437,14 @@ function editTask(id) {
 
 
 }
+
 function closeEdit() {
     /*
     this function is used to close the edit dialog if user does not want to edit note
     */
     editing_task.close()
 }
+
 function count_time(date,hrs,member_name,task_id){
     let var_date=new time_log(date,hrs,task_id);
     local_list= localStorage.getItem("memberDATA");
@@ -331,6 +456,15 @@ function count_time(date,hrs,member_name,task_id){
     }
     localStorage.setItem("memberDATA", JSON.stringify(list));
     window.location.reload();
+}
+
+function get_time(date, hrs, task_id){
+    for (let i = 0; i < sprint_backlog_item._items.length; i++){
+        if (sprint_backlog_item._items[i]._id==task_id){
+            sprint_backlog_item._items[i]._hourlog.push(hrs);
+            sprint_backlog_item._items[i]._datelog.push(date);
+        }
+    }
 }
 
 function submitEdit(id) {
@@ -420,8 +554,9 @@ function submitEdit(id) {
         let dates= date.split("-");
         let new_date=dates[2]+'/'+dates[1]+'/'+dates[0];
         count_time(new_date,submit_hours.value,submit_assignee.value);
+        get_time(new_date,submit_hours.value,id)
         updateSprintStorage(sprintlist); // updates itemlist with edited data
-
+        
         window.location = "SprintAsginActive.html"  // takes user back to the index page once task has been added
     }
     // note to edit is changed with edited values
